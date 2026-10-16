@@ -37,7 +37,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  const verDiagnostico = router.state.location.href.includes("__diagnostico=alacena-8p4r7q2-v1");
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
@@ -51,9 +50,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
-        {verDiagnostico && (
-          <pre className="mt-4 whitespace-pre-wrap break-words rounded border p-3 text-left text-xs">{error.name}: {error.message}</pre>
-        )}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -113,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>

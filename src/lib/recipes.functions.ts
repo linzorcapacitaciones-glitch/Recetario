@@ -168,7 +168,7 @@ function extraerJson(content: string) {
 export const generarRecetas = createServerFn({
   method: "POST",
 })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z
       .object({
         ingredientes: z

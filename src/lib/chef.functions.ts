@@ -93,7 +93,7 @@ function resumenReceta(r: ContextoReceta) {
 /* ------------------------------ Pregúntale a tu Chef IA ------------------------------ */
 
 export const preguntarChef = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z
       .object({
         receta: contextoReceta,
@@ -158,7 +158,7 @@ const adaptadaJsonSchema = {
 } as const;
 
 export const adaptarReceta = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z
       .object({
         receta: contextoReceta,
@@ -228,7 +228,7 @@ const costoJsonSchema = {
 } as const;
 
 export const calcularCosto = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z
       .object({
         receta: contextoReceta,
@@ -286,7 +286,7 @@ const nutricionJsonSchema = {
 } as const;
 
 export const estimarNutricion = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => z.object({ receta: contextoReceta }).parse(input))
+  .validator((input: unknown) => z.object({ receta: contextoReceta }).parse(input))
   .handler(async ({ data }): Promise<Nutricion> =>
     pedirJson(
       "Eres un chef. Entregas una estimación aproximada de calorías, proteínas, carbohidratos y grasas por porción, en español neutro. " +
@@ -337,7 +337,7 @@ const sobrasJsonSchema = {
 } as const;
 
 export const aprovecharSobras = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z.object({ sobras: z.string().min(2).max(400) }).parse(input),
   )
   .handler(async ({ data }): Promise<IdeasSobras> =>
@@ -403,7 +403,7 @@ const menuJsonSchema = {
 } as const;
 
 export const crearMenuSemanal = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z
       .object({
         personas: z.number().min(1).max(20),
@@ -438,7 +438,7 @@ export const crearMenuSemanal = createServerFn({ method: "POST" })
 /* ------------------------------- Imagen referencial --------------------------------- */
 
 export const imagenReceta = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) =>
+  .validator((input: unknown) =>
     z
       .object({ titulo: z.string().min(2).max(160), descripcion: z.string().max(300).optional() })
       .parse(input),
