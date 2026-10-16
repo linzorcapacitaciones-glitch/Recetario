@@ -1,0 +1,26 @@
+name: Compilacion de Recetario
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      - name: Preparar Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Instalar dependencias
+        run: npm install --no-audit --no-fund
+      - name: Probar reglas de recetas
+        run: npm run test:unit
+      - name: Compilar aplicacion
+        run: npm run build
