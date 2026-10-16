@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Check, ShoppingBasket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useListaCompras } from "@/lib/listaCompras";
+import { PlanificadorSemanal } from "@/components/PlanificadorSemanal";
 
 const SOBRAS = [
   { titulo: "Arroz salteado con verduras", uso: "Arroz cocido del día anterior", pasos: ["Refrigera el arroz prontamente tras cocinarlo.", "Recalienta hasta que esté bien caliente y saltea con verduras cocidas."] },
@@ -34,10 +35,12 @@ export function PremiumDemo() {
         <p className="text-xs font-semibold uppercase tracking-wide text-primary">Premium · Demostración sin IA</p>
         <h2 className="font-display mt-2 text-2xl">Prueba la experiencia antes de comprar</h2>
         <p className="text-muted-foreground mt-2 text-sm">
-          Aquí encontrarás ejemplos preparados previamente. No son respuestas personalizadas ni generadas por OpenAI.
-          Todavía no se cobra ninguna suscripción.
+          El planificador semanal sí realiza cálculos según tus ingredientes, presupuesto y personas: no es una imagen ni un menú fijo.
+          Más abajo encontrarás ejemplos estáticos de otras herramientas. No se consume IA y todavía no se cobran suscripciones.
         </p>
       </section>
+
+      <PlanificadorSemanal />
 
       <section className="rounded-2xl border border-border bg-card p-5">
         <h2 className="font-display text-2xl">♻️ Aprovechar sobras</h2>
