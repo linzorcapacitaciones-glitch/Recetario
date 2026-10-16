@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState, type FormEvent } from "react";
@@ -136,6 +136,13 @@ function Index() {
                 </button>
               </div>
             </form>
+
+            <p className="mt-4 text-sm text-muted-foreground">
+              ¿Quieres revisar diez recetas sin gastar crédito de IA?{" "}
+              <Link to="/demo" className="font-semibold text-primary underline underline-offset-4">
+                Abrir demostración gratuita con recetas de ejemplo
+              </Link>
+            </p>
 
             <PersonalizarBusqueda valor={prefs} onChange={setPrefs} />
 
