@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { exigirAccesoPremium } from "./premium-access";
 
 /**
  * Funciones Premium "Chef IA".
@@ -7,26 +8,36 @@ import { z } from "zod";
  * nunca se llaman al abrir una receta, navegar, compartir o marcar favoritos.
  */
 
-const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
-const MODELO = "google/gemini-3.8-flash";
-const MODELO_IMAGEN = "google/gemini-2.5-flash-image";
+const GATEWAY = "https://api.openai.com/v1/chat/completions";
+const IMAGE_GATEWAY = "https://api.openai.com/v1/images/generations";
+const MODELO = process.env["OPENAI_MODEL"]?.trim() || "gpt-5.4-mini";
+const MODELO_IMAGEN = process.env["OPENAI_IMAGE_MODEL"]?.trim() || "gpt-image-1-mini";
 
+/** El acceso comercial debe verificarse en el servidor, nunca con localStorage. */
 function clave() {
-  const key = process.env["LOVABLE_API_KEY"];
-  if (!key) throw new Error("Falta la configuración de IA.");
+  exigirAccesoPremium();
+  const key = process.env["OPENAI_API_KEY"]?.trim();
+  if (!key) throw new Error("La clave de OpenAI API no está configurada en el servidor.");
   return key;
 }
 
 function errorGateway(status: number, texto: string) {
-  if (status === 429) return new Error("Demasiadas solicitudes. Espera un momento e inténtalo otra vez.");
-  if (status === 402) return new Error("Se agotaron los créditos de IA del espacio de trabajo.");
-  return new Error(`No se pudo completar la solicitud (${status}). ${texto.slice(0, 160)}`);
+  if (status === 401 || status === 403) return new Error("OpenAI rechazó la clave o los permisos del proyecto.");
+  if (status === 429) {
+    if (/insufficient_quota|billing_hard_limit_reached|exceeded your current quota|billing_not_active|insufficient credits/i.test(texto)) {
+      return new Error("La cuenta OpenAI API no tiene créditos disponibles o alcanzó el límite de gasto.");
+    }
+    return new Error("Se alcanzó un límite temporal de solicitudes a OpenAI.");
+  }
+  if (status === 402) return new Error("La cuenta OpenAI API no tiene créditos disponibles.");
+  // No devolver detalles crudos del proveedor en errores visibles al usuario.
+  return new Error(`No se pudo completar la solicitud de IA (código ${status}).`);
 }
 
 async function pedirTexto(system: string, user: string) {
   const res = await fetch(GATEWAY, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Lovable-API-Key": clave() },
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${clave()}` },
     body: JSON.stringify({
       model: MODELO,
       messages: [
@@ -49,7 +60,7 @@ async function pedirJson<T>(
 ): Promise<T> {
   const res = await fetch(GATEWAY, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Lovable-API-Key": clave() },
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${clave()}` },
     body: JSON.stringify({
       model: MODELO,
       messages: [
@@ -435,36 +446,40 @@ export const crearMenuSemanal = createServerFn({ method: "POST" })
     ),
   );
 
-/* ------------------------------- Imagen referencial --------------------------------- */
-
+/* ------------------------------- Imagen referencial ---------------------------------
+ * Generación preparada para OpenAI Image API; requiere suscripción verificada.
+ * Para controlar costos se muestra como acción explícita, nunca automáticamente.
+ */
 export const imagenReceta = createServerFn({ method: "POST" })
   .validator((input: unknown) =>
-    z
-      .object({ titulo: z.string().min(2).max(160), descripcion: z.string().max(300).optional() })
-      .parse(input),
+    z.object({
+      titulo: z.string().min(2).max(160),
+      descripcion: z.string().max(300).optional(),
+    }).parse(input),
   )
   .handler(async ({ data }): Promise<{ imagen: string }> => {
-    const res = await fetch(GATEWAY, {
+    const apiKey = clave(); // valida acceso Premium ANTES de gastar en imagen
+    const res = await fetch(IMAGE_GATEWAY, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Lovable-API-Key": clave() },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
       body: JSON.stringify({
         model: MODELO_IMAGEN,
-        modalities: ["image", "text"],
-        messages: [
-          {
-            role: "user",
-            content:
-              `Fotografía culinaria profesional del plato terminado: ${data.titulo}. ${data.descripcion ?? ""} ` +
-              "Luz natural suave, fondo claro y cálido de cocina, vajilla sencilla, plano cenital ligeramente inclinado, aspecto apetitoso y realista, sin texto ni marcas.",
-          },
-        ],
+        size: "1024x1024",
+        quality: "low",
+        n: 1,
+        prompt: `Fotografía culinaria profesional, realista y sin texto del plato terminado: ${data.titulo}. ${data.descripcion ?? ""}. Luz natural suave, cocina de fondo cálido, sin marcas.`,
       }),
     });
     if (!res.ok) throw errorGateway(res.status, await res.text());
     const payload = (await res.json()) as {
-      choices?: { message?: { images?: { image_url?: { url?: string } }[] } }[];
+      data?: { b64_json?: string; url?: string }[];
     };
-    const url = payload.choices?.[0]?.message?.images?.[0]?.image_url?.url;
-    if (!url) throw new Error("No se pudo generar la imagen del plato.");
-    return { imagen: url };
+    const imagen = payload.data?.[0]?.b64_json
+      ? `data:image/png;base64,${payload.data[0].b64_json}`
+      : payload.data?.[0]?.url;
+    if (!imagen) throw new Error("OpenAI no devolvió una imagen utilizable.");
+    return { imagen };
   });
