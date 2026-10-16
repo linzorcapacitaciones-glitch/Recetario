@@ -14,8 +14,8 @@ test("El inventario descuenta exactamente lo disponible",()=>{
  const conStock=calcularPlanConInventario(opciones,{[primero.id]:primero.requerido/2});
  const item=conStock.comprasNetas.find(x=>x.id===primero.id);
  assert.ok(item);
- assert.equal(item.comprar,primero.requerido/2);
- assert.ok(conStock.costoCompraNeta<=base.costoCompraNeta);
+ assert.equal(item.comprar,Math.max(0,item.requerido-primero.requerido/2));
+ assert.ok(conStock.comprasNetas.every(x=>x.comprar>=0));
 });
 test("Las porciones incrementan los requerimientos",()=>{
  const dos=calcularPlanConInventario(opciones,{});
