@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
-import { ChefHat, Clock, Flame, Heart, Users, Wallet } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChefHat, Clock, Flame, Heart, Users, Wallet, Check, RefreshCw, X } from "lucide-react";
 import type { Receta } from "@/lib/recipes.functions";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CompartirReceta } from "@/components/CompartirReceta";
 import { ResenasReceta, ResumenResenas } from "@/components/ResenasReceta";
 import { ChefIAReceta } from "@/components/ChefIA";
