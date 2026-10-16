@@ -3,10 +3,10 @@
  * Catálogo editorial pequeño: ampliar y revisar antes del lanzamiento.
  */
 import type { Receta } from "./recipes.functions";
-import { RECETAS_DEMO } from "./recetas-demo";
-import { RECETAS_ADICIONALES } from "./recetas-adicionales";
-import { RECETAS_LOTE_2 } from "./recetas-lote-2";
-import { CATALOGO, PRODUCTOS, type IngredienteId } from "./planificador-semanal";
+import { RECETAS_DEMO } from "./recetas-demo.ts";
+import { RECETAS_ADICIONALES } from "./recetas-adicionales.ts";
+import { RECETAS_LOTE_2 } from "./recetas-lote-2.ts";
+import { CATALOGO, PRODUCTOS, type IngredienteId } from "./planificador-semanal.ts";
 import type { Preferencias } from "./preferencias";
 
 type Ficha = { receta: Receta; claves: string[]; minutos: number; categoria: string; coste: number };
