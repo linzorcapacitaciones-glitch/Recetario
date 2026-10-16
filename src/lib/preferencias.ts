@@ -71,6 +71,9 @@ export function interpretarTexto(texto: string): Preferencias {
     p.intencion ??= "familia";
   }
 
+  // La intención romántica también se detecta cuando se indica la cantidad de personas.
+  if (/romantic|\bpareja\b/.test(t)) p.intencion ??= "romantica";
+
   // Tiempo
   const mt = t.match(/(\d{1,3})\s*(?:min|minutos?)/);
   if (mt) {
