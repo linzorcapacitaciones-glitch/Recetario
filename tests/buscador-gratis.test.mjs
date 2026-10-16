@@ -13,7 +13,7 @@ test("Buscar con arroz, pollo y tomate cambia realmente las coincidencias", () =
   assert.notEqual(a.recetas[0]?.titulo,b.recetas[0]?.titulo);
   assert.ok(a.recetas.every(r=>r.pasos.length>=4));
   assert.ok(a.recetas.every(r=>r.ingredientesCoincidentes?.length));
-  assert.ok(a.recetas.every(r=>r.porcentajeCoincidencia!>=0 && r.porcentajeCoincidencia!<=100));
+  assert.ok(a.recetas.every(r=>(r.porcentajeCoincidencia ?? -1)>=0 && (r.porcentajeCoincidencia ?? 101)<=100));
 });
 test("Acentos, plurales y conjunciones se reconocen", () => {
   assert.deepEqual(extraerIngredientes("atún, huevos y papas"),["atun","huevo","papa"]);
