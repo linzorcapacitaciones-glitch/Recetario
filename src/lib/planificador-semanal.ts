@@ -61,6 +61,7 @@ export type OpcionesPlan = {
   comidasPorDia: number;
   presupuesto: number;
   despensa: string;
+  inventarioCantidades?: Partial<Record<IngredienteId, number>>;
   precios?: Partial<Record<IngredienteId, number>>;
   variante?: number;
 };
@@ -113,11 +114,13 @@ export function planificarSemana(opciones: OpcionesPlan): ResultadoPlan {
   const comidasPorDia = Math.max(1, Math.min(2, Math.round(opciones.comidasPorDia || 1)));
   const presupuesto = Math.max(0, Number(opciones.presupuesto) || 0);
   const inventario = interpretarDespensa(opciones.despensa);
+  const inventarioCantidades = opciones.inventarioCantidades;
   const precios = { ...PRECIOS_REFERENCIA, ...opciones.precios };
   const variante = Math.max(0, Math.round(opciones.variante || 0));
   const usados = new Set<string>();
   const platos: PlatoPlan[] = [];
   const compras = new Map<IngredienteId, number>();
+  const consumoAcumulado = new Map<IngredienteId, number>();
   let costoTotal = 0;
   let costoCompraEstimada = 0;
   let categoriaPrevia = "";
@@ -127,8 +130,13 @@ export function planificarSemana(opciones: OpcionesPlan): ResultadoPlan {
     const candidatos = CATALOGO.map((plato, idx) => {
       const costo = plato.ingredientes.reduce((sum, [id, q]) =>
         sum + q * personas / 2 * Math.max(0, precios[id] ?? 0), 0);
-      const faltante = plato.ingredientes.reduce((sum, [id, q]) =>
-        sum + (inventario.has(id) ? 0 : q * personas / 2 * Math.max(0, precios[id] ?? 0)), 0);
+      const faltante = plato.ingredientes.reduce((sum, [id, q]) => {
+        const requerido = q * personas / 2;
+        const disponible = inventarioCantidades
+          ? Math.max(0, (Number(inventarioCantidades[id]) || 0) - (consumoAcumulado.get(id) || 0))
+          : inventario.has(id) ? requerido : 0;
+        return sum + Math.max(0, requerido - disponible) * Math.max(0, precios[id] ?? 0);
+      }, 0);
       const presupuestoPorComida = presupuesto > 0 ? presupuesto / (dias * comidasPorDia) : Infinity;
       // Priorizamos bajo costo, poco gasto en compras y variedad. El presupuesto es orientativo.
       const score = costo * 0.45 + faltante * 0.55
@@ -151,7 +159,14 @@ export function planificarSemana(opciones: OpcionesPlan): ResultadoPlan {
     });
     costoTotal += elegido.costo;
     for(const [id,q] of elegido.plato.ingredientes) {
-      if (!inventario.has(id)) compras.set(id, (compras.get(id) || 0) + q * personas / 2);
+      const requerido = q * personas / 2;
+      const yaUsado = consumoAcumulado.get(id) || 0;
+      const disponible = inventarioCantidades
+        ? Math.max(0, (Number(inventarioCantidades[id]) || 0) - yaUsado)
+        : inventario.has(id) ? requerido : 0;
+      const pendiente = Math.max(0, requerido - disponible);
+      if (pendiente > 0) compras.set(id, (compras.get(id) || 0) + pendiente);
+      consumoAcumulado.set(id, yaUsado + requerido);
     }
   }
   const consolidado = Array.from(compras).map(([id,cantidad]) => ({
