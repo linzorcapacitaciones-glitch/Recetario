@@ -1,4 +1,4 @@
-import { PRODUCTOS, type IngredienteId, type OpcionesPlan, type ResultadoPlan, planificarSemana } from "./planificador-semanal";
+import { PRODUCTOS, type IngredienteId, type OpcionesPlan, type ResultadoPlan, planificarSemana } from "./planificador-semanal.ts";
 
 /** Inventario cuantificado: cantidades en gramos o unidades, conforme a PRODUCTOS. */
 export type InventarioCantidad = Partial<Record<IngredienteId, number>>;
