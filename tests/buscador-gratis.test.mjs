@@ -33,3 +33,12 @@ test("Backend facturable permanece cerrado por defecto", () => {
   assert.match(src,/RECIPE_AI_ENABLED/);
   assert.match(src,/!== "true"/);
 });
+
+test("El catálogo ampliado contiene al menos 100 recetas únicas", () => {
+  assert.ok(TOTAL_RECETAS_CATALOGO >= 100, `Solo hay ${TOTAL_RECETAS_CATALOGO} recetas`);
+});
+test("El buscador encuentra recetas con legumbres", () => {
+  const r=buscarRecetasGratis("garbanzos, cebolla, tomate");
+  assert.ok(r.recetas.length>0);
+  assert.ok(r.recetas.every(x=>x.pasos.length>=4));
+});
