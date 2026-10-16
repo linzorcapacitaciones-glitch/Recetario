@@ -5,6 +5,7 @@
 import type { Receta } from "./recipes.functions";
 import { RECETAS_DEMO } from "./recetas-demo";
 import { RECETAS_ADICIONALES } from "./recetas-adicionales";
+import { RECETAS_LOTE_2 } from "./recetas-lote-2";
 import { CATALOGO, PRODUCTOS, type IngredienteId } from "./planificador-semanal";
 import type { Preferencias } from "./preferencias";
 
@@ -92,7 +93,7 @@ const fichasNuevas: Ficha[] = CATALOGO.map(plato => {
     }
   };
 });
-const fichasDemo: Ficha[]=[...RECETAS_DEMO,...RECETAS_ADICIONALES].map(r=>{
+const fichasDemo: Ficha[]=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2].map(r=>{
   const ids=extraerDeDescripcion(r.ingredientes);
   return {receta:r,claves:ids,minutos:Number(r.tiempoPreparacion.replace(/\D/g,""))+Number(r.tiempoCoccion.replace(/\D/g,"")),
     categoria:"casera",coste:r.costoAproximado==="Bajo"?1600:2900};
