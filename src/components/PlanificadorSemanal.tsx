@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useListaCompras } from "@/lib/listaCompras";
 import {
@@ -22,6 +22,22 @@ export function PlanificadorSemanal() {
   const [variante, setVariante] = useState(0);
   const [aviso, setAviso] = useState("");
   const { agregar } = useListaCompras();
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem("alacena-plan-semanal-v1");
+      if (!raw) return;
+      const guardado = JSON.parse(raw)?.opciones;
+      if (!guardado || typeof guardado !== "object") return;
+      if (Number.isFinite(guardado.personas)) setPersonas(Math.max(1, Math.min(12, guardado.personas)));
+      if ([3, 5, 7].includes(guardado.dias)) setDias(guardado.dias);
+      if ([1, 2].includes(guardado.comidasPorDia)) setComidasPorDia(guardado.comidasPorDia);
+      if (Number.isFinite(guardado.presupuesto)) setPresupuesto(Math.max(0, guardado.presupuesto));
+      if (guardado.inventario && typeof guardado.inventario === "object") setInventario(guardado.inventario);
+      if (guardado.precios && typeof guardado.precios === "object") setPrecios(guardado.precios);
+      if (Number.isFinite(guardado.variante)) setVariante(Math.max(0, guardado.variante));
+      setAviso("Recuperamos tu última planificación guardada en este dispositivo.");
+    } catch { /* Almacenamiento no disponible. */ }
+  }, []);
 
   const plan = useMemo(() => calcularPlanConInventario({
     personas, dias, comidasPorDia, presupuesto, despensa: "", precios, variante,
@@ -112,10 +128,10 @@ export function PlanificadorSemanal() {
         <div><p className="text-muted-foreground text-xs">Compra estimada faltante</p><p className="font-display text-xl">{moneda(plan.costoCompraNeta)}</p></div>
         <div><p className="text-muted-foreground text-xs">Por persona (semana)</p><p className="font-display text-xl">{moneda(plan.costoPorPersona)}</p></div>
       </div>
-      <p className={`mt-3 text-sm ${plan.excedePresupuesto ? "text-destructive" : "text-primary"}`}>
+      <p className={`mt-3 text-sm ${(presupuesto > 0 && plan.costoCompraNeta > presupuesto) ? "text-destructive" : "text-primary"}`}>
         {presupuesto <= 0 ? "Sin presupuesto definido." :
-          plan.excedePresupuesto ? `El costo estimado supera tu presupuesto en ${moneda(plan.costoTotal - presupuesto)}. Ajusta precios, días, personas o ingredientes.` :
-          `El costo estimado está dentro del presupuesto, con ${moneda(presupuesto - plan.costoTotal)} de margen.`}
+          plan.costoCompraNeta > presupuesto ? `La compra pendiente supera tu presupuesto en ${moneda(plan.costoCompraNeta - presupuesto)}. Ajusta precios, días, personas o ingredientes.` :
+          `La compra pendiente está dentro del presupuesto, con ${moneda(presupuesto - plan.costoCompraNeta)} de margen.`}
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         <Button type="button" variant="outline" onClick={() => setVariante(n => n + 1)}>Probar otra combinación</Button>
