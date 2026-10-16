@@ -269,8 +269,14 @@ export const generarRecetas = createServerFn({
         }
 
         if (res.status === 429) {
+          const faltaCredito = /insufficient_quota|billing_hard_limit_reached|billing_not_active|exceeded your current quota|check your plan and billing details|insufficient credits|credit balance/i.test(text);
+          if (faltaCredito) {
+            throw new Error(
+              "La cuenta de OpenAI API no tiene créditos disponibles o alcanzó su límite de gasto. Revisa la facturación y los límites en platform.openai.com. ChatGPT Plus no incluye créditos de API.",
+            );
+          }
           throw new Error(
-            "Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.",
+            "OpenAI está limitando temporalmente las solicitudes. Espera unos minutos antes de reintentar.",
           );
         }
 
