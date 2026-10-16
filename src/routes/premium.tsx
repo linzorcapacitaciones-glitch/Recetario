@@ -79,7 +79,7 @@ function PremiumPagina() {
             {esPremium ? "Salir de la vista de prueba" : "Probar Chef IA sin costo (vista de prueba)"}
           </Button>
           <p className="text-muted-foreground text-xs">
-            La vista de prueba presenta ejemplos estáticos sin cobros ni consumo de IA. El acceso de pago aún no está habilitado.
+            La planificación semanal es interactiva y calcula presupuestos sin IA. Las otras herramientas muestran ejemplos; no hay cobros ni acceso Premium comercial activo.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ function PremiumPagina() {
           </div>
         ) : (
           <p className="text-muted-foreground mt-8 text-sm">
-            Activa la vista de prueba para usar ♻️ Aprovechar sobras y 📅 Crear menú semanal, o vuelve a{" "}
+            Activa la vista de prueba para usar el planificador semanal interactivo sin IA y explorar otras herramientas, o vuelve a{" "}
             <Link to="/" className="text-primary underline">
               generar recetas
             </Link>
