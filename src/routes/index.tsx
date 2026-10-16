@@ -1,12 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState, type FormEvent } from "react";
-import { CornerDownLeft, Loader2, Sparkles } from "lucide-react";
+import { CornerDownLeft, Sparkles } from "lucide-react";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { RecetaCard } from "@/components/RecetaCard";
-import { generarRecetas, type Receta } from "@/lib/recipes.functions";
+import { buscarRecetasGratis, type ResultadoBusqueda } from "@/lib/buscador-gratis";
 import { useFavoritos } from "@/lib/favoritos";
 import { PersonalizarBusqueda } from "@/components/PersonalizarBusqueda";
 import { AnuncioPlaceholder } from "@/components/AnuncioPlaceholder";
@@ -14,8 +12,6 @@ import { usePlan } from "@/lib/plan";
 import { metricasBusqueda, registrarEvento } from "@/lib/analitica";
 import {
   combinarPreferencias,
-  etiquetaIntencion,
-  etiquetaTiempo,
   type Preferencias,
 } from "@/lib/preferencias";
 
@@ -28,12 +24,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Escribe los ingredientes de tu alacena y recibe 10 recetas en español con pasos detallados y tiempos de preparación y cocción.",
+          "Escribe tus ingredientes y descubre recetas del catálogo gratuito, con ingredientes y pasos sin consumir IA.",
       },
       { property: "og:title", content: "Alacena — 10 recetas con lo que ya tienes en casa" },
       {
         property: "og:description",
-        content: "10 recetas al instante a partir de los ingredientes que tienes en tu cocina.",
+        content: "Busca recetas reales de un catálogo gratuito usando los ingredientes que tienes en casa, sin llamadas a IA.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -47,43 +43,32 @@ const EJEMPLOS = ["pollo, arroz, limón", "huevos, espinaca, queso", "atún, pas
 function Index() {
   const [texto, setTexto] = useState("");
   const [prefs, setPrefs] = useState<Preferencias>({});
-  const generar = useServerFn(generarRecetas);
   const { alternar, esFavorito } = useFavoritos();
   const { mostrarPublicidad } = usePlan();
+  const [resultado, setResultado] = useState<ResultadoBusqueda | null>(null);
 
   useEffect(() => {
     registrarEvento("app_open");
   }, []);
 
-  const mutacion = useMutation({
-    mutationFn: (ingredientes: string) => {
-      const c = combinarPreferencias(prefs, ingredientes);
-      const preferencias = {
-        ...(c.intencion ? { intencion: etiquetaIntencion(c.intencion)! } : {}),
-        ...(c.personas ? { personas: `${c.personas} personas` } : {}),
-        ...(c.tiempo ? { tiempo: etiquetaTiempo(c.tiempo)! } : {}),
-      };
-      registrarEvento("ingredient_search", {
-        ...metricasBusqueda(ingredientes),
-        conIntencion: Boolean(c.intencion),
-        conPersonas: Boolean(c.personas),
-        conTiempo: Boolean(c.tiempo),
-      });
-      return generar({ data: { ingredientes, preferencias } });
-    },
-    onSuccess: (data) => {
-      registrarEvento("recipe_results_view", { totalRecetas: data.recetas.length });
-    },
-  });
-
   const enviar = (e: FormEvent) => {
     e.preventDefault();
     const valor = texto.trim();
-    if (valor.length < 2 || mutacion.isPending) return;
-    mutacion.mutate(valor);
+    if (valor.length < 2) return;
+    const c = combinarPreferencias(prefs, valor);
+    registrarEvento("ingredient_search", {
+      ...metricasBusqueda(valor),
+      conIntencion: Boolean(c.intencion),
+      conPersonas: Boolean(c.personas),
+      conTiempo: Boolean(c.tiempo),
+      modo: "catalogo_local",
+    });
+    const busqueda = buscarRecetasGratis(valor, c);
+    setResultado(busqueda);
+    registrarEvento("recipe_results_view", { totalRecetas: busqueda.recetas.length, modo: "catalogo_local" });
   };
 
-  const recetas: Receta[] = mutacion.data?.recetas ?? [];
+  const recetas = resultado?.recetas ?? [];
 
   return (
     <div className="min-h-screen">
@@ -122,25 +107,21 @@ function Index() {
                 />
                 <button
                   type="submit"
-                  disabled={mutacion.isPending || texto.trim().length < 2}
+                  disabled={texto.trim().length < 2}
                   className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors disabled:opacity-50"
                 >
-                  {mutacion.isPending ? (
-                    <Loader2 className="size-4 animate-spin" />
-                  ) : (
-                    <CornerDownLeft className="size-4" />
-                  )}
+                  <CornerDownLeft className="size-4" />
                   <span className="hidden sm:inline">
-                    {mutacion.isPending ? "Cocinando…" : "Generar"}
+                    Buscar gratis
                   </span>
                 </button>
               </div>
             </form>
 
             <p className="mt-4 text-sm text-muted-foreground">
-              ¿Quieres revisar diez recetas sin gastar crédito de IA?{" "}
+              Búsqueda gratuita y funcional, sin gastar créditos de IA.{" "}
               <Link to="/demo" className="font-semibold text-primary underline underline-offset-4">
-                Abrir demostración gratuita con recetas de ejemplo
+                Ver demostración de la interfaz
               </Link>
             </p>
 
@@ -163,32 +144,23 @@ function Index() {
       </section>
 
       <main className="mx-auto max-w-6xl px-5 pb-24">
-        {mutacion.isError && (
-          <p className="border-destructive/30 bg-destructive/10 text-destructive mx-auto max-w-xl rounded-2xl border px-5 py-4 text-center text-sm">
-            {(mutacion.error as Error).message}
-          </p>
-        )}
-
-        {mutacion.isPending && mostrarPublicidad && (
-          <AnuncioPlaceholder className="mx-auto mb-6 max-w-xl" />
-        )}
-
-        {mutacion.isPending && (
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="border-border bg-card h-72 animate-pulse rounded-3xl border"
-              />
-            ))}
+        {resultado && (
+          <div className="mb-6 rounded-2xl border border-border bg-card p-4 text-sm">
+            <p className="font-semibold">Catálogo gratuito: {resultado.totalCatalogo} recetas revisables, sin llamadas a OpenAI.</p>
+            <p className="text-muted-foreground mt-1">Encontramos {resultado.totalCoincidentes} recetas compatibles; mostramos hasta 10, ordenadas por ingredientes disponibles y faltantes.</p>
+            {resultado.ingredientesReconocidos.length > 0 && <p className="mt-2">Reconocidos: {resultado.ingredientesReconocidos.join(", ")}.</p>}
+            {resultado.ignorados.length > 0 && <p className="text-muted-foreground mt-2">Sin coincidencia en el catálogo: {resultado.ignorados.join(", ")}. No se usarán para puntuar recetas.</p>}
+            {resultado.totalCoincidentes===0 && <p className="mt-2 text-primary">Prueba con arroz, pollo, huevo, tomate, papa, lentejas, atún o pasta; o amplía el tiempo máximo en tus preferencias.</p>}
+            <p className="text-muted-foreground mt-2 text-xs">Los ingredientes y tiempos son estimaciones editoriales. Las recetas se muestran con cantidades base para dos personas; la adaptación de porciones será una función futura.</p>
           </div>
         )}
+        {resultado && mostrarPublicidad && <AnuncioPlaceholder className="mx-auto mb-6 max-w-xl" />}
 
-        {recetas.length > 0 && !mutacion.isPending && (
+        {recetas.length > 0 && (
           <>
             <div className="mb-8 flex items-end justify-between gap-4">
               <h2 className="font-display text-3xl tracking-tight">
-                Tus 10 recetas, de mayor a menor coincidencia
+                Tus {recetas.length} recetas recomendadas
               </h2>
               <p className="text-muted-foreground text-sm">Guarda las que te gusten con ♥</p>
             </div>
