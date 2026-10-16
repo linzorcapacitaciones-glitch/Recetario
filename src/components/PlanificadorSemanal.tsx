@@ -92,8 +92,8 @@ export function PlanificadorSemanal() {
             onChange={e => setPresupuesto(Math.max(0, Number(e.target.value) || 0))}/>
         </label>
       </div>
-      <details className="mt-4 rounded-xl border p-3" open>
-        <summary className="cursor-pointer font-medium text-sm">Inventario real: ¿cuánto tienes en casa?</summary>
+      <details className="mt-4 rounded-xl border p-3">
+        <summary className="cursor-pointer font-medium text-sm">Inventario real · {Object.values(inventario).filter(x => Number(x) > 0).length} ingredientes registrados · Toca para editar</summary>
         <p className="text-muted-foreground my-3 text-xs">Indica gramos o unidades. Deja 0 cuando no tengas el ingrediente. La lista de compras descontará solamente la cantidad disponible.</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {IDS_INGREDIENTES.map(id => <label key={id} className="grid gap-1 text-xs">
@@ -104,6 +104,7 @@ export function PlanificadorSemanal() {
               onChange={e => setInventario(p => ({...p, [id]: Math.max(0, Number(e.target.value) || 0)}))}/>
           </label>)}
         </div>
+        <Button type="button" variant="outline" className="mt-3" onClick={() => setInventario({})}>Vaciar inventario</Button>
       </details>
       <details className="mt-4 rounded-xl border p-3">
         <summary className="cursor-pointer font-medium text-sm">Modificar precios de referencia de ingredientes</summary>
