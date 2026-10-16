@@ -91,7 +91,7 @@ export function ChefIAReceta({ receta }: { receta: Receta }) {
           <span className="flex flex-col items-start text-left leading-tight">
             <span>🔄 Adaptar receta</span>
             <span className="text-muted-foreground mt-1 text-[11px] font-normal">
-              {esPremium ? "👨‍🍳 Chef IA activo" : "✨ Próximamente Premium"}
+              {esPremium ? "👨‍🍳 Demostración Premium" : "✨ Próximamente Premium"}
             </span>
           </span>
         </Button>
@@ -119,13 +119,22 @@ export function ChefIAReceta({ receta }: { receta: Receta }) {
           </DialogTitle>
           <DialogDescription className="pt-1 leading-relaxed">
             {esPremium
-              ? `Tu asistente personal de cocina para “${receta.titulo}”.`
+              ? `Demostración sin IA para “${receta.titulo}”.`
               : "Con Premium podrás personalizar esta receta según tus necesidades."}
           </DialogDescription>
         </DialogHeader>
 
         <div className="min-h-0 flex-1 overflow-y-auto p-5 sm:p-6">
-          {esPremium ? <PanelPremium receta={receta} /> : <VistaPreviaPremium />}
+          {esPremium ? (
+            <div className="grid gap-4">
+              <p className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-sm">
+                Vista de prueba: puedes cocinar paso a paso y preparar tu lista de compras.
+                Las adaptaciones automáticas, preguntas al Chef e imágenes con IA esperan la activación de suscripciones.
+              </p>
+              <CocinaConmigo pasos={receta.pasos} />
+              <ComprasPanel receta={receta} />
+            </div>
+          ) : <VistaPreviaPremium />}
         </div>
       </DialogContent>
     </Dialog>

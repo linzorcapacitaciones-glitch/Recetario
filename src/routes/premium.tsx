@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { Check, Loader2, Sparkles } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PremiumDemo } from "@/components/PremiumDemo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -78,14 +79,13 @@ function PremiumPagina() {
             {esPremium ? "Salir de la vista de prueba" : "Probar Chef IA sin costo (vista de prueba)"}
           </Button>
           <p className="text-muted-foreground text-xs">
-            La vista de prueba desbloquea la experiencia en este dispositivo, sin cobros.
+            La vista de prueba presenta ejemplos estáticos sin cobros ni consumo de IA. El acceso de pago aún no está habilitado.
           </p>
         </div>
 
         {esPremium ? (
           <div className="mt-10 grid gap-10">
-            <SobrasPanel />
-            <MenuPanel />
+            <PremiumDemo />
           </div>
         ) : (
           <p className="text-muted-foreground mt-8 text-sm">
