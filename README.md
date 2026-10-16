@@ -1,26 +1,25 @@
-# Cocina Inteligente
+# Recetario de la Alacena
 
-Crea una aplicación web profesional en español para generar 10 recetas a partir de ingredientes que el usuario tiene en su alacena. Home con imagen/fondo sutil relacionado con cocina, paleta clara y diseño premium. Incluye campo donde el usuario escribe ingredientes y presiona Enter para generar recetas. Muestra 10 recetas con ingredientes, instrucciones paso a paso y tiempo de cocción/preparación. Permite guardar y ver recetas favoritas. Diseña una experiencia responsive y atractiva. Habilita Lovable Cloud si hace falta para persistir favoritos y preparar la funcionalidad de generación.
+Proyecto restaurado desde el repositorio original `linzorcapacitaciones-glitch/pantry-to-plate-pro-86` (React, TypeScript, TanStack Start, Vite).
 
-This project was built with [Lovable](https://lovable.dev).
+La web anterior sigue funcionando: https://pantry-to-plate-pro-86.lovable.app/
 
-**Live app**: https://pantry-to-plate-pro-86.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/719d6a9e-3471-41ea-85ae-5b424622f3b8).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Instalación y pruebas
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+npm install
+npm run lint
+npm run build
 ```
+
+## Generación de recetas con IA
+
+`src/lib/recipes.functions.ts` recibe los ingredientes, solicita diez recetas y valida que sean exactamente diez. Para ejecutarla fuera de Lovable, configure `OPENAI_API_KEY` como variable de **servidor** en el alojamiento. También acepta `LOVABLE_API_KEY` del gateway anterior. No publique claves API, no las ponga en variables `VITE_*`.
+
+`src/lib/chef.functions.ts` contiene funciones premium que todavía requieren Lovable Gateway y necesitarán adaptación si se quiere independencia total.
+
+## Despliegue y recursos gráficos
+
+La fotografía principal se sirve **temporalmente** desde el sitio original de Lovable; se mantiene para preservar el diseño mientras se incorpora la imagen local. Se sustituyó el favicon binario por un SVG local. No retirar el sitio anterior hasta haber migrado todos los recursos.
+
+La aplicación nueva no se considera publicada ni validada hasta completar instalaciones, pruebas, secretos y compilación de producción.

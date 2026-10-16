@@ -3,7 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState, type FormEvent } from "react";
 import { CornerDownLeft, Loader2, Sparkles } from "lucide-react";
-import heroImg from "@/assets/cocina-hero.jpg";
+
 import { SiteHeader } from "@/components/SiteHeader";
 import { RecetaCard } from "@/components/RecetaCard";
 import { generarRecetas, type Receta } from "@/lib/recipes.functions";
@@ -18,6 +18,8 @@ import {
   etiquetaTiempo,
   type Preferencias,
 } from "@/lib/preferencias";
+
+const heroImg = "https://pantry-to-plate-pro-86.lovable.app/assets/cocina-hero-CUhy-Vc2.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
