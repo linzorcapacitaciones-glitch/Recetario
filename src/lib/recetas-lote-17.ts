@@ -282,7 +282,7 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Cuece los porotos hasta que estén completamente tiernos.",
+      "Utiliza porotos ya cocidos y escurridos.",
       "Corta el zapallo en cubos y hornéalo hasta dorar.",
       "Lava y corta el tomate y calienta las tortillas.",
       "Rellena con porotos, zapallo y tomate."
