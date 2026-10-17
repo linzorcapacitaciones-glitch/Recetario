@@ -79,3 +79,17 @@ test("Lote 5 agrega 25 recetas con títulos únicos y cuatro pasos",async()=>{
  assert.ok(RECETAS_LOTE_5.every(x=>x.ingredientes.length>=3&&x.pasos.length>=4));
  assert.ok(TOTAL_RECETAS_CATALOGO>=160,`Total: ${TOTAL_RECETAS_CATALOGO}`);
 });
+
+test("Buscador reconoce pescado, brócoli y otros ingredientes nuevos",()=>{
+ const r=buscarRecetasGratis("merluza papas limón");
+ assert.ok(r.recetas.length>0);
+ assert.ok(r.ingredientesReconocidos.includes("merluza"));
+ assert.ok(extraerIngredientes("brócoli, champiñones y pimentones").includes("brocoli"));
+});
+test("Lote 6 incorpora 15 recetas con ingredientes nuevos",async()=>{
+ const {RECETAS_LOTE_6}=await import("../src/lib/recetas-lote-6.ts");
+ assert.equal(RECETAS_LOTE_6.length,15);
+ assert.equal(new Set(RECETAS_LOTE_6.map(x=>x.titulo.toLowerCase())).size,15);
+ assert.ok(RECETAS_LOTE_6.every(x=>x.ingredientes.length>=3&&x.pasos.length>=4));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=175,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
