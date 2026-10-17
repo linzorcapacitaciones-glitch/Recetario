@@ -251,7 +251,7 @@ const FICHAS=[
     "coc": 20,
     "pasos": [
       "Cuece el arroz en agua hasta que esté tierno.",
-      null,
+      "Escurre el atún en conserva antes de incorporarlo a la preparación.",
       "Lava y corta el pepino en cubos.",
       "Aliña con jugo de limón al terminar."
 ]
