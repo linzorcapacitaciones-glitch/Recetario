@@ -127,3 +127,12 @@ test("Lote 10 suma treinta preparaciones y alcanza 275 recetas",async()=>{
  assert.ok(TOTAL_RECETAS_CATALOGO>=275,`Total: ${TOTAL_RECETAS_CATALOGO}`);
  assert.ok(extraerIngredientes("acelga y polenta").includes("acelga"));
 });
+
+test("Lote 11 incorpora treinta recetas internacionales y supera 300",async()=>{
+ const {RECETAS_LOTE_11}=await import("../src/lib/recetas-lote-11.ts");
+ assert.equal(RECETAS_LOTE_11.length,30);
+ assert.equal(new Set(RECETAS_LOTE_11.map(r=>r.titulo.toLowerCase())).size,30);
+ assert.ok(RECETAS_LOTE_11.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=305,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+ assert.ok(extraerIngredientes("tofu, aceitunas y tortillas").includes("tofu"));
+});
