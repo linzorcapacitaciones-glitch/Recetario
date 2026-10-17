@@ -114,6 +114,8 @@ export function planificarSemana(opciones: OpcionesPlan): ResultadoPlan {
   const comidasPorDia = Math.max(1, Math.min(2, Math.round(opciones.comidasPorDia || 1)));
   const presupuesto = Math.max(0, Number(opciones.presupuesto) || 0);
   const inventario = interpretarDespensa(opciones.despensa);
+  // El inventario cuantificado tiene prioridad. Sin cantidades, la despensa declarada
+  // sigue funcionando como una estimación cualitativa (no descuenta existencias reales).
   const inventarioCantidades = opciones.inventarioCantidades;
   const precios = { ...PRECIOS_REFERENCIA, ...opciones.precios };
   const variante = Math.max(0, Math.round(opciones.variante || 0));
@@ -132,7 +134,7 @@ export function planificarSemana(opciones: OpcionesPlan): ResultadoPlan {
         sum + q * personas / 2 * Math.max(0, precios[id] ?? 0), 0);
       const faltante = plato.ingredientes.reduce((sum, [id, q]) => {
         const requerido = q * personas / 2;
-        const disponible = inventarioCantidades
+        const disponible = inventarioCantidades && inventarioCantidades[id] !== undefined
           ? Math.max(0, (Number(inventarioCantidades[id]) || 0) - (consumoAcumulado.get(id) || 0))
           : inventario.has(id) ? requerido : 0;
         return sum + Math.max(0, requerido - disponible) * Math.max(0, precios[id] ?? 0);
@@ -161,7 +163,7 @@ export function planificarSemana(opciones: OpcionesPlan): ResultadoPlan {
     for(const [id,q] of elegido.plato.ingredientes) {
       const requerido = q * personas / 2;
       const yaUsado = consumoAcumulado.get(id) || 0;
-      const disponible = inventarioCantidades
+      const disponible = inventarioCantidades && inventarioCantidades[id] !== undefined
         ? Math.max(0, (Number(inventarioCantidades[id]) || 0) - yaUsado)
         : inventario.has(id) ? requerido : 0;
       const pendiente = Math.max(0, requerido - disponible);
