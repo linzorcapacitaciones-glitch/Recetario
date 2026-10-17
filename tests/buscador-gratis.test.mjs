@@ -118,3 +118,12 @@ test("Lote 9 aporta 25 recetas y nueva meta de 500",async()=>{
  assert.ok(TOTAL_RECETAS_CATALOGO>=245,`Total: ${TOTAL_RECETAS_CATALOGO}`);
  assert.ok(extraerIngredientes("quinoa, berenjenas, arvejas").includes("quinoa"));
 });
+
+test("Lote 10 suma treinta preparaciones y alcanza 275 recetas",async()=>{
+ const {RECETAS_LOTE_10}=await import("../src/lib/recetas-lote-10.ts");
+ assert.equal(RECETAS_LOTE_10.length,30);
+ assert.equal(new Set(RECETAS_LOTE_10.map(r=>r.titulo.toLowerCase())).size,30);
+ assert.ok(RECETAS_LOTE_10.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=275,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+ assert.ok(extraerIngredientes("acelga y polenta").includes("acelga"));
+});
