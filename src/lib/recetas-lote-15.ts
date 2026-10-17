@@ -70,7 +70,7 @@ const FICHAS=[
     "coc": 35
   },
   {
-    "titulo": "Crema de brócoli y papa",
+    "titulo": "Crema de brócoli y papa con leche",
     "ids": [
       "brocoli",
       "papa",
