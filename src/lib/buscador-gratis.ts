@@ -52,17 +52,20 @@ function idIngrediente(s: string): IngredienteId | undefined {
   return id in PRODUCTOS ? id : undefined;
 }
 export function extraerIngredientes(texto: string): IngredienteId[] {
-  const partes=normalizar(texto)
-    .replace(/\b(?:tengo|disponibles?|en casa|en mi alacena|ingredientes?|para cocinar|y tambien)\b/g, " ")
-    .split(/[,;\n]+|\s+y\s+|\s+\+\s+/)
-    .map(s => s.trim()).filter(Boolean);
+  const limpio=normalizar(texto)
+    .replace(/\b(?:tengo|disponibles?|en casa|en mi alacena|ingredientes?|para cocinar|y tambien)\b/g, " ");
+  // Reconoce listas separadas por comas, espacios o conjunciones, conservando alias de varias palabras.
+  const tokens=limpio.replace(/[,;\n+]+/g," ").split(/\s+/).filter(Boolean);
   const encontrados=new Set<IngredienteId>();
-  for(const p of partes) {
-    const id=idIngrediente(p);
+  for(let i=0;i<tokens.length;i++) {
+    const compuesto=i+2<tokens.length?tokens.slice(i,i+3).join(" "):"";
+    const doble=i+1<tokens.length?tokens.slice(i,i+2).join(" "):"";
+    const id=(compuesto&&idIngrediente(compuesto))||(doble&&idIngrediente(doble))||idIngrediente(tokens[i]);
     if(id) encontrados.add(id);
   }
   return [...encontrados];
 }
+
 const porId = (id: string) => PRODUCTOS[id as IngredienteId]?.nombre ?? id;
 const extraerDeDescripcion = (ingredientes: string[]) => {
   const ids=new Set<IngredienteId>();
@@ -112,7 +115,7 @@ export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}):
   const ingredientes=extraerIngredientes(texto);
   const conocidos=new Set(ingredientes);
   const piezas=normalizar(texto).split(/[,;\n]+|\s+y\s+|\s+\+\s+/).map(s=>s.trim()).filter(Boolean);
-  const ignorados=piezas.filter(p=>!idIngrediente(p));
+  const ignorados=piezas.filter(p=>!extraerIngredientes(p).length);
   const tiempoMax=preferencias.tiempo&&preferencias.tiempo!=="libre"?Number(preferencias.tiempo):Infinity;
   const orden=[...sinDuplicados.values()].map(ficha=>{
     const coincidentes=ficha.claves.filter(id=>conocidos.has(id));
