@@ -1,10 +1,11 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useListaCompras } from "@/lib/listaCompras";
 import {
-  planificarSemana, PRODUCTOS, IDS_INGREDIENTES, PRECIOS_REFERENCIA,
-  type IngredienteId, type ResultadoPlan
+  PRODUCTOS, IDS_INGREDIENTES, PRECIOS_REFERENCIA,
+  type IngredienteId
 } from "@/lib/planificador-semanal";
+import { calcularPlanConInventario, type InventarioCantidad } from "@/lib/premium-inventario";
 
 const moneda = (n: number) => new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 }).format(n);
 const cantidades = (n: number, unidad: string) =>
@@ -16,20 +17,36 @@ export function PlanificadorSemanal() {
   const [dias, setDias] = useState(7);
   const [comidasPorDia, setComidasPorDia] = useState(1);
   const [presupuesto, setPresupuesto] = useState(30000);
-  const [despensa, setDespensa] = useState("arroz, pollo, huevo, tomate");
+  const [inventario, setInventario] = useState<InventarioCantidad>({});
   const [precios, setPrecios] = useState<Partial<Record<IngredienteId, number>>>({});
   const [variante, setVariante] = useState(0);
   const [aviso, setAviso] = useState("");
   const { agregar } = useListaCompras();
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem("alacena-plan-semanal-v1");
+      if (!raw) return;
+      const guardado = JSON.parse(raw)?.opciones;
+      if (!guardado || typeof guardado !== "object") return;
+      if (Number.isFinite(guardado.personas)) setPersonas(Math.max(1, Math.min(12, guardado.personas)));
+      if ([3, 5, 7].includes(guardado.dias)) setDias(guardado.dias);
+      if ([1, 2].includes(guardado.comidasPorDia)) setComidasPorDia(guardado.comidasPorDia);
+      if (Number.isFinite(guardado.presupuesto)) setPresupuesto(Math.max(0, guardado.presupuesto));
+      if (guardado.inventario && typeof guardado.inventario === "object") setInventario(guardado.inventario);
+      if (guardado.precios && typeof guardado.precios === "object") setPrecios(guardado.precios);
+      if (Number.isFinite(guardado.variante)) setVariante(Math.max(0, guardado.variante));
+      setAviso("Recuperamos tu última planificación guardada en este dispositivo.");
+    } catch { /* Almacenamiento no disponible. */ }
+  }, []);
 
-  const plan = useMemo<ResultadoPlan>(() => planificarSemana({
-    personas, dias, comidasPorDia, presupuesto, despensa, precios, variante,
-  }), [personas, dias, comidasPorDia, presupuesto, despensa, precios, variante]);
+  const plan = useMemo(() => calcularPlanConInventario({
+    personas, dias, comidasPorDia, presupuesto, despensa: "", precios, variante,
+  }, inventario), [personas, dias, comidasPorDia, presupuesto, inventario, precios, variante]);
 
   const guardar = () => {
     try {
       window.localStorage.setItem("alacena-plan-semanal-v1", JSON.stringify({
-        opciones: { personas, dias, comidasPorDia, presupuesto, despensa, precios, variante },
+        opciones: { personas, dias, comidasPorDia, presupuesto, inventario, precios, variante },
         plan, fecha: new Date().toISOString()
       }));
       setAviso("Plan guardado en este navegador. No se almacena en la nube.");
@@ -39,7 +56,7 @@ export function PlanificadorSemanal() {
   };
 
   const comprar = () => {
-    const nombres = plan.compras.map(c => `${cantidades(c.cantidad, c.unidad)} de ${c.nombre}`);
+    const nombres = plan.comprasNetas.filter(c => c.comprar > 0).map(c => `${cantidades(c.comprar, c.unidad)} de ${c.nombre}`);
     const total = agregar(nombres, "Planificador semanal");
     setAviso(`${total} productos incorporados a tu lista de compras.`);
   };
@@ -75,14 +92,20 @@ export function PlanificadorSemanal() {
             onChange={e => setPresupuesto(Math.max(0, Number(e.target.value) || 0))}/>
         </label>
       </div>
-      <label className="mt-4 grid gap-1 text-sm">¿Qué ingredientes tienes?
-        <textarea aria-label="Ingredientes de la despensa" className="min-h-20 rounded-xl border bg-background p-3"
-          value={despensa} onChange={e => setDespensa(e.target.value)}
-          placeholder="arroz, pollo, huevo, tomate, papa..."/>
-      </label>
-      <p className="text-muted-foreground mt-1 text-xs">
-        Sepáralos con comas. Se considera que tienes cantidad suficiente de cada ingrediente indicado; todavía no se controla el inventario por gramos.
-      </p>
+      <details className="mt-4 rounded-xl border p-3">
+        <summary className="cursor-pointer font-medium text-sm">Inventario real · {Object.values(inventario).filter(x => Number(x) > 0).length} ingredientes registrados · Toca para editar</summary>
+        <p className="text-muted-foreground my-3 text-xs">Indica gramos o unidades. Deja 0 cuando no tengas el ingrediente. La lista de compras descontará solamente la cantidad disponible.</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {IDS_INGREDIENTES.map(id => <label key={id} className="grid gap-1 text-xs">
+            {PRODUCTOS[id].nombre} · {PRODUCTOS[id].unidad === "g" ? "gramos" : "unidades"}
+            <input type="number" min={0} step={PRODUCTOS[id].unidad === "g" ? 50 : 1}
+              className="min-h-10 rounded-lg border bg-background px-2"
+              value={inventario[id] ?? 0}
+              onChange={e => setInventario(p => ({...p, [id]: Math.max(0, Number(e.target.value) || 0)}))}/>
+          </label>)}
+        </div>
+        <Button type="button" variant="outline" className="mt-3" onClick={() => setInventario({})}>Vaciar inventario</Button>
+      </details>
       <details className="mt-4 rounded-xl border p-3">
         <summary className="cursor-pointer font-medium text-sm">Modificar precios de referencia de ingredientes</summary>
         <p className="text-muted-foreground my-3 text-xs">Valores simulados, NO precios obtenidos de supermercados. Edita cada precio para adaptarlo a tu ciudad. El costo no incluye envases, condimentos, energía ni transporte.</p>
@@ -103,13 +126,13 @@ export function PlanificadorSemanal() {
 
       <div className="mt-5 grid gap-3 rounded-2xl bg-secondary/50 p-4 sm:grid-cols-3">
         <div><p className="text-muted-foreground text-xs">Ingredientes usados</p><p className="font-display text-xl">{moneda(plan.costoTotal)}</p></div>
-        <div><p className="text-muted-foreground text-xs">Compra estimada faltante</p><p className="font-display text-xl">{moneda(plan.costoCompraEstimada)}</p></div>
+        <div><p className="text-muted-foreground text-xs">Compra estimada faltante</p><p className="font-display text-xl">{moneda(plan.costoCompraNeta)}</p></div>
         <div><p className="text-muted-foreground text-xs">Por persona (semana)</p><p className="font-display text-xl">{moneda(plan.costoPorPersona)}</p></div>
       </div>
-      <p className={`mt-3 text-sm ${plan.excedePresupuesto ? "text-destructive" : "text-primary"}`}>
+      <p className={`mt-3 text-sm ${(presupuesto > 0 && plan.costoCompraNeta > presupuesto) ? "text-destructive" : "text-primary"}`}>
         {presupuesto <= 0 ? "Sin presupuesto definido." :
-          plan.excedePresupuesto ? `El costo estimado supera tu presupuesto en ${moneda(plan.costoTotal - presupuesto)}. Ajusta precios, días, personas o ingredientes.` :
-          `El costo estimado está dentro del presupuesto, con ${moneda(presupuesto - plan.costoTotal)} de margen.`}
+          plan.costoCompraNeta > presupuesto ? `La compra pendiente supera tu presupuesto en ${moneda(plan.costoCompraNeta - presupuesto)}. Ajusta precios, días, personas o ingredientes.` :
+          `La compra pendiente está dentro del presupuesto, con ${moneda(presupuesto - plan.costoCompraNeta)} de margen.`}
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         <Button type="button" variant="outline" onClick={() => setVariante(n => n + 1)}>Probar otra combinación</Button>
@@ -128,10 +151,10 @@ export function PlanificadorSemanal() {
       </div>
 
       <h3 className="font-display mt-7 text-xl">Lista de compras consolidada</h3>
-      <p className="text-muted-foreground mt-1 text-xs">Cantidades acumuladas de ingredientes que NO indicaste tener. El costo corresponde a la cantidad utilizada, no al precio de paquetes completos.</p>
-      {plan.compras.length ? <ul className="mt-3 grid gap-2">
-        {plan.compras.map(item => <li key={item.id} className="flex justify-between gap-4 rounded-xl border px-4 py-3 text-sm">
-          <span>{item.nombre} · {cantidades(item.cantidad, item.unidad)}</span>
+      <p className="text-muted-foreground mt-1 text-xs">Cantidades acumuladas menos las existencias reales de tu despensa. El costo corresponde a la cantidad utilizada, no al precio de paquetes completos.</p>
+      {plan.comprasNetas.some(x => x.comprar > 0) ? <ul className="mt-3 grid gap-2">
+        {plan.comprasNetas.filter(item => item.comprar > 0).map(item => <li key={item.id} className="flex justify-between gap-4 rounded-xl border px-4 py-3 text-sm">
+          <span>{item.nombre} · {cantidades(item.comprar, item.unidad)}</span>
           <span className="shrink-0 text-muted-foreground">{moneda(item.costo)}</span>
         </li>)}
       </ul> : <p className="mt-3 text-sm text-primary">Según la despensa indicada, no hay ingredientes faltantes.</p>}
