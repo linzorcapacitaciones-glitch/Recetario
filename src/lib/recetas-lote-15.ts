@@ -112,7 +112,7 @@ const FICHAS=[
       "cebolla"
     ],
     "pasos": [
-      "Cuece los porotos hasta que estén tiernos y enfría rápidamente.",
+      "Usa porotos ya cocidos, enjuagados y escurridos; mantenlos refrigerados hasta servir.",
       "Lava el tomate y pica la cebolla finamente.",
       "Pela la palta y córtala en cubos.",
       "Mezcla todos los ingredientes y sirve de inmediato."
@@ -333,7 +333,7 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén tiernos.",
+      "Utiliza garbanzos previamente cocidos y escurridos.",
       "Corta la zanahoria en bastones y hornéala hasta dorar.",
       "Lava la espinaca y mézclala con los garbanzos tibios.",
       "Agrega zanahoria y aliña con limón."
