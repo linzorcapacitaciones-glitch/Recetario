@@ -58,3 +58,11 @@ test("Ensaladas sin cocción no deben exigir cocer legumbres secas",()=>{
   assert.ok(r.pasos.every(p=>!/cuece (los|las) (garbanzos|porotos|lentejas) (previamente remojados|hasta que estén tiernos)/i.test(p)),r.titulo);
  }
 });
+
+test("Legumbres de preparación rápida declaran que están cocidas",()=>{
+ for(const receta of [...RECETAS_LOTE_18,...RECETAS_LOTE_19]){
+  for(const ingrediente of receta.ingredientes){
+   if(/de (garbanzos|porotos)/i.test(ingrediente))assert.match(ingrediente,/cocidos y escurridos/i,receta.titulo);
+  }
+ }
+});
