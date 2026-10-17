@@ -10,7 +10,8 @@ import {RECETAS_LOTE_6} from "../src/lib/recetas-lote-6.ts";
 import {RECETAS_LOTE_7} from "../src/lib/recetas-lote-7.ts";
 import {RECETAS_LOTE_8} from "../src/lib/recetas-lote-8.ts";
 import {RECETAS_LOTE_9} from "../src/lib/recetas-lote-9.ts";
-const recetas=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2,...RECETAS_LOTE_3,...RECETAS_LOTE_4,...RECETAS_LOTE_5,...RECETAS_LOTE_6,...RECETAS_LOTE_7,...RECETAS_LOTE_8,...RECETAS_LOTE_9];
+import {RECETAS_LOTE_10} from "../src/lib/recetas-lote-10.ts";
+const recetas=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2,...RECETAS_LOTE_3,...RECETAS_LOTE_4,...RECETAS_LOTE_5,...RECETAS_LOTE_6,...RECETAS_LOTE_7,...RECETAS_LOTE_8,...RECETAS_LOTE_9,...RECETAS_LOTE_10];
 const normalizar=s=>s.toLowerCase().normalize("NFD").replace(/[^a-z0-9 ]/g," ").replace(/ +/g," ").trim();
 test("El catálogo ampliado no contiene títulos repetidos entre lotes",()=>{
  const vistos=new Map();const duplicados=[];
