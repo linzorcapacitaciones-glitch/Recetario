@@ -101,3 +101,11 @@ test("Lote 7 incorpora 25 recetas y alcanza 200 fichas previstas",async()=>{
  assert.ok(RECETAS_LOTE_7.every(x=>x.pasos.length>=4&&x.ingredientes.length>=3));
  assert.ok(TOTAL_RECETAS_CATALOGO>=200,`Total: ${TOTAL_RECETAS_CATALOGO}`);
 });
+
+test("Lote 8 contiene veinte preparaciones y amplía el catálogo",async()=>{
+ const {RECETAS_LOTE_8}=await import("../src/lib/recetas-lote-8.ts");
+ assert.equal(RECETAS_LOTE_8.length,20);
+ assert.equal(new Set(RECETAS_LOTE_8.map(r=>r.titulo.toLowerCase())).size,20);
+ assert.ok(RECETAS_LOTE_8.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=220,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
