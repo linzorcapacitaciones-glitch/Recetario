@@ -42,3 +42,16 @@ test("El buscador encuentra recetas con legumbres", () => {
   assert.ok(r.recetas.length>0);
   assert.ok(r.recetas.every(x=>x.pasos.length>=4));
 });
+
+test("Búsqueda natural sin comas reconoce arroz pollo papas", () => {
+ const r=buscarRecetasGratis("arroz pollo papas");
+ assert.deepEqual(extraerIngredientes("arroz pollo papas"),["arroz","pollo","papa"]);
+ assert.ok(r.recetas.length>0);
+ assert.ok(r.ingredientesReconocidos.includes("Arroz"));
+ assert.equal(r.ignorados.length,0);
+});
+test("Búsqueda natural reconoce frases con tengo y conjunciones", () => {
+ const r=buscarRecetasGratis("tengo arroz y pollo en casa");
+ assert.ok(r.recetas.length>0);
+ assert.ok(r.ingredientesReconocidos.includes("Pollo"));
+});
