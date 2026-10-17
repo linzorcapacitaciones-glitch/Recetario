@@ -63,3 +63,11 @@ test("El lote tres incluye quince recetas con instrucciones específicas", async
  assert.ok(RECETAS_LOTE_3.every(r=>r.pasos.length>=4 && r.ingredientes.length>=3));
  assert.ok(TOTAL_RECETAS_CATALOGO>=115);
 });
+
+test("Lote 4 incorpora 20 recetas únicas con instrucciones",async()=>{
+ const {RECETAS_LOTE_4}=await import("../src/lib/recetas-lote-4.ts");
+ assert.equal(RECETAS_LOTE_4.length,20);
+ assert.equal(new Set(RECETAS_LOTE_4.map(x=>x.titulo.toLowerCase())).size,20);
+ assert.ok(RECETAS_LOTE_4.every(x=>x.pasos.length>=4&&x.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=135,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
