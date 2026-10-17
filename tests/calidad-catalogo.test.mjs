@@ -36,3 +36,9 @@ test("Los últimos 50 platos no contienen instrucciones genéricas de relleno",(
  const relleno=/prepara .+ y córtalo en porciones adecuadas|según su textura|mezcla cuidadosamente los ingredientes|sirve a la temperatura adecuada|sirve la preparación para dos personas/i;
  for(const receta of recientes)for(const paso of receta.pasos)assert.doesNotMatch(paso,relleno,receta.titulo);
 });
+
+test("Lotes antiguos incluyen tiempos diferenciados y no un valor fijo",()=>{
+ for(const lote of [RECETAS_LOTE_6,RECETAS_LOTE_7,RECETAS_LOTE_8,RECETAS_LOTE_9,RECETAS_LOTE_10,RECETAS_LOTE_11]){
+  assert.ok(new Set(lote.map(r=>r.tiempoCoccion)).size>=2,"Lote sin variación en cocción");
+ }
+});
