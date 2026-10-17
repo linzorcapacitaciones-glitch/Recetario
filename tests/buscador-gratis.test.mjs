@@ -163,3 +163,12 @@ test("Lote 14 suma veinticinco recetas y alcanza 375",async()=>{
  assert.ok(RECETAS_LOTE_14.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
  assert.ok(TOTAL_RECETAS_CATALOGO>=375,`Total: ${TOTAL_RECETAS_CATALOGO}`);
 });
+
+test("Lote 15 aporta 25 preparaciones únicas y alcanza 400",async()=>{
+ const {RECETAS_LOTE_15}=await import("../src/lib/recetas-lote-15.ts");
+ assert.equal(RECETAS_LOTE_15.length,25);
+ assert.equal(new Set(RECETAS_LOTE_15.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(new Set(RECETAS_LOTE_15.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_15.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=400,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
