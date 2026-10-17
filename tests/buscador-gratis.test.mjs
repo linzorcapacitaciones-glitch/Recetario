@@ -55,3 +55,11 @@ test("Búsqueda natural reconoce frases con tengo y conjunciones", () => {
  assert.ok(r.recetas.length>0);
  assert.ok(r.ingredientesReconocidos.includes("Pollo"));
 });
+
+test("El lote tres incluye quince recetas con instrucciones específicas", async () => {
+ const { RECETAS_LOTE_3 } = await import("../src/lib/recetas-lote-3.ts");
+ assert.equal(RECETAS_LOTE_3.length,15);
+ assert.equal(new Set(RECETAS_LOTE_3.map(r=>r.titulo.toLowerCase())).size,15);
+ assert.ok(RECETAS_LOTE_3.every(r=>r.pasos.length>=4 && r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=115);
+});
