@@ -428,4 +428,11 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"quinoa":"150 g","zanahoria":"180 g","limon":"1 unidad","perejil":"1 cucharada","pollo":"300 g","champinon":"200 g","arroz":"150 g","cebolla":"100 g","zapallo":"300 g","jengibre":"10 g","papa":"350 g","leche":"180 ml","acelga":"160 g","huevo":"2 unidades","queso":"80 g","pescado":"300 g","tomate":"220 g","ajo":"2 dientes","lenteja":"180 g","pepino":"1 unidad","menta":"6 hojas","pasta":"180 g","ricota":"120 g","albahaca":"8 hojas","berenjena":"1 unidad","tofu":"250 g","arveja":"180 g","cuscus":"150 g","garbanzo":"200 g","repollo":"250 g","palta":"1 unidad","choclo":"200 g","brocoli":"250 g","atun":"140 g","salmon":"300 g","coliflor":"300 g","tortilla":"4 unidades","poroto":"200 g","espinaca":"160 g","betarraga":"2 unidades","pimenton":"1 unidad","pan":"4 rebanadas"};
-export const RECETAS_LOTE_18:Receta[]=FICHAS.map((f,i)=>({id:`lote-18-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_18:Receta[]=FICHAS.map((f,i)=>({id:`lote-18-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{
+ const cantidad=CANTIDADES[id];
+ if(id==="coco")return cantidad;
+ if(id==="garbanzo")return `${cantidad} de garbanzos cocidos y escurridos`;
+ if(id==="poroto")return `${cantidad} de porotos cocidos y escurridos`;
+ const nombres:Record<string,string>={huevo:"huevos",champinon:"champiñones",atun:"atún",limon:"limón",pimenton:"pimentón",brocoli:"brócoli",salmon:"salmón",cuscus:"cuscús",tortilla:"tortillas",papa:"papas",nuez:"nueces",arveja:"arvejas",espinaca:"espinaca",lenteja:"lentejas",puerro:"puerro",zapallito:"zapallitos",pera:"pera",naranja:"naranjas",aceituna:"aceitunas"};
+ return `${cantidad} de ${nombres[id]||id}`;
+}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
