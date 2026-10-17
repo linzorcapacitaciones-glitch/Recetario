@@ -46,10 +46,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Corta el zapallo en cubos y hornéalo a 200 °C hasta que esté tierno.",
-      "Ralla el jengibre fresco.",
-      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Agrega la leche y calienta suavemente sin hervir."
+      "Pela y corta el zapallo y las papas en cubos similares.",
+      "Cuece ambas verduras en agua suficiente hasta que estén completamente tiernas.",
+      "Incorpora el jengibre rallado y tritura con parte del líquido de cocción hasta obtener una crema.",
+      "Añade la leche, calienta suavemente sin hervir y ajusta la textura antes de servir."
 ]
   },
   {
@@ -63,10 +63,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 18,
     "pasos": [
-      "Lava y saltea la acelga hasta que se ablande.",
-      "Bate los huevos y cuájalos completamente en una sartén.",
-      "Agrega el queso y calienta hasta que se funda.",
-      "Pica y sofríe la cebolla hasta que esté transparente."
+      "Lava la acelga, pícalas hojas y escúrrelas bien.",
+      "Sofríe la cebolla picada y agrega la acelga hasta que se ablande y pierda humedad.",
+      "Bate los huevos, mezcla con las verduras tibias y el queso desmenuzado.",
+      "Vierte en una sartén antiadherente y cocina por ambos lados hasta que el centro quede cuajado."
 ]
   },
   {
@@ -199,10 +199,10 @@ const FICHAS=[
     "prep": 15,
     "coc": 50,
     "pasos": [
-      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Cuece el brócoli al vapor hasta que esté tierno.",
-      "Agrega el queso y calienta hasta que se funda.",
-      "Agrega la leche y calienta suavemente sin hervir."
+      "Lava las papas, cuécelas enteras con piel hasta que estén tiernas y deja entibiar.",
+      "Corta cada papa a lo largo y retira parte del centro, dejando una pared firme.",
+      "Cuece el brócoli al vapor, pícalo y mézclalo con la pulpa de papa y un poco de leche.",
+      "Rellena las papas, cubre con queso y gratina a 200 °C hasta que se dore."
 ]
   },
   {
