@@ -27,8 +27,8 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece los porotos previamente remojados hasta que estén tiernos.",
-      "Enfría rápidamente los porotos cocidos.",
+      "Usa porotos previamente cocidos y escurridos.",
+      "Mantén los porotos cocidos refrigerados hasta mezclarlos.",
       "Lava y corta pepino y tomate en cubos.",
       "Mezcla todo con jugo de limón y sirve."
     ],
