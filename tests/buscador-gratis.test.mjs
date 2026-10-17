@@ -210,3 +210,21 @@ test("Alias acentuados y plurales de nuevos ingredientes se normalizan",()=>{
  assert.deepEqual(extraerIngredientes("quínua, sésamo, peras y nueces"),["quinoa","sesamo","pera","nuez"]);
  assert.ok(extraerIngredientes("brócoli y champiñones").includes("brocoli"));
 });
+
+test("Premium: inventario parcial cuantificado conserva ingredientes declarados sin cantidad",async()=>{
+ const {planificarSemana}=await import("../src/lib/planificador-semanal.ts");
+ const base=planificarSemana({personas:2,dias:1,comidasPorDia:1,presupuesto:0,despensa:"arroz, tomate",variante:0});
+ const mixto=planificarSemana({personas:2,dias:1,comidasPorDia:1,presupuesto:0,despensa:"arroz, tomate",inventarioCantidades:{arroz:500},variante:0});
+ assert.equal(mixto.platos.length,1);
+ assert.ok(mixto.compras.every(x=>x.cantidad>0&&Number.isFinite(x.costo)));
+ assert.ok(Number.isFinite(mixto.costoCompraEstimada));
+ assert.ok(base.compras.every(x=>x.cantidad>0));
+});
+test("Premium: descontar existencias acumuladas nunca genera compras negativas",async()=>{
+ const {planificarSemana}=await import("../src/lib/planificador-semanal.ts");
+ const r=planificarSemana({personas:2,dias:7,comidasPorDia:2,presupuesto:35000,despensa:"",inventarioCantidades:{arroz:100,papa:200,huevo:2}});
+ assert.equal(r.platos.length,14);
+ assert.ok(r.compras.every(x=>x.cantidad>0&&x.costo>=0));
+ assert.equal(r.costoCompraEstimada,r.compras.reduce((sum,x)=>sum+x.costo,0));
+ assert.ok(r.costoTotal>=r.costoCompraEstimada);
+});
