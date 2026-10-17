@@ -352,7 +352,7 @@ const FICHAS=[
     "prep": 15,
     "coc": 35,
     "pasos": [
-      null,
+      "Escurre el atún en conserva antes de incorporarlo a la preparación.",
       "Enjuaga y cuece las lentejas hasta que estén tiernas.",
       "Lava y corta el tomate en cubos.",
       "Agrega el queso y calienta hasta que se funda."
