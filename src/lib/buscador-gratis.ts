@@ -10,6 +10,7 @@ import { RECETAS_LOTE_3 } from "./recetas-lote-3.ts";
 import { RECETAS_LOTE_4 } from "./recetas-lote-4.ts";
 import { RECETAS_LOTE_5 } from "./recetas-lote-5.ts";
 import { RECETAS_LOTE_6 } from "./recetas-lote-6.ts";
+import { RECETAS_LOTE_7 } from "./recetas-lote-7.ts";
 import { CATALOGO, PRODUCTOS, type IngredienteId } from "./planificador-semanal.ts";
 import type { Preferencias } from "./preferencias";
 
@@ -105,7 +106,7 @@ const fichasNuevas: Ficha[] = CATALOGO.map(plato => {
     }
   };
 });
-const fichasDemo: Ficha[]=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2,...RECETAS_LOTE_3,...RECETAS_LOTE_4,...RECETAS_LOTE_5,...RECETAS_LOTE_6].map(r=>{
+const fichasDemo: Ficha[]=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2,...RECETAS_LOTE_3,...RECETAS_LOTE_4,...RECETAS_LOTE_5,...RECETAS_LOTE_6,...RECETAS_LOTE_7].map(r=>{
   const ids=extraerDeDescripcion(r.ingredientes);
   return {receta:r,claves:ids,minutos:Number(r.tiempoPreparacion.replace(/\D/g,""))+Number(r.tiempoCoccion.replace(/\D/g,"")),
     categoria:"casera",coste:r.costoAproximado==="Bajo"?1600:2900};
