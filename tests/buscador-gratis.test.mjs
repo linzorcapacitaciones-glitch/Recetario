@@ -136,3 +136,12 @@ test("Lote 11 incorpora treinta recetas internacionales y supera 300",async()=>{
  assert.ok(TOTAL_RECETAS_CATALOGO>=305,`Total: ${TOTAL_RECETAS_CATALOGO}`);
  assert.ok(extraerIngredientes("tofu, aceitunas y tortillas").includes("tofu"));
 });
+
+test("Lote 12 suma veinte recetas con tiempos de preparación diferenciados",async()=>{
+ const {RECETAS_LOTE_12}=await import("../src/lib/recetas-lote-12.ts");
+ assert.equal(RECETAS_LOTE_12.length,20);
+ assert.equal(new Set(RECETAS_LOTE_12.map(r=>r.titulo.toLowerCase())).size,20);
+ assert.ok(new Set(RECETAS_LOTE_12.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_12.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=325,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
