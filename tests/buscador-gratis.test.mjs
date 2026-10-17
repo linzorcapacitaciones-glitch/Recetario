@@ -205,3 +205,8 @@ test("Lote 19 completa el objetivo de 500 recetas",async()=>{
  assert.ok(RECETAS_LOTE_19.every(r=>r.ingredientes.length>=3&&r.pasos.length>=4));
  assert.ok(TOTAL_RECETAS_CATALOGO>=500,`Total: ${TOTAL_RECETAS_CATALOGO}`);
 });
+
+test("Alias acentuados y plurales de nuevos ingredientes se normalizan",()=>{
+ assert.deepEqual(extraerIngredientes("quínua, sésamo, peras y nueces"),["quinoa","sesamo","pera","nuez"]);
+ assert.ok(extraerIngredientes("brócoli y champiñones").includes("brocoli"));
+});
