@@ -109,3 +109,12 @@ test("Lote 8 contiene veinte preparaciones y amplía el catálogo",async()=>{
  assert.ok(RECETAS_LOTE_8.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
  assert.ok(TOTAL_RECETAS_CATALOGO>=220,`Total: ${TOTAL_RECETAS_CATALOGO}`);
 });
+
+test("Lote 9 aporta 25 recetas y nueva meta de 500",async()=>{
+ const {RECETAS_LOTE_9}=await import("../src/lib/recetas-lote-9.ts");
+ assert.equal(RECETAS_LOTE_9.length,25);
+ assert.equal(new Set(RECETAS_LOTE_9.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(RECETAS_LOTE_9.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=245,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+ assert.ok(extraerIngredientes("quinoa, berenjenas, arvejas").includes("quinoa"));
+});
