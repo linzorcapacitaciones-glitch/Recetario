@@ -19,7 +19,7 @@ test("Acentos, plurales y conjunciones se reconocen", () => {
   assert.deepEqual(extraerIngredientes("atún, huevos y papas"),["atun","huevo","papa"]);
 });
 test("Ingredientes desconocidos no devuelven diez recetas inventadas", () => {
-  const r=buscarRecetasGratis("camarones, coco, limon");
+  const r=buscarRecetasGratis("camarones, coco, tamarindo");
   assert.equal(r.recetas.length,0);
   assert.equal(r.ingredientesReconocidos.length,0);
 });
