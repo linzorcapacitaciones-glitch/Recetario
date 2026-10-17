@@ -197,3 +197,11 @@ test("Lote 18 añade 25 recetas distintas y alcanza 475",async()=>{
  assert.equal(new Set(RECETAS_LOTE_18.map(r=>r.titulo.toLowerCase())).size,25);
  assert.ok(TOTAL_RECETAS_CATALOGO>=475,`Total: ${TOTAL_RECETAS_CATALOGO}`);
 });
+
+test("Lote 19 completa el objetivo de 500 recetas",async()=>{
+ const {RECETAS_LOTE_19}=await import("../src/lib/recetas-lote-19.ts");
+ assert.equal(RECETAS_LOTE_19.length,25);
+ assert.equal(new Set(RECETAS_LOTE_19.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(RECETAS_LOTE_19.every(r=>r.ingredientes.length>=3&&r.pasos.length>=4));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=500,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
