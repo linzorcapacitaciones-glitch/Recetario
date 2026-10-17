@@ -112,7 +112,7 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece los garbanzos previamente remojados hasta que estén tiernos.",
+      "Utiliza garbanzos previamente cocidos y escurridos.",
       "Enfría rápidamente los garbanzos cocidos.",
       "Lava y corta pera y pepino en cubos.",
       "Mezcla todo con jugo de limón y sirve."
