@@ -393,7 +393,7 @@ const FICHAS=[
     ]
   },
   {
-    "titulo": "Arroz con choclo y pimentón",
+    "titulo": "Arroz con choclo y pimentón salteado",
     "ids": [
       "arroz",
       "choclo",
