@@ -42,3 +42,19 @@ test("Lotes antiguos incluyen tiempos diferenciados y no un valor fijo",()=>{
   assert.ok(new Set(lote.map(r=>r.tiempoCoccion)).size>=2,"Lote sin variación en cocción");
  }
 });
+
+test("Ninguna receta presenta pasos nulos o tiempos inválidos",()=>{
+ for(const r of recetas){
+  assert.ok(r.pasos.every(p=>typeof p==="string"&&p.trim().length>=8),r.titulo);
+  const preparacion=Number.parseInt(r.tiempoPreparacion,10),coccion=Number.parseInt(r.tiempoCoccion,10);
+  assert.ok(Number.isFinite(preparacion)&&preparacion>=0&&preparacion<=240,r.titulo);
+  assert.ok(Number.isFinite(coccion)&&coccion>=0&&coccion<=240,r.titulo);
+  assert.ok(r.ingredientes.every(i=>typeof i==="string"&&i.trim().length>3),r.titulo);
+ }
+});
+test("Ensaladas sin cocción no deben exigir cocer legumbres secas",()=>{
+ for(const r of recetas){
+  if(!/ensalada/i.test(r.titulo)||Number.parseInt(r.tiempoCoccion,10)!==0)continue;
+  assert.ok(r.pasos.every(p=>!/cuece (los|las) (garbanzos|porotos|lentejas) (previamente remojados|hasta que estén tiernos)/i.test(p)),r.titulo);
+ }
+});
