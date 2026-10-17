@@ -30,3 +30,9 @@ test("El catálogo ampliado no contiene títulos repetidos entre lotes",()=>{
 test("Todas las fichas tienen ingredientes y pasos completos",()=>{
  for(const r of recetas){assert.ok(r.titulo?.trim(),r.id);assert.ok(r.ingredientes.length>=2,r.titulo);assert.ok(r.pasos.length>=4,r.titulo);assert.ok(r.pasos.every(p=>p.trim().length>=8),r.titulo);assert.ok(r.ingredientes.filter(x=>/[0-9]|media|medio/.test(x)).length>=2,r.titulo)}
 });
+
+test("Los últimos 50 platos no contienen instrucciones genéricas de relleno",()=>{
+ const recientes=[...RECETAS_LOTE_18,...RECETAS_LOTE_19];
+ const relleno=/prepara .+ y córtalo en porciones adecuadas|según su textura|mezcla cuidadosamente los ingredientes|sirve a la temperatura adecuada|sirve la preparación para dos personas/i;
+ for(const receta of recientes)for(const paso of receta.pasos)assert.doesNotMatch(paso,relleno,receta.titulo);
+});
