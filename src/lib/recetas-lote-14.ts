@@ -78,7 +78,7 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén tiernos y deja enfriar.",
+      "Utiliza garbanzos ya cocidos y escurridos; enfríalos antes de mezclar.",
       "Pela y corta el mango en cubos.",
       "Lava el pepino y córtalo en trozos pequeños.",
       "Mezcla todo con jugo de limón y sirve frío."
