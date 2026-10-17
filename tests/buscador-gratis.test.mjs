@@ -228,3 +228,17 @@ test("Premium: descontar existencias acumuladas nunca genera compras negativas",
  assert.equal(r.costoCompraEstimada,r.compras.reduce((sum,x)=>sum+x.costo,0));
  assert.ok(r.costoTotal>=r.costoCompraEstimada);
 });
+
+test("Premium: lista consolidada descuenta inventario por ingrediente sin duplicarlo",async()=>{
+ const {planificarSemana}=await import("../src/lib/planificador-semanal.ts");
+ const r=planificarSemana({personas:3,dias:7,comidasPorDia:2,presupuesto:0,despensa:"",inventarioCantidades:{arroz:250,papa:500,huevo:3},variante:1});
+ const total=new Map();
+ for(const comida of r.platos)for(const [id,cantidad] of comida.plato.ingredientes)total.set(id,(total.get(id)||0)+cantidad*3/2);
+ for(const [id,cantidad] of total){
+  const inventario={arroz:250,papa:500,huevo:3}[id]||0;
+  const esperado=Math.round(Math.max(0,cantidad-inventario)*10)/10;
+  const compra=r.compras.find(x=>x.id===id);
+  assert.equal(compra?.cantidad||0,esperado,`Compra incorrecta: ${id}`);
+ }
+ assert.equal(r.costoCompraEstimada,r.compras.reduce((s,x)=>s+x.costo,0));
+});
