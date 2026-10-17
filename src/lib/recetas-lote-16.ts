@@ -96,7 +96,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Cuece las betarragas hasta que estén tiernas.",
-      "Cuece los garbanzos previamente remojados hasta ablandar.",
+      "Utiliza garbanzos previamente cocidos y escurridos.",
       "Corta las betarragas y pica el perejil.",
       "Mezcla con garbanzos y aliña con limón."
     ],
@@ -231,7 +231,7 @@ const FICHAS=[
       "repollo"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén tiernos y escúrrelos.",
+      "Utiliza garbanzos ya cocidos y escurridos.",
       "Saltéalos con especias suaves hasta que estén calientes.",
       "Lava y pica tomate y repollo.",
       "Calienta tortillas y rellena con garbanzos y verduras."
@@ -384,7 +384,7 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén tiernos y enfríalos.",
+      "Utiliza garbanzos ya cocidos, escurridos y fríos.",
       "Lava y seca las hojas de espinaca.",
       "Lava y corta pepino y tomate en cubos.",
       "Mezcla los ingredientes y sirve fresco."
