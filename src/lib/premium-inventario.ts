@@ -1,4 +1,4 @@
-import { PRODUCTOS, type IngredienteId, type OpcionesPlan, type ResultadoPlan, planificarSemana } from "./planificador-semanal";
+import { PRODUCTOS, type IngredienteId, type OpcionesPlan, type ResultadoPlan, planificarSemana } from "./planificador-semanal.ts";
 
 /** Inventario cuantificado: cantidades en gramos o unidades, conforme a PRODUCTOS. */
 export type InventarioCantidad = Partial<Record<IngredienteId, number>>;
@@ -7,7 +7,7 @@ export type PlanConInventario = ResultadoPlan & { comprasNetas: CompraNeta[]; co
 
 export function calcularPlanConInventario(opciones: OpcionesPlan, inventario: InventarioCantidad): PlanConInventario {
   // Evitamos el descuento binario de despensa: un ingrediente existente no equivale a stock ilimitado.
-  const base = planificarSemana({ ...opciones, despensa: "" });
+  const base = planificarSemana({ ...opciones, despensa: "", inventarioCantidades: inventario });
   const requeridos = new Map<IngredienteId, number>();
   for (const item of base.platos) {
     for (const [id, cantidad] of item.plato.ingredientes) {
