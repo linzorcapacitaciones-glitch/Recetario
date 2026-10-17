@@ -12,11 +12,11 @@ const FICHAS=[
     "prep": 15,
     "coc": 30,
     "pasos": [
-      "Usa garbanzos ya cocidos y escurridos.",
-      "Lava, corta y cocina acelga según su textura hasta que esté tierno.",
-      "Incorpora tomate y mezcla cuidadosamente los ingredientes.",
-      "Termina con cebolla y sirve la preparación para dos personas."
-    ]
+      "Usa garbanzos previamente cocidos y escurridos.",
+      "Lava y saltea la acelga hasta que se ablande.",
+      "Lava y corta el tomate en cubos.",
+      "Pica y sofríe la cebolla hasta que esté transparente."
+]
   },
   {
     "titulo": "Pasta con salsa de pimentón asado",
@@ -29,11 +29,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 30,
     "pasos": [
-      "Cuece la pasta hasta que esté al dente.",
-      "Lava, corta y cocina pimenton según su textura hasta que esté tierno.",
-      "Incorpora ajo y mezcla cuidadosamente los ingredientes.",
-      "Termina con queso y sirve la preparación para dos personas."
-    ]
+      "Cuece la pasta en agua hirviendo hasta que esté al dente.",
+      "Corta el pimentón y ásalo a 200 °C hasta que esté tierno.",
+      "Pica el ajo y saltéalo brevemente sin quemarlo.",
+      "Agrega el queso y calienta hasta que se funda."
+]
   },
   {
     "titulo": "Pollo con quinoa y brócoli al limón",
@@ -46,11 +46,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Dora el pollo y cocina hasta que alcance 74 °C.",
-      "Lava, corta y cocina quinoa según su textura hasta que esté tierno.",
-      "Incorpora brocoli y mezcla cuidadosamente los ingredientes.",
-      "Termina con limon y sirve la preparación para dos personas."
-    ]
+      "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
+      "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
+      "Cuece el brócoli al vapor hasta que esté tierno.",
+      "Aliña con jugo de limón al terminar."
+]
   },
   {
     "titulo": "Ensalada de betarraga con pera y nueces",
@@ -63,11 +63,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 35,
     "pasos": [
-      "Cuece la betarraga hasta que esté tierna.",
-      "Lava, corta y cocina pera según su textura hasta que esté tierno.",
-      "Incorpora nuez y mezcla cuidadosamente los ingredientes.",
-      "Termina con lechuga y sirve la preparación para dos personas."
-    ]
+      "Cuece la betarraga hasta que esté tierna y córtala en cubos.",
+      "Lava y corta la pera en cubos.",
+      "Trocea las nueces y añádelas al final.",
+      "Lava, seca y trocea la lechuga."
+]
   },
   {
     "titulo": "Tortilla de zanahoria y puerro",
@@ -80,11 +80,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 18,
     "pasos": [
-      "Pela y corta la zanahoria en trozos pequeños.",
-      "Lava, corta y cocina puerro según su textura hasta que esté tierno.",
-      "Incorpora huevo y mezcla cuidadosamente los ingredientes.",
-      "Termina con queso y sirve la preparación para dos personas."
-    ]
+      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
+      "Lava y saltea el puerro en rodajas hasta que se ablande.",
+      "Bate los huevos y cuájalos completamente en una sartén.",
+      "Agrega el queso y calienta hasta que se funda."
+]
   },
   {
     "titulo": "Pescado con arroz y espinaca",
@@ -97,11 +97,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Cocina el pescado hasta que alcance 63 °C.",
-      "Lava, corta y cocina arroz según su textura hasta que esté tierno.",
-      "Incorpora espinaca y mezcla cuidadosamente los ingredientes.",
-      "Termina con ajo y sirve la preparación para dos personas."
-    ]
+      "Hornea el pescado a 190 °C hasta que alcance 63 °C.",
+      "Cuece el arroz en agua hasta que esté tierno.",
+      "Lava y saltea la espinaca brevemente.",
+      "Pica el ajo y saltéalo brevemente sin quemarlo."
+]
   },
   {
     "titulo": "Crema de coliflor con romero",
@@ -114,11 +114,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Lava la coliflor y sepárala en ramilletes.",
-      "Lava, corta y cocina papa según su textura hasta que esté tierno.",
-      "Incorpora cebolla y mezcla cuidadosamente los ingredientes.",
-      "Termina con romero y sirve la preparación para dos personas."
-    ]
+      "Cocina la coliflor al vapor hasta que esté tierna.",
+      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
+      "Pica y sofríe la cebolla hasta que esté transparente.",
+      "Agrega romero durante la cocción y retira la rama antes de servir."
+]
   },
   {
     "titulo": "Cuscús con zapallo y garbanzos",
@@ -131,11 +131,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 30,
     "pasos": [
-      "Hidrata el cuscús según las instrucciones del envase.",
-      "Lava, corta y cocina zapallo según su textura hasta que esté tierno.",
-      "Incorpora garbanzo y mezcla cuidadosamente los ingredientes.",
-      "Termina con perejil y sirve la preparación para dos personas."
-    ]
+      "Hidrata el cuscús con agua caliente según el envase.",
+      "Corta el zapallo en cubos y hornéalo a 200 °C hasta que esté tierno.",
+      "Usa garbanzos previamente cocidos y escurridos.",
+      "Añade perejil picado justo antes de servir."
+]
   },
   {
     "titulo": "Ensalada de porotos con naranja y repollo",
@@ -149,10 +149,10 @@ const FICHAS=[
     "coc": 0,
     "pasos": [
       "Usa porotos previamente cocidos y escurridos.",
-      "Lava, corta y cocina naranja según su textura hasta que esté tierno.",
-      "Incorpora repollo y mezcla cuidadosamente los ingredientes.",
-      "Termina con limon y sirve la preparación para dos personas."
-    ]
+      "Pela la naranja y separa los gajos.",
+      "Lava y corta el repollo en tiras finas.",
+      "Aliña con jugo de limón al terminar."
+]
   },
   {
     "titulo": "Papas asadas con champiñones y ricota",
@@ -165,11 +165,11 @@ const FICHAS=[
     "prep": 15,
     "coc": 45,
     "pasos": [
-      "Cuece o asa las papas hasta que estén tiernas.",
-      "Lava, corta y cocina champinon según su textura hasta que esté tierno.",
-      "Incorpora ricota y mezcla cuidadosamente los ingredientes.",
-      "Termina con ajo y sirve la preparación para dos personas."
-    ]
+      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
+      "Lamina y saltea los champiñones hasta que pierdan su agua.",
+      "Incorpora la ricota al final para mantener su textura.",
+      "Pica el ajo y saltéalo brevemente sin quemarlo."
+]
   },
   {
     "titulo": "Arroz con lentejas y zanahoria salteada",
@@ -182,11 +182,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 30,
     "pasos": [
-      "Cuece el arroz hasta que esté tierno.",
-      "Lava, corta y cocina lenteja según su textura hasta que esté tierno.",
-      "Incorpora zanahoria y mezcla cuidadosamente los ingredientes.",
-      "Termina con cebolla y sirve la preparación para dos personas."
-    ]
+      "Cuece el arroz en agua hasta que esté tierno.",
+      "Enjuaga y cuece las lentejas hasta que estén tiernas.",
+      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
+      "Pica y sofríe la cebolla hasta que esté transparente."
+]
   },
   {
     "titulo": "Omelette de acelga y tomate",
@@ -200,10 +200,10 @@ const FICHAS=[
     "coc": 15,
     "pasos": [
       "Bate los huevos y cuájalos completamente en una sartén.",
-      "Lava, corta y cocina acelga según su textura hasta que esté tierno.",
-      "Incorpora tomate y mezcla cuidadosamente los ingredientes.",
-      "Termina con queso y sirve la preparación para dos personas."
-    ]
+      "Lava y saltea la acelga hasta que se ablande.",
+      "Lava y corta el tomate en cubos.",
+      "Agrega el queso y calienta hasta que se funda."
+]
   },
   {
     "titulo": "Pollo al romero con papas y zanahoria",
@@ -216,11 +216,11 @@ const FICHAS=[
     "prep": 15,
     "coc": 40,
     "pasos": [
-      "Dora el pollo y cocina hasta que alcance 74 °C.",
-      "Lava, corta y cocina romero según su textura hasta que esté tierno.",
-      "Incorpora papa y mezcla cuidadosamente los ingredientes.",
-      "Termina con zanahoria y sirve la preparación para dos personas."
-    ]
+      "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
+      "Agrega romero durante la cocción y retira la rama antes de servir.",
+      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
+      "Pela y corta la zanahoria; saltéala hasta que esté tierna."
+]
   },
   {
     "titulo": "Ensalada de quinoa con mango y pepino",
@@ -233,11 +233,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 20,
     "pasos": [
-      "Enjuaga y cuece la quinoa hasta que esté tierna.",
-      "Lava, corta y cocina mango según su textura hasta que esté tierno.",
-      "Incorpora pepino y mezcla cuidadosamente los ingredientes.",
-      "Termina con menta y sirve la preparación para dos personas."
-    ]
+      "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
+      "Pela y corta el mango en cubos.",
+      "Lava y corta el pepino en cubos.",
+      "Pica la menta fresca y añádela al final."
+]
   },
   {
     "titulo": "Pasta con arvejas y ricota al limón",
@@ -250,11 +250,11 @@ const FICHAS=[
     "prep": 10,
     "coc": 18,
     "pasos": [
-      "Cuece la pasta hasta que esté al dente.",
-      "Lava, corta y cocina arveja según su textura hasta que esté tierno.",
-      "Incorpora ricota y mezcla cuidadosamente los ingredientes.",
-      "Termina con limon y sirve la preparación para dos personas."
-    ]
+      "Cuece la pasta en agua hirviendo hasta que esté al dente.",
+      "Cuece las arvejas hasta que estén tiernas.",
+      "Incorpora la ricota al final para mantener su textura.",
+      "Aliña con jugo de limón al terminar."
+]
   },
   {
     "titulo": "Pescado al tomate con aceitunas",
@@ -267,11 +267,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Cocina el pescado hasta que alcance 63 °C.",
-      "Lava, corta y cocina tomate según su textura hasta que esté tierno.",
-      "Incorpora aceituna y mezcla cuidadosamente los ingredientes.",
-      "Termina con ajo y sirve la preparación para dos personas."
-    ]
+      "Hornea el pescado a 190 °C hasta que alcance 63 °C.",
+      "Lava y corta el tomate en cubos.",
+      "Incorpora aceitunas sin carozo al final.",
+      "Pica el ajo y saltéalo brevemente sin quemarlo."
+]
   },
   {
     "titulo": "Hamburguesas de garbanzos con betarraga",
@@ -284,11 +284,11 @@ const FICHAS=[
     "prep": 15,
     "coc": 20,
     "pasos": [
-      "Usa garbanzos ya cocidos y escurridos.",
-      "Lava, corta y cocina betarraga según su textura hasta que esté tierno.",
-      "Incorpora avena y mezcla cuidadosamente los ingredientes.",
-      "Termina con huevo y sirve la preparación para dos personas."
-    ]
+      "Usa garbanzos previamente cocidos y escurridos.",
+      "Cuece la betarraga hasta que esté tierna y córtala en cubos.",
+      "Incorpora la avena para dar consistencia a la mezcla.",
+      "Bate los huevos y cuájalos completamente en una sartén."
+]
   },
   {
     "titulo": "Crema de zanahoria y jengibre con coco",
@@ -301,11 +301,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Pela y corta la zanahoria en trozos pequeños.",
-      "Lava, corta y cocina jengibre según su textura hasta que esté tierno.",
-      "Incorpora coco y mezcla cuidadosamente los ingredientes.",
-      "Termina con cebolla y sirve la preparación para dos personas."
-    ]
+      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
+      "Ralla el jengibre fresco.",
+      "Agrega la leche de coco y calienta a fuego bajo.",
+      "Pica y sofríe la cebolla hasta que esté transparente."
+]
   },
   {
     "titulo": "Tacos de tofu con pimentón y palta",
@@ -318,11 +318,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 18,
     "pasos": [
-      "Calienta las tortillas en una sartén.",
-      "Lava, corta y cocina tofu según su textura hasta que esté tierno.",
-      "Incorpora pimenton y mezcla cuidadosamente los ingredientes.",
-      "Termina con palta y sirve la preparación para dos personas."
-    ]
+      "Calienta las tortillas por ambos lados.",
+      "Corta el tofu y dóralo en una sartén.",
+      "Corta el pimentón y ásalo a 200 °C hasta que esté tierno.",
+      "Pela y corta la palta justo antes de servir."
+]
   },
   {
     "titulo": "Ensalada tibia de arroz con brócoli",
@@ -335,11 +335,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Cuece el arroz hasta que esté tierno.",
-      "Lava, corta y cocina brocoli según su textura hasta que esté tierno.",
-      "Incorpora zanahoria y mezcla cuidadosamente los ingredientes.",
-      "Termina con limon y sirve la preparación para dos personas."
-    ]
+      "Cuece el arroz en agua hasta que esté tierno.",
+      "Cuece el brócoli al vapor hasta que esté tierno.",
+      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
+      "Aliña con jugo de limón al terminar."
+]
   },
   {
     "titulo": "Zapallitos rellenos de lentejas",
@@ -352,11 +352,11 @@ const FICHAS=[
     "prep": 15,
     "coc": 35,
     "pasos": [
-      "Parte los zapallitos por la mitad y hornéalos hasta ablandar.",
-      "Lava, corta y cocina lenteja según su textura hasta que esté tierno.",
-      "Incorpora tomate y mezcla cuidadosamente los ingredientes.",
-      "Termina con queso y sirve la preparación para dos personas."
-    ]
+      null,
+      "Enjuaga y cuece las lentejas hasta que estén tiernas.",
+      "Lava y corta el tomate en cubos.",
+      "Agrega el queso y calienta hasta que se funda."
+]
   },
   {
     "titulo": "Sopa de choclo con pollo y perejil",
@@ -370,10 +370,10 @@ const FICHAS=[
     "coc": 30,
     "pasos": [
       "Cuece el choclo hasta que esté tierno.",
-      "Lava, corta y cocina pollo según su textura hasta que esté tierno.",
-      "Incorpora papa y mezcla cuidadosamente los ingredientes.",
-      "Termina con perejil y sirve la preparación para dos personas."
-    ]
+      "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
+      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
+      "Añade perejil picado justo antes de servir."
+]
   },
   {
     "titulo": "Berenjena al horno con garbanzos y yogur",
@@ -386,11 +386,11 @@ const FICHAS=[
     "prep": 15,
     "coc": 35,
     "pasos": [
-      "Corta la berenjena por la mitad y hornéala hasta ablandar.",
-      "Lava, corta y cocina garbanzo según su textura hasta que esté tierno.",
-      "Incorpora yogur y mezcla cuidadosamente los ingredientes.",
-      "Termina con ajo y sirve la preparación para dos personas."
-    ]
+      "Corta la berenjena y hornéala a 200 °C hasta que esté tierna.",
+      "Usa garbanzos previamente cocidos y escurridos.",
+      "Mezcla el yogur fuera del fuego.",
+      "Pica el ajo y saltéalo brevemente sin quemarlo."
+]
   },
   {
     "titulo": "Tostadas de huevo con espinaca y tomate",
@@ -403,11 +403,11 @@ const FICHAS=[
     "prep": 10,
     "coc": 12,
     "pasos": [
-      "Tuesta el pan por ambos lados.",
-      "Lava, corta y cocina huevo según su textura hasta que esté tierno.",
-      "Incorpora espinaca y mezcla cuidadosamente los ingredientes.",
-      "Termina con tomate y sirve la preparación para dos personas."
-    ]
+      "Tuesta el pan hasta que esté dorado.",
+      "Bate los huevos y cuájalos completamente en una sartén.",
+      "Lava y saltea la espinaca brevemente.",
+      "Lava y corta el tomate en cubos."
+]
   },
   {
     "titulo": "Quinoa con salmón y arvejas",
@@ -420,11 +420,11 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Enjuaga y cuece la quinoa hasta que esté tierna.",
-      "Lava, corta y cocina salmon según su textura hasta que esté tierno.",
-      "Incorpora arveja y mezcla cuidadosamente los ingredientes.",
-      "Termina con limon y sirve la preparación para dos personas."
-    ]
+      "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
+      "Hornea el salmón a 190 °C hasta que alcance 63 °C.",
+      "Cuece las arvejas hasta que estén tiernas.",
+      "Aliña con jugo de limón al terminar."
+]
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"garbanzo":"200 g","acelga":"160 g","tomate":"220 g","cebolla":"100 g","pasta":"180 g","pimenton":"1 unidad","ajo":"2 dientes","queso":"80 g","pollo":"300 g","quinoa":"150 g","brocoli":"250 g","limon":"1 unidad","betarraga":"2 unidades","pera":"1 unidad","nuez":"50 g","lechuga":"100 g","zanahoria":"180 g","puerro":"1 unidad","huevo":"2 unidades","pescado":"300 g","arroz":"150 g","espinaca":"160 g","coliflor":"300 g","papa":"350 g","romero":"1 ramita","cuscus":"150 g","zapallo":"300 g","perejil":"1 cucharada","poroto":"200 g","naranja":"2 unidades","repollo":"250 g","champinon":"200 g","ricota":"120 g","lenteja":"180 g","mango":"1 unidad","pepino":"1 unidad","menta":"6 hojas","arveja":"180 g","aceituna":"60 g","avena":"100 g","jengibre":"10 g","coco":"180 ml de leche de coco","tortilla":"4 unidades","tofu":"250 g","palta":"1 unidad","zapallito":"2 unidades","choclo":"200 g","berenjena":"1 unidad","yogur":"150 g","pan":"4 rebanadas","salmon":"300 g"};
