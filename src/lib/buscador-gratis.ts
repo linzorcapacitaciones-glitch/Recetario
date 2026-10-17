@@ -15,6 +15,7 @@ import { RECETAS_LOTE_8 } from "./recetas-lote-8.ts";
 import { RECETAS_LOTE_9 } from "./recetas-lote-9.ts";
 import { RECETAS_LOTE_10 } from "./recetas-lote-10.ts";
 import { RECETAS_LOTE_11 } from "./recetas-lote-11.ts";
+import { RECETAS_LOTE_12 } from "./recetas-lote-12.ts";
 import { CATALOGO, PRODUCTOS, type IngredienteId } from "./planificador-semanal.ts";
 import type { Preferencias } from "./preferencias";
 
@@ -54,6 +55,7 @@ const clavesExtras: Record<string, string> = {
   "pescados": "pescado", "merluzas": "merluza", "salmones": "salmon", "brócoli": "brocoli", "brocolis": "brocoli",
   "champiñones": "champinon", "champinones": "champinon", "pimentones": "pimenton", "pimientos": "pimenton",
   "manzanas": "manzana", "platanos": "platano", "plátanos": "platano", "avena en hojuelas": "avena",
+  "naranjas": "naranja", "cúrcuma": "curcuma", "leche de coco": "coco",
   "aceitunas": "aceituna", "tortillas": "tortilla", "tofus": "tofu",
   "acelgas": "acelga", "albahacas": "albahaca", "romeros": "romero",
   "zapallitos": "zapallito", "zapallitos italianos": "zapallito", "berenjenas": "berenjena", "arvejas": "arveja", "betarragas": "betarraga", "remolacha": "betarraga", "coliflores": "coliflor", "quínua": "quinoa",
@@ -62,7 +64,7 @@ const clavesExtras: Record<string, string> = {
 export function normalizar(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 }
-const OTROS_INGREDIENTES = new Set(["merluza","salmon","pescado","brocoli","champinon","pimenton","manzana","platano","avena","poroto","leche","yogur","limon","pepino","lechuga","carne","carne molida","harina","pan","palta","choclo","maiz","mantequilla","ajo","perejil","quinoa","cuscus","berenjena","zapallito","coliflor","betarraga","repollo","arveja","menta","acelga","jengibre","romero","albahaca","polenta","aceituna","tofu","tahini","tortilla"]);
+const OTROS_INGREDIENTES = new Set(["merluza","salmon","pescado","brocoli","champinon","pimenton","manzana","platano","avena","poroto","leche","yogur","limon","pepino","lechuga","carne","carne molida","harina","pan","palta","choclo","maiz","mantequilla","ajo","perejil","quinoa","cuscus","berenjena","zapallito","coliflor","betarraga","repollo","arveja","menta","acelga","jengibre","romero","albahaca","polenta","aceituna","tofu","tahini","tortilla","coco","mostaza","curcuma","naranja"]);
 function idIngrediente(s: string): string | undefined {
   const n=normalizar(s);
   const id=(clavesExtras[n] || n) as IngredienteId;
@@ -113,7 +115,7 @@ const fichasNuevas: Ficha[] = CATALOGO.map(plato => {
     }
   };
 });
-const fichasDemo: Ficha[]=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2,...RECETAS_LOTE_3,...RECETAS_LOTE_4,...RECETAS_LOTE_5,...RECETAS_LOTE_6,...RECETAS_LOTE_7,...RECETAS_LOTE_8,...RECETAS_LOTE_9,...RECETAS_LOTE_10,...RECETAS_LOTE_11].map(r=>{
+const fichasDemo: Ficha[]=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2,...RECETAS_LOTE_3,...RECETAS_LOTE_4,...RECETAS_LOTE_5,...RECETAS_LOTE_6,...RECETAS_LOTE_7,...RECETAS_LOTE_8,...RECETAS_LOTE_9,...RECETAS_LOTE_10,...RECETAS_LOTE_11,...RECETAS_LOTE_12].map(r=>{
   const ids=extraerDeDescripcion(r.ingredientes);
   return {receta:r,claves:ids,minutos:Number(r.tiempoPreparacion.replace(/\D/g,""))+Number(r.tiempoCoccion.replace(/\D/g,"")),
     categoria:"casera",coste:r.costoAproximado==="Bajo"?1600:2900};
