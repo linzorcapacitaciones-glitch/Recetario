@@ -76,7 +76,7 @@ export function normalizar(s: string) {
 const OTROS_INGREDIENTES = new Set(["merluza","salmon","pescado","brocoli","champinon","pimenton","manzana","platano","avena","poroto","leche","yogur","limon","pepino","lechuga","carne","carne molida","harina","pan","palta","choclo","maiz","mantequilla","ajo","perejil","quinoa","cuscus","berenjena","zapallito","coliflor","betarraga","repollo","arveja","menta","acelga","jengibre","romero","albahaca","polenta","aceituna","tofu","tahini","tortilla","coco","mostaza","curcuma","naranja","ricota","miel","puerro","mango","sesamo","pera","nuez"]);
 function idIngrediente(s: string): string | undefined {
   const n=normalizar(s);
-  const id=(clavesExtras[n] || n) as IngredienteId;
+  const id=(Object.entries(clavesExtras).find(([alias])=>normalizar(alias)===n)?.[1] || n) as IngredienteId;
   return id in PRODUCTOS || OTROS_INGREDIENTES.has(id) ? id : undefined;
 }
 export function extraerIngredientes(texto: string): string[] {
