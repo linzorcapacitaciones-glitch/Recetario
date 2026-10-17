@@ -45,21 +45,26 @@ const clavesExtras: Record<string, string> = {
   "zanahorias": "zanahoria", "cebollas": "cebolla", "lentejas": "lenteja",
   "garbanzos": "garbanzo", "fideos": "pasta", "tallarines": "pasta",
   "atun en lata": "atun", "espinacas": "espinaca", "calabaza": "zapallo",
+  "pescados": "pescado", "merluzas": "merluza", "salmones": "salmon", "brócoli": "brocoli", "brocolis": "brocoli",
+  "champiñones": "champinon", "champinones": "champinon", "pimentones": "pimenton", "pimientos": "pimenton",
+  "manzanas": "manzana", "platanos": "platano", "plátanos": "platano", "avena en hojuelas": "avena",
+  "porotos negros": "poroto", "frijoles": "poroto", "porotos": "poroto", "leche de vaca": "leche",
 };
 export function normalizar(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 }
-function idIngrediente(s: string): IngredienteId | undefined {
+const OTROS_INGREDIENTES = new Set(["merluza","salmon","pescado","brocoli","champinon","pimenton","manzana","platano","avena","poroto","leche","yogur","limon","pepino","lechuga","carne","carne molida","harina","pan","palta","choclo","maiz","mantequilla","ajo","perejil"]);
+function idIngrediente(s: string): string | undefined {
   const n=normalizar(s);
   const id=(clavesExtras[n] || n) as IngredienteId;
-  return id in PRODUCTOS ? id : undefined;
+  return id in PRODUCTOS || OTROS_INGREDIENTES.has(id) ? id : undefined;
 }
-export function extraerIngredientes(texto: string): IngredienteId[] {
+export function extraerIngredientes(texto: string): string[] {
   const limpio=normalizar(texto)
     .replace(/\b(?:tengo|disponibles?|en casa|en mi alacena|ingredientes?|para cocinar|y tambien)\b/g, " ");
   // Reconoce listas separadas por comas, espacios o conjunciones, conservando alias de varias palabras.
   const tokens=limpio.replace(/[,;\n+]+/g," ").split(/\s+/).filter(Boolean);
-  const encontrados=new Set<IngredienteId>();
+  const encontrados=new Set<string>();
   for(let i=0;i<tokens.length;i++) {
     const compuesto=i+2<tokens.length?tokens.slice(i,i+3).join(" "):"";
     const doble=i+1<tokens.length?tokens.slice(i,i+2).join(" "):"";
@@ -71,10 +76,10 @@ export function extraerIngredientes(texto: string): IngredienteId[] {
 
 const porId = (id: string) => PRODUCTOS[id as IngredienteId]?.nombre ?? id;
 const extraerDeDescripcion = (ingredientes: string[]) => {
-  const ids=new Set<IngredienteId>();
+  const ids=new Set<string>();
   for(const linea of ingredientes) {
     const texto=normalizar(linea);
-    for(const id of Object.keys(PRODUCTOS) as IngredienteId[]) {
+    for(const id of [...Object.keys(PRODUCTOS),...OTROS_INGREDIENTES]) {
       if(new RegExp(`\\b${id}\\b`).test(texto) ||
         Object.entries(clavesExtras).some(([alias,destino])=>destino===id && new RegExp(`\\b${alias}\\b`).test(texto))) ids.add(id);
     }
