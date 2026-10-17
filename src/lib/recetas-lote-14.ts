@@ -257,7 +257,7 @@ const FICHAS=[
     "coc": 0
   },
   {
-    "titulo": "Hamburguesas de porotos negros",
+    "titulo": "Hamburguesas de porotos negros con avena",
     "ids": [
       "poroto",
       "avena",
