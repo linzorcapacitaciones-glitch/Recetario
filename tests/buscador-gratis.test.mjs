@@ -71,3 +71,11 @@ test("Lote 4 incorpora 20 recetas únicas con instrucciones",async()=>{
  assert.ok(RECETAS_LOTE_4.every(x=>x.pasos.length>=4&&x.ingredientes.length>=3));
  assert.ok(TOTAL_RECETAS_CATALOGO>=135,`Total: ${TOTAL_RECETAS_CATALOGO}`);
 });
+
+test("Lote 5 agrega 25 recetas con títulos únicos y cuatro pasos",async()=>{
+ const {RECETAS_LOTE_5}=await import("../src/lib/recetas-lote-5.ts");
+ assert.equal(RECETAS_LOTE_5.length,25);
+ assert.equal(new Set(RECETAS_LOTE_5.map(x=>x.titulo.toLowerCase())).size,25);
+ assert.ok(RECETAS_LOTE_5.every(x=>x.ingredientes.length>=3&&x.pasos.length>=4));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=160,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
