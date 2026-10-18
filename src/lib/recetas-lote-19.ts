@@ -29,10 +29,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 30,
     "pasos": [
-      "Cuece la pasta en agua hirviendo hasta que esté al dente.",
-      "Corta el pimentón y ásalo a 200 °C hasta que esté tierno.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo.",
-      "Agrega el queso y calienta hasta que se funda."
+      "Asa el pimentón a 200 °C hasta que esté tierno; retira las semillas y la piel si se desprende fácilmente.",
+      "Cuece la pasta en agua con sal hasta que esté al dente y reserva media taza del agua de cocción.",
+      "Saltea el ajo picado brevemente, añade el pimentón asado y tritura con un poco del agua reservada hasta obtener una salsa.",
+      "Mezcla la pasta con la salsa, incorpora el queso fuera del fuego y ajusta la textura con más agua de cocción si hace falta."
 ]
   },
   {
@@ -80,10 +80,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 18,
     "pasos": [
-      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
-      "Lava y saltea el puerro en rodajas hasta que se ablande.",
-      "Bate los huevos y cuájalos completamente en una sartén.",
-      "Agrega el queso y calienta hasta que se funda."
+      "Pela y ralla la zanahoria; lava el puerro y córtalo en rodajas finas.",
+      "Saltea la zanahoria y el puerro juntos hasta que estén tiernos y pierdan el exceso de humedad.",
+      "Bate los huevos, mezcla con las verduras tibias y agrega el queso rallado.",
+      "Vierte la mezcla en una sartén antiadherente y cocina por ambos lados hasta que el centro esté completamente cuajado."
 ]
   },
   {
@@ -114,10 +114,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Cocina la coliflor al vapor hasta que esté tierna.",
-      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Pica y sofríe la cebolla hasta que esté transparente.",
-      "Agrega romero durante la cocción y retira la rama antes de servir."
+      "Lava y trocea la coliflor y las papas en piezas de tamaño similar.",
+      "Sofríe la cebolla picada en una olla; agrega la coliflor, las papas y agua suficiente para cubrir parcialmente.",
+      "Añade una ramita de romero y cuece hasta que las verduras estén tiernas; retira la rama antes de triturar.",
+      "Tritura las verduras con parte del líquido de cocción hasta obtener una crema homogénea y ajusta la consistencia antes de servir."
 ]
   },
   {
@@ -165,10 +165,10 @@ const FICHAS=[
     "prep": 15,
     "coc": 45,
     "pasos": [
-      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Lamina y saltea los champiñones hasta que pierdan su agua.",
-      "Incorpora la ricota al final para mantener su textura.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Lava y corta las papas en cubos uniformes; mézclalas con aceite y distribúyelas en una bandeja.",
+      "Hornea las papas a 200 °C durante 30–40 minutos, girándolas a mitad de cocción, hasta que estén doradas y tiernas.",
+      "Saltea los champiñones laminados con el ajo picado hasta que pierdan su agua y se doren ligeramente.",
+      "Sirve las papas asadas con los champiñones y añade la ricota al final, fuera del fuego."
 ]
   },
   {
