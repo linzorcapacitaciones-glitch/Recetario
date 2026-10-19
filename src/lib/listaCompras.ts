@@ -50,16 +50,19 @@ export function useListaCompras() {
 
   const agregar = useCallback((nombres: string[], origen: string) => {
     const actuales = leer();
-    const existentes = new Set(actuales.map((i) => i.nombre.toLowerCase()));
-    const nuevos = nombres
-      .map((n) => n.trim())
-      .filter((n) => n && !existentes.has(n.toLowerCase()))
-      .map((nombre, i) => ({
-        id: `${Date.now()}-${i}-${nombre.slice(0, 12)}`,
-        nombre,
-        origen,
-        comprado: false,
-      }));
+    const clave = (s: string) => s.toLocaleLowerCase("es").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/\\s+/g, " ").trim();
+    const existentes = new Set(actuales.map((i) => clave(i.nombre)));
+    const nuevos: ItemCompra[] = [];
+    for (const entrada of nombres) {
+      const nombre = entrada.trim();
+      const identificador = clave(nombre);
+      if (!identificador || existentes.has(identificador)) continue;
+      existentes.add(identificador);
+      nuevos.push({
+        id: `${Date.now()}-${nuevos.length}-${nombre.slice(0, 12)}`,
+        nombre, origen, comprado: false,
+      });
+    }
     escribir([...actuales, ...nuevos]);
     return nuevos.length;
   }, []);
