@@ -85,11 +85,15 @@ export function extraerIngredientes(texto: string): string[] {
   // Reconoce listas separadas por comas, espacios o conjunciones, conservando alias de varias palabras.
   const tokens=limpio.replace(/[,;\n+]+/g," ").split(/\s+/).filter(Boolean);
   const encontrados=new Set<string>();
-  for(let i=0;i<tokens.length;i++) {
-    const compuesto=i+2<tokens.length?tokens.slice(i,i+3).join(" "):"";
-    const doble=i+1<tokens.length?tokens.slice(i,i+2).join(" "):"";
-    const id=(compuesto&&idIngrediente(compuesto))||(doble&&idIngrediente(doble))||idIngrediente(tokens[i]);
-    if(id) encontrados.add(id);
+  // Consume el alias completo para no contabilizar también sus componentes.
+  // Ej.: "leche de coco" es coco, no leche + coco; "carne molida" es un solo ingrediente.
+  for(let i=0;i<tokens.length;) {
+    let consumidos=1;
+    for(let largo=Math.min(3,tokens.length-i);largo>=1;largo--) {
+      const id=idIngrediente(tokens.slice(i,i+largo).join(" "));
+      if(id) { encontrados.add(id); consumidos=largo; break; }
+    }
+    i+=consumidos;
   }
   return [...encontrados];
 }
