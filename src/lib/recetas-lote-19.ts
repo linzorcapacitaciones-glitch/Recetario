@@ -15,7 +15,7 @@ const FICHAS=[
       "Usa garbanzos previamente cocidos y escurridos.",
       "Lava y saltea la acelga hasta que se ablande.",
       "Lava y corta el tomate en cubos.",
-      "Pica y sofríe la cebolla hasta que esté transparente."
+      "Sofríe la cebolla picada, añade el tomate y cocina 5 minutos; incorpora los garbanzos cocidos y la acelga salteada, agrega un poco de agua y deja hervir suavemente 10 minutos."
 ]
   },
   {
@@ -66,7 +66,7 @@ const FICHAS=[
       "Cuece la betarraga hasta que esté tierna y córtala en cubos.",
       "Lava y corta la pera en cubos.",
       "Trocea las nueces y añádelas al final.",
-      "Lava, seca y trocea la lechuga."
+      "Lava, seca y trocea la lechuga; mezcla con la betarraga y la pera, incorpora las nueces y sirve la ensalada."
 ]
   },
   {
@@ -100,7 +100,7 @@ const FICHAS=[
       "Hornea el pescado a 190 °C hasta que alcance 63 °C.",
       "Cuece el arroz en agua hasta que esté tierno.",
       "Lava y saltea la espinaca brevemente.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Pica el ajo y saltéalo con la espinaca sin quemarlo; sirve las verduras junto al arroz cocido y el pescado horneado."
 ]
   },
   {
@@ -185,7 +185,7 @@ const FICHAS=[
       "Cuece el arroz en agua hasta que esté tierno.",
       "Enjuaga y cuece las lentejas hasta que estén tiernas.",
       "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
-      "Pica y sofríe la cebolla hasta que esté transparente."
+      "Sofríe la cebolla picada, incorpora las lentejas cocidas y la zanahoria salteada, mezcla con el arroz y calienta todo antes de servir."
 ]
   },
   {
