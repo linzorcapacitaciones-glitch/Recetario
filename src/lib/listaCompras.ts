@@ -50,7 +50,7 @@ export function useListaCompras() {
 
   const agregar = useCallback((nombres: string[], origen: string) => {
     const actuales = leer();
-    const clave = (s: string) => s.toLocaleLowerCase("es").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/\\s+/g, " ").trim();
+    const clave = (s: string) => s.toLocaleLowerCase("es").normalize("NFD").replace(/\p{M}/gu, "").replace(/\s+/g, " ").trim();
     const existentes = new Set(actuales.map((i) => clave(i.nombre)));
     const nuevos: ItemCompra[] = [];
     for (const entrada of nombres) {
