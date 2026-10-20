@@ -162,7 +162,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Papas cremosos con espinaca",
+    "titulo": "Papas cremosas con espinaca",
     "ids": [
       "papa",
       "espinaca"
@@ -398,7 +398,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Lentejas cremosos con espinaca",
+    "titulo": "Lentejas cremosas con espinaca",
     "ids": [
       "lenteja",
       "espinaca"
