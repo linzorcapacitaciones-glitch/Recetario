@@ -33,7 +33,7 @@ export type Receta = Omit<RecetaIA, Extra> &
   };
 
 const ResponseSchema = z.object({
-  recetas: z.array(RecipeSchema),
+  recetas: z.array(RecipeSchema).length(10),
 });
 
 const jsonSchema = {
@@ -319,15 +319,8 @@ export const generarRecetas = createServerFn({
         );
       }
 
-      if (parsed.recetas.length === 0) {
-        throw new Error(
-          "La IA no devolvió recetas. Inténtalo nuevamente.",
-        );
-      }
-
       const normalizadas: Receta[] =
         parsed.recetas
-          .slice(0, 10)
           .map((r, i) => {
             const coinciden =
               r.ingredientesCoincidentes.length;
