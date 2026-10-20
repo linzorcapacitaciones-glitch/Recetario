@@ -122,7 +122,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Papas salteados con tomate",
+    "titulo": "Papas salteadas con tomate",
     "ids": [
       "papa",
       "tomate",
@@ -136,7 +136,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Papas guisados con cebolla",
+    "titulo": "Papas guisadas con cebolla",
     "ids": [
       "papa",
       "cebolla"
@@ -175,7 +175,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Papas salteados con zapallo",
+    "titulo": "Papas salteadas con zapallo",
     "ids": [
       "papa",
       "zapallo"
@@ -201,7 +201,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Papas salteados con pollo",
+    "titulo": "Papas salteadas con pollo",
     "ids": [
       "papa",
       "pollo"
@@ -214,7 +214,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Papas guisados con atún",
+    "titulo": "Papas guisadas con atún",
     "ids": [
       "papa",
       "atun"
@@ -358,7 +358,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Lentejas salteados con tomate",
+    "titulo": "Lentejas salteadas con tomate",
     "ids": [
       "lenteja",
       "tomate",
@@ -372,7 +372,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Lentejas guisados con cebolla",
+    "titulo": "Lentejas guisadas con cebolla",
     "ids": [
       "lenteja",
       "cebolla"
@@ -411,7 +411,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Lentejas salteados con zapallo",
+    "titulo": "Lentejas salteadas con zapallo",
     "ids": [
       "lenteja",
       "zapallo"
@@ -437,7 +437,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Lentejas salteados con arroz",
+    "titulo": "Lentejas salteadas con arroz",
     "ids": [
       "lenteja",
       "arroz"
@@ -450,7 +450,7 @@ const FICHAS = [
     ]
   },
   {
-    "titulo": "Lentejas guisados con papas",
+    "titulo": "Lentejas guisadas con papas",
     "ids": [
       "lenteja",
       "papa"
