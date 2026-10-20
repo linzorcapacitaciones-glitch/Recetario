@@ -191,6 +191,11 @@ export const generarRecetas = createServerFn({
     async ({
       data,
     }): Promise<{ recetas: Receta[] }> => {
+      // La generación facturable está cerrada por defecto hasta implementar
+      // autenticación, cuotas, limitación de tasa y control de gasto en servidor.
+      if (process.env["RECIPE_AI_ENABLED"] !== "true") {
+        throw new Error("La generación avanzada con IA está temporalmente deshabilitada. Usa el buscador gratuito del catálogo.");
+      }
       const config = obtenerConfigIA();
 
       const res = await fetch(config.url, {
