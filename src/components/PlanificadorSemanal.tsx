@@ -21,7 +21,7 @@ export function PlanificadorSemanal() {
   const [precios, setPrecios] = useState<Partial<Record<IngredienteId, number>>>({});
   const [variante, setVariante] = useState(0);
   const [aviso, setAviso] = useState("");
-  const { agregar } = useListaCompras();
+  const { agregarCantidades } = useListaCompras();
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem("alacena-plan-semanal-v1");
@@ -56,9 +56,14 @@ export function PlanificadorSemanal() {
   };
 
   const comprar = () => {
-    const nombres = plan.comprasNetas.filter(c => c.comprar > 0).map(c => `${cantidades(c.comprar, c.unidad)} de ${c.nombre}`);
-    const total = agregar(nombres, "Planificador semanal");
-    setAviso(`${total} productos incorporados a tu lista de compras.`);
+    const productos = plan.comprasNetas.filter(c => c.comprar > 0).map(c => ({
+      id: c.id, nombre: c.nombre, cantidad: c.comprar, unidad: c.unidad === "unidad" ? "unidad" as const : "g" as const,
+    }));
+    const fuente = JSON.stringify({ personas, dias, comidasPorDia, presupuesto, inventario, precios, variante,
+      platos: plan.platos.map(p => p.plato.id), compras: productos.map(p => [p.id, p.cantidad]) });
+    const total = agregarCantidades(productos, "Planificador semanal", fuente);
+    setAviso(total > 0 ? `${total} productos incorporados o actualizados en tu lista de compras.` :
+      "Esta planificación ya estaba incorporada a tu lista de compras.");
   };
 
   return (

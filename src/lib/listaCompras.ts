@@ -4,6 +4,7 @@
  * para poder evolucionar más adelante hacia la lista de un menú completo.
  */
 import { useCallback, useEffect, useState } from "react";
+import { consolidarComprasCuantificadas, type ProductoCompra } from "./compras-cantidades";
 
 const CLAVE = "alacena-lista-compras-v1";
 
@@ -12,6 +13,10 @@ export type ItemCompra = {
   nombre: string;
   origen: string;
   comprado: boolean;
+  productoId?: string;
+  cantidad?: number;
+  unidad?: "g" | "unidad";
+  fuentes?: string[];
 };
 
 function leer(): ItemCompra[] {
@@ -67,6 +72,12 @@ export function useListaCompras() {
     return nuevos.length;
   }, []);
 
+  const agregarCantidades = useCallback((productos: ProductoCompra[], origen: string, fuente: string) => {
+    const resultado = consolidarComprasCuantificadas(leer(), productos, origen, fuente, Date.now());
+    if (resultado.modificados > 0) escribir(resultado.items);
+    return resultado.modificados;
+  }, []);
+
   const alternar = useCallback((id: string) => {
     escribir(leer().map((i) => (i.id === id ? { ...i, comprado: !i.comprado } : i)));
   }, []);
@@ -77,5 +88,5 @@ export function useListaCompras() {
 
   const vaciar = useCallback(() => escribir([]), []);
 
-  return { items, agregar, alternar, quitar, vaciar };
+  return { items, agregar, agregarCantidades, alternar, quitar, vaciar };
 }
