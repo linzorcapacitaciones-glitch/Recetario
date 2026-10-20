@@ -194,6 +194,7 @@ export const generarRecetas = createServerFn({
       const config = obtenerConfigIA();
 
       const res = await fetch(config.url, {
+        signal: AbortSignal.timeout(60000),
         method: "POST",
 
         headers: config.headers,
@@ -315,7 +316,7 @@ export const generarRecetas = createServerFn({
         );
 
         throw new Error(
-          "La IA respondió en un formato inesperado. Inténtalo nuevamente.",
+          "La IA no entregó exactamente diez recetas completas y válidas. Inténtalo nuevamente.",
         );
       }
 
