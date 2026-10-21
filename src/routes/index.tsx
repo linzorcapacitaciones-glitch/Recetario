@@ -46,7 +46,7 @@ function Index() {
   const { alternar, esFavorito } = useFavoritos();
   const { mostrarPublicidad } = usePlan();
   const [resultado, setResultado] = useState<ResultadoBusqueda | null>(null);
-  const [limite, setLimite] = useState(12);
+  const [limite, setLimite] = useState(10);
   const [explorando, setExplorando] = useState(false);
   const [ultimaBusqueda, setUltimaBusqueda] = useState<{ texto: string; preferencias: Preferencias } | null>(null);
 
@@ -66,8 +66,8 @@ function Index() {
       conTiempo: Boolean(c.tiempo),
       modo: "catalogo_local",
     });
-    const busqueda = buscarRecetasGratis(valor, c, 12);
-    setLimite(12);
+    const busqueda = buscarRecetasGratis(valor, c, 10);
+    setLimite(10);
     setExplorando(false);
     setUltimaBusqueda({ texto: valor, preferencias: c });
     setResultado(busqueda);
@@ -133,10 +133,10 @@ function Index() {
 
             <button type="button" className="mt-5 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10" onClick={() => {
               setExplorando(true);
-              setLimite(12);
+              setLimite(10);
               setUltimaBusqueda(null);
-              setResultado(explorarCatalogo(12));
-              registrarEvento("recipe_results_view", { totalRecetas: 12, modo: "explorar_catalogo" });
+              setResultado(explorarCatalogo(10));
+              registrarEvento("recipe_results_view", { totalRecetas: 10, modo: "explorar_catalogo" });
             }}>Explorar todas las recetas sin ingresar ingredientes</button>
 
             <PersonalizarBusqueda valor={prefs} onChange={setPrefs} />
@@ -192,14 +192,25 @@ function Index() {
           </>
         )}
         {resultado && (ultimaBusqueda || explorando) && recetas.length < resultado.totalCoincidentes && (
-          <div className="mt-10 flex justify-center">
-            <button type="button" className="rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground hover:opacity-90" onClick={() => {
-              const siguiente = Math.min(limite + 12, resultado.totalCoincidentes);
-              setLimite(siguiente);
-              setResultado(explorando ? explorarCatalogo(siguiente) : buscarRecetasGratis(ultimaBusqueda!.texto, ultimaBusqueda!.preferencias, siguiente));
-            }}>
-              Mostrar más recetas ({recetas.length} de {resultado.totalCoincidentes})
-            </button>
+          <div className="mt-10 mx-auto max-w-xl rounded-2xl border border-border bg-card p-5 text-center">
+            {limite < 15 ? (
+              <>
+                <p className="mb-3 font-semibold">Hay más recetas para ti</p>
+                <p className="mb-4 text-sm text-muted-foreground">Este es un espacio reservado para publicidad. Todavía no hay anuncios reales ni ingresos publicitarios activos.</p>
+                {mostrarPublicidad && <AnuncioPlaceholder className="mb-4" />}
+                <button type="button" className="rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground hover:opacity-90" onClick={() => {
+                  const siguiente = Math.min(15, resultado.totalCoincidentes);
+                  setLimite(siguiente);
+                  setResultado(explorando ? explorarCatalogo(siguiente) : buscarRecetasGratis(ultimaBusqueda!.texto, ultimaBusqueda!.preferencias, siguiente));
+                }}>Ver 5 recetas adicionales (prueba sin anuncio real)</button>
+              </>
+            ) : (
+              <>
+                <p className="font-semibold">¿Quieres ver todas las coincidencias?</p>
+                <p className="mt-2 text-sm text-muted-foreground">El acceso completo estará disponible con Premium cuando se activen las suscripciones verificadas.</p>
+                <Link to="/premium" className="mt-4 inline-block rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground">Conocer Premium</Link>
+              </>
+            )}
           </div>
         )}
       </main>
