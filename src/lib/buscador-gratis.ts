@@ -147,7 +147,7 @@ export function explorarCatalogo(limite=12):ResultadoBusqueda {
   const recetas=[...sinDuplicados.values()].slice(0,Math.max(1,Math.min(limite,500))).map(({receta})=>receta);
   return {recetas,ingredientesReconocidos:[],ignorados:[],totalCatalogo:TOTAL_RECETAS_CATALOGO,totalCoincidentes:TOTAL_RECETAS_CATALOGO};
 }
-export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}, limite=12):ResultadoBusqueda {
+export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}, limite=10):ResultadoBusqueda {
   const ingredientes=extraerIngredientes(texto);
   const conocidos=new Set(ingredientes);
   const piezas=normalizar(texto).split(/[,;\n]+|\s+y\s+|\s+\+\s+/).map(s=>s.trim()).filter(Boolean);
