@@ -20,13 +20,13 @@ const heroImg = "https://pantry-to-plate-pro-86.lovable.app/assets/cocina-hero-C
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alacena — 10 recetas con lo que ya tienes en casa" },
+      { title: "Alacena — recetas con lo que ya tienes en casa" },
       {
         name: "description",
         content:
           "Escribe tus ingredientes y descubre recetas del catálogo gratuito, con ingredientes y pasos sin consumir IA.",
       },
-      { property: "og:title", content: "Alacena — 10 recetas con lo que ya tienes en casa" },
+      { property: "og:title", content: "Alacena — recetas con lo que ya tienes en casa" },
       {
         property: "og:description",
         content: "Busca recetas reales de un catálogo gratuito usando los ingredientes que tienes en casa, sin llamadas a IA.",
@@ -46,6 +46,8 @@ function Index() {
   const { alternar, esFavorito } = useFavoritos();
   const { mostrarPublicidad } = usePlan();
   const [resultado, setResultado] = useState<ResultadoBusqueda | null>(null);
+  const [limite, setLimite] = useState(12);
+  const [ultimaBusqueda, setUltimaBusqueda] = useState<{ texto: string; preferencias: Preferencias } | null>(null);
 
   useEffect(() => {
     registrarEvento("app_open");
@@ -63,7 +65,9 @@ function Index() {
       conTiempo: Boolean(c.tiempo),
       modo: "catalogo_local",
     });
-    const busqueda = buscarRecetasGratis(valor, c);
+    const busqueda = buscarRecetasGratis(valor, c, 12);
+    setLimite(12);
+    setUltimaBusqueda({ texto: valor, preferencias: c });
     setResultado(busqueda);
     registrarEvento("recipe_results_view", { totalRecetas: busqueda.recetas.length, modo: "catalogo_local" });
   };
@@ -147,7 +151,7 @@ function Index() {
         {resultado && (
           <div className="mb-6 rounded-2xl border border-border bg-card p-4 text-sm">
             <p className="font-semibold">Catálogo gratuito: {resultado.totalCatalogo} recetas revisables, sin llamadas a OpenAI.</p>
-            <p className="text-muted-foreground mt-1">Encontramos {resultado.totalCoincidentes} recetas compatibles; mostramos hasta 10, ordenadas por ingredientes disponibles y faltantes.</p>
+            <p className="text-muted-foreground mt-1">Encontramos {resultado.totalCoincidentes} recetas compatibles; mostramos {recetas.length}, ordenadas por ingredientes disponibles y faltantes.</p>
             {resultado.ingredientesReconocidos.length > 0 && <p className="mt-2">Reconocidos: {resultado.ingredientesReconocidos.join(", ")}.</p>}
             {resultado.ignorados.length > 0 && <p className="text-muted-foreground mt-2">Sin coincidencia en el catálogo: {resultado.ignorados.join(", ")}. No se usarán para puntuar recetas.</p>}
             {resultado.totalCoincidentes===0 && <p className="mt-2 text-primary">Prueba con arroz, pollo, huevo, tomate, papa, lentejas, atún o pasta; o amplía el tiempo máximo en tus preferencias.</p>}
@@ -176,6 +180,17 @@ function Index() {
               ))}
             </div>
           </>
+        )}
+        {resultado && ultimaBusqueda && recetas.length < resultado.totalCoincidentes && (
+          <div className="mt-10 flex justify-center">
+            <button type="button" className="rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground hover:opacity-90" onClick={() => {
+              const siguiente = Math.min(limite + 12, resultado.totalCoincidentes);
+              setLimite(siguiente);
+              setResultado(buscarRecetasGratis(ultimaBusqueda.texto, ultimaBusqueda.preferencias, siguiente));
+            }}>
+              Mostrar más recetas ({recetas.length} de {resultado.totalCoincidentes})
+            </button>
+          </div>
         )}
       </main>
     </div>
