@@ -1,10 +1,29 @@
 /**
  * Buscador gratuito y real, sin llamadas de red ni tokens.
- * Catálogo editorial pequeño: ampliar y revisar antes del lanzamiento.
+ * Catálogo editorial ampliado. Revisión culinaria y de alérgenos pendiente antes del lanzamiento.
  */
 import type { Receta } from "./recipes.functions";
-import { RECETAS_DEMO } from "./recetas-demo";
-import { CATALOGO, PRODUCTOS, type IngredienteId } from "./planificador-semanal";
+import { RECETAS_DEMO } from "./recetas-demo.ts";
+import { RECETAS_ADICIONALES } from "./recetas-adicionales.ts";
+import { RECETAS_LOTE_2 } from "./recetas-lote-2.ts";
+import { RECETAS_LOTE_3 } from "./recetas-lote-3.ts";
+import { RECETAS_LOTE_4 } from "./recetas-lote-4.ts";
+import { RECETAS_LOTE_5 } from "./recetas-lote-5.ts";
+import { RECETAS_LOTE_6 } from "./recetas-lote-6.ts";
+import { RECETAS_LOTE_7 } from "./recetas-lote-7.ts";
+import { RECETAS_LOTE_8 } from "./recetas-lote-8.ts";
+import { RECETAS_LOTE_9 } from "./recetas-lote-9.ts";
+import { RECETAS_LOTE_10 } from "./recetas-lote-10.ts";
+import { RECETAS_LOTE_11 } from "./recetas-lote-11.ts";
+import { RECETAS_LOTE_12 } from "./recetas-lote-12.ts";
+import { RECETAS_LOTE_13 } from "./recetas-lote-13.ts";
+import { RECETAS_LOTE_14 } from "./recetas-lote-14.ts";
+import { RECETAS_LOTE_15 } from "./recetas-lote-15.ts";
+import { RECETAS_LOTE_16 } from "./recetas-lote-16.ts";
+import { RECETAS_LOTE_17 } from "./recetas-lote-17.ts";
+import { RECETAS_LOTE_18 } from "./recetas-lote-18.ts";
+import { RECETAS_LOTE_19 } from "./recetas-lote-19.ts";
+import { CATALOGO, PRODUCTOS, type IngredienteId } from "./planificador-semanal.ts";
 import type { Preferencias } from "./preferencias";
 
 type Ficha = { receta: Receta; claves: string[]; minutos: number; categoria: string; coste: number };
@@ -40,33 +59,51 @@ const clavesExtras: Record<string, string> = {
   "zanahorias": "zanahoria", "cebollas": "cebolla", "lentejas": "lenteja",
   "garbanzos": "garbanzo", "fideos": "pasta", "tallarines": "pasta",
   "atun en lata": "atun", "espinacas": "espinaca", "calabaza": "zapallo",
+  "pescados": "pescado", "merluzas": "merluza", "salmones": "salmon", "brócoli": "brocoli", "brocolis": "brocoli",
+  "champiñones": "champinon", "champinones": "champinon", "pimentones": "pimenton", "pimientos": "pimenton",
+  "manzanas": "manzana", "platanos": "platano", "plátanos": "platano", "avena en hojuelas": "avena",
+  "peras": "pera", "nueces": "nuez",
+  "mangos": "mango", "puerros": "puerro", "sésamo": "sesamo",
+  "naranjas": "naranja", "cúrcuma": "curcuma", "leche de coco": "coco",
+  "aceitunas": "aceituna", "tortillas": "tortilla", "tofus": "tofu",
+  "acelgas": "acelga", "albahacas": "albahaca", "romeros": "romero",
+  "zapallitos": "zapallito", "zapallitos italianos": "zapallito", "berenjenas": "berenjena", "arvejas": "arveja", "betarragas": "betarraga", "remolacha": "betarraga", "coliflores": "coliflor", "quínua": "quinoa",
+  "porotos negros": "poroto", "frijoles": "poroto", "porotos": "poroto", "leche de vaca": "leche",
 };
 export function normalizar(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 }
-function idIngrediente(s: string): IngredienteId | undefined {
+const OTROS_INGREDIENTES = new Set(["merluza","salmon","pescado","brocoli","champinon","pimenton","manzana","platano","avena","poroto","leche","yogur","limon","pepino","lechuga","carne","carne molida","harina","pan","palta","choclo","maiz","mantequilla","ajo","perejil","quinoa","cuscus","berenjena","zapallito","coliflor","betarraga","repollo","arveja","menta","acelga","jengibre","romero","albahaca","polenta","aceituna","tofu","tahini","tortilla","coco","mostaza","curcuma","naranja","ricota","miel","puerro","mango","sesamo","pera","nuez"]);
+function idIngrediente(s: string): string | undefined {
   const n=normalizar(s);
-  const id=(clavesExtras[n] || n) as IngredienteId;
-  return id in PRODUCTOS ? id : undefined;
+  const id=(Object.entries(clavesExtras).find(([alias])=>normalizar(alias)===n)?.[1] || n) as IngredienteId;
+  return id in PRODUCTOS || OTROS_INGREDIENTES.has(id) ? id : undefined;
 }
-export function extraerIngredientes(texto: string): IngredienteId[] {
-  const partes=normalizar(texto)
-    .replace(/\b(?:tengo|disponibles?|en casa|en mi alacena|ingredientes?|para cocinar|y tambien)\b/g, " ")
-    .split(/[,;\n]+|\s+y\s+|\s+\+\s+/)
-    .map(s => s.trim()).filter(Boolean);
-  const encontrados=new Set<IngredienteId>();
-  for(const p of partes) {
-    const id=idIngrediente(p);
-    if(id) encontrados.add(id);
+export function extraerIngredientes(texto: string): string[] {
+  const limpio=normalizar(texto)
+    .replace(/\b(?:tengo|disponibles?|en casa|en mi alacena|ingredientes?|para cocinar|y tambien)\b/g, " ");
+  // Reconoce listas separadas por comas, espacios o conjunciones, conservando alias de varias palabras.
+  const tokens=limpio.replace(/[,;\n+]+/g," ").split(/\s+/).filter(Boolean);
+  const encontrados=new Set<string>();
+  // Consume el alias completo para no contabilizar también sus componentes.
+  // Ej.: "leche de coco" es coco, no leche + coco; "carne molida" es un solo ingrediente.
+  for(let i=0;i<tokens.length;) {
+    let consumidos=1;
+    for(let largo=Math.min(3,tokens.length-i);largo>=1;largo--) {
+      const id=idIngrediente(tokens.slice(i,i+largo).join(" "));
+      if(id) { encontrados.add(id); consumidos=largo; break; }
+    }
+    i+=consumidos;
   }
   return [...encontrados];
 }
+
 const porId = (id: string) => PRODUCTOS[id as IngredienteId]?.nombre ?? id;
 const extraerDeDescripcion = (ingredientes: string[]) => {
-  const ids=new Set<IngredienteId>();
+  const ids=new Set<string>();
   for(const linea of ingredientes) {
     const texto=normalizar(linea);
-    for(const id of Object.keys(PRODUCTOS) as IngredienteId[]) {
+    for(const id of [...Object.keys(PRODUCTOS),...OTROS_INGREDIENTES]) {
       if(new RegExp(`\\b${id}\\b`).test(texto) ||
         Object.entries(clavesExtras).some(([alias,destino])=>destino===id && new RegExp(`\\b${alias}\\b`).test(texto))) ids.add(id);
     }
@@ -91,7 +128,7 @@ const fichasNuevas: Ficha[] = CATALOGO.map(plato => {
     }
   };
 });
-const fichasDemo: Ficha[]=RECETAS_DEMO.map(r=>{
+const fichasDemo: Ficha[]=[...RECETAS_DEMO,...RECETAS_ADICIONALES,...RECETAS_LOTE_2,...RECETAS_LOTE_3,...RECETAS_LOTE_4,...RECETAS_LOTE_5,...RECETAS_LOTE_6,...RECETAS_LOTE_7,...RECETAS_LOTE_8,...RECETAS_LOTE_9,...RECETAS_LOTE_10,...RECETAS_LOTE_11,...RECETAS_LOTE_12,...RECETAS_LOTE_13,...RECETAS_LOTE_14,...RECETAS_LOTE_15,...RECETAS_LOTE_16,...RECETAS_LOTE_17,...RECETAS_LOTE_18,...RECETAS_LOTE_19].map(r=>{
   const ids=extraerDeDescripcion(r.ingredientes);
   return {receta:r,claves:ids,minutos:Number(r.tiempoPreparacion.replace(/\D/g,""))+Number(r.tiempoCoccion.replace(/\D/g,"")),
     categoria:"casera",coste:r.costoAproximado==="Bajo"?1600:2900};
@@ -110,7 +147,7 @@ export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}):
   const ingredientes=extraerIngredientes(texto);
   const conocidos=new Set(ingredientes);
   const piezas=normalizar(texto).split(/[,;\n]+|\s+y\s+|\s+\+\s+/).map(s=>s.trim()).filter(Boolean);
-  const ignorados=piezas.filter(p=>!idIngrediente(p));
+  const ignorados=piezas.filter(p=>!extraerIngredientes(p).length);
   const tiempoMax=preferencias.tiempo&&preferencias.tiempo!=="libre"?Number(preferencias.tiempo):Infinity;
   const orden=[...sinDuplicados.values()].map(ficha=>{
     const coincidentes=ficha.claves.filter(id=>conocidos.has(id));
