@@ -70,14 +70,7 @@ function PremiumPagina() {
           <Button type="button" className="min-h-12 rounded-full" disabled>
             ⭐ Próximamente Premium
           </Button>
-          <Button
-            type="button"
-            variant="outline"
-            className="min-h-12 rounded-full"
-            onClick={() => activarPrueba(!esPremium)}
-          >
-            {esPremium ? "Salir de la vista de prueba" : "Probar Chef IA sin costo (vista de prueba)"}
-          </Button>
+          <p className="text-muted-foreground text-xs">La vista de prueba Premium está desactivada en producción hasta habilitar suscripciones verificadas.</p>
           <p className="text-muted-foreground text-xs">
             La planificación semanal es interactiva y calcula presupuestos sin IA. Las otras herramientas muestran ejemplos; no hay cobros ni acceso Premium comercial activo.
           </p>
@@ -89,7 +82,7 @@ function PremiumPagina() {
           </div>
         ) : (
           <p className="text-muted-foreground mt-8 text-sm">
-            Activa la vista de prueba para usar el planificador semanal interactivo sin IA y explorar otras herramientas, o vuelve a{" "}
+            El planificador semanal gratuito está disponible desde el menú principal. Premium se habilitará cuando estén listos los cobros y la verificación de suscripciones. También puedes volver a{" "}
             <Link to="/" className="text-primary underline">
               generar recetas
             </Link>
