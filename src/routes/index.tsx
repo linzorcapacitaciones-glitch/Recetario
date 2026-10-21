@@ -4,7 +4,7 @@ import { CornerDownLeft, Sparkles } from "lucide-react";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { RecetaCard } from "@/components/RecetaCard";
-import { buscarRecetasGratis, type ResultadoBusqueda } from "@/lib/buscador-gratis";
+import { buscarRecetasGratis, explorarCatalogo, type ResultadoBusqueda } from "@/lib/buscador-gratis";
 import { useFavoritos } from "@/lib/favoritos";
 import { PersonalizarBusqueda } from "@/components/PersonalizarBusqueda";
 import { AnuncioPlaceholder } from "@/components/AnuncioPlaceholder";
@@ -47,6 +47,7 @@ function Index() {
   const { mostrarPublicidad } = usePlan();
   const [resultado, setResultado] = useState<ResultadoBusqueda | null>(null);
   const [limite, setLimite] = useState(12);
+  const [explorando, setExplorando] = useState(false);
   const [ultimaBusqueda, setUltimaBusqueda] = useState<{ texto: string; preferencias: Preferencias } | null>(null);
 
   useEffect(() => {
@@ -67,6 +68,7 @@ function Index() {
     });
     const busqueda = buscarRecetasGratis(valor, c, 12);
     setLimite(12);
+    setExplorando(false);
     setUltimaBusqueda({ texto: valor, preferencias: c });
     setResultado(busqueda);
     registrarEvento("recipe_results_view", { totalRecetas: busqueda.recetas.length, modo: "catalogo_local" });
@@ -129,6 +131,14 @@ function Index() {
               </Link>
             </p>
 
+            <button type="button" className="mt-5 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10" onClick={() => {
+              setExplorando(true);
+              setLimite(12);
+              setUltimaBusqueda(null);
+              setResultado(explorarCatalogo(12));
+              registrarEvento("recipe_results_view", { totalRecetas: 12, modo: "explorar_catalogo" });
+            }}>Explorar todas las recetas sin ingresar ingredientes</button>
+
             <PersonalizarBusqueda valor={prefs} onChange={setPrefs} />
 
             <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
@@ -151,7 +161,7 @@ function Index() {
         {resultado && (
           <div className="mb-6 rounded-2xl border border-border bg-card p-4 text-sm">
             <p className="font-semibold">Catálogo gratuito: {resultado.totalCatalogo} recetas revisables, sin llamadas a OpenAI.</p>
-            <p className="text-muted-foreground mt-1">Encontramos {resultado.totalCoincidentes} recetas compatibles; mostramos {recetas.length}, ordenadas por ingredientes disponibles y faltantes.</p>
+            <p className="text-muted-foreground mt-1">{explorando ? `Explorando el catálogo: ${recetas.length} de ${resultado.totalCatalogo} recetas.` : `Encontramos ${resultado.totalCoincidentes} recetas compatibles; mostramos ${recetas.length}, ordenadas por ingredientes disponibles y faltantes.`}</p>
             {resultado.ingredientesReconocidos.length > 0 && <p className="mt-2">Reconocidos: {resultado.ingredientesReconocidos.join(", ")}.</p>}
             {resultado.ignorados.length > 0 && <p className="text-muted-foreground mt-2">Sin coincidencia en el catálogo: {resultado.ignorados.join(", ")}. No se usarán para puntuar recetas.</p>}
             {resultado.totalCoincidentes===0 && <p className="mt-2 text-primary">Prueba con arroz, pollo, huevo, tomate, papa, lentejas, atún o pasta; o amplía el tiempo máximo en tus preferencias.</p>}
@@ -164,7 +174,7 @@ function Index() {
           <>
             <div className="mb-8 flex items-end justify-between gap-4">
               <h2 className="font-display text-3xl tracking-tight">
-                Tus {recetas.length} recetas recomendadas
+                {explorando ? "Explora nuestras recetas" : `Tus ${recetas.length} recetas recomendadas`}
               </h2>
               <p className="text-muted-foreground text-sm">Guarda las que te gusten con ♥</p>
             </div>
@@ -181,12 +191,12 @@ function Index() {
             </div>
           </>
         )}
-        {resultado && ultimaBusqueda && recetas.length < resultado.totalCoincidentes && (
+        {resultado && (ultimaBusqueda || explorando) && recetas.length < resultado.totalCoincidentes && (
           <div className="mt-10 flex justify-center">
             <button type="button" className="rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground hover:opacity-90" onClick={() => {
               const siguiente = Math.min(limite + 12, resultado.totalCoincidentes);
               setLimite(siguiente);
-              setResultado(buscarRecetasGratis(ultimaBusqueda.texto, ultimaBusqueda.preferencias, siguiente));
+              setResultado(explorando ? explorarCatalogo(siguiente) : buscarRecetasGratis(ultimaBusqueda!.texto, ultimaBusqueda!.preferencias, siguiente));
             }}>
               Mostrar más recetas ({recetas.length} de {resultado.totalCoincidentes})
             </button>
