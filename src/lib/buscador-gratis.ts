@@ -143,7 +143,7 @@ export type ResultadoBusqueda={
   recetas:Receta[]; ingredientesReconocidos:string[]; ignorados:string[];
   totalCatalogo:number; totalCoincidentes:number;
 };
-export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}):ResultadoBusqueda {
+export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}, limite=12):ResultadoBusqueda {
   const ingredientes=extraerIngredientes(texto);
   const conocidos=new Set(ingredientes);
   const piezas=normalizar(texto).split(/[,;\n]+|\s+y\s+|\s+\+\s+/).map(s=>s.trim()).filter(Boolean);
@@ -165,7 +165,7 @@ export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}):
     ignorados,
     totalCatalogo:TOTAL_RECETAS_CATALOGO,
     totalCoincidentes:orden.length,
-    recetas:orden.slice(0,10).map(({ficha,coincidentes,faltantes,pct},i)=>({
+    recetas:orden.slice(0,Math.max(1,Math.min(limite,500))).map(({ficha,coincidentes,faltantes,pct},i)=>({
       ...ficha.receta,mejorOpcion:i===0,
       ingredientesCoincidentes:coincidentes.map(porId),
       ingredientesFaltantes:faltantes.map(porId),
