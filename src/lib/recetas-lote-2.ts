@@ -76,10 +76,10 @@ const FICHAS = [
       "queso"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
+      "Cuece el arroz con agua hasta que esté tierno (aproximadamente 15 a 20 minutos).",
       "Ralla o corta el queso y resérvalo.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Escurre el arroz si queda agua; devuelve a la olla a fuego bajo y agrega el queso con dos cucharadas de agua caliente.",
+      "Remueve hasta que el queso se funda y cubra el arroz; sirve de inmediato."
     ]
   },
   {
@@ -627,10 +627,10 @@ const FICHAS = [
       "zanahoria"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Lava y prepara zanahoria en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Lava, pela y ralla la zanahoria.",
+      "Saltea la zanahoria con un poco de aceite durante 5 minutos hasta que se ablande.",
+      "Bate los huevos y mézclalos con la zanahoria tibia.",
+      "Vierte la mezcla en una sartén a fuego medio-bajo y cocina por ambos lados hasta que el huevo esté completamente cuajado."
     ]
   },
   {
@@ -640,10 +640,10 @@ const FICHAS = [
       "espinaca"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Lava y prepara espinaca en trozos pequeños.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Cocina los huevos hasta que estén completamente cuajados."
+      "Lava la espinaca y córtala en tiras.",
+      "Saltea la espinaca durante 2 a 3 minutos y escurre el exceso de líquido.",
+      "Bate los huevos y viértelos en una sartén antiadherente a fuego medio-bajo.",
+      "Cuando comiencen a cuajar, agrega la espinaca, dobla el omelette y cocina hasta que el huevo esté completamente cuajado."
     ]
   },
   {
@@ -653,10 +653,10 @@ const FICHAS = [
       "zapallo"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Lava y prepara zapallo en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Cocina los huevos hasta que estén completamente cuajados."
+      "Pela y corta el zapallo en cubos pequeños.",
+      "Cuece el zapallo en agua durante 8 a 12 minutos hasta que esté tierno y escúrrelo.",
+      "Bate los huevos y mézclalos con el zapallo; vierte en una sartén ligeramente aceitada.",
+      "Cocina a fuego medio-bajo con la sartén tapada hasta que el huevo esté completamente cuajado."
     ]
   },
   {
@@ -666,10 +666,10 @@ const FICHAS = [
       "queso"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Ralla o corta el queso y resérvalo.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Cocina los huevos hasta que estén completamente cuajados."
+      "Precalienta el horno a 190 °C y engrasa una fuente pequeña.",
+      "Bate los huevos y vierte la mezcla en la fuente.",
+      "Distribuye el queso rallado sobre los huevos.",
+      "Hornea aproximadamente 15 a 20 minutos, hasta que el huevo esté completamente cuajado y el queso dorado."
     ]
   },
   {
@@ -713,10 +713,17 @@ const FICHAS = [
   }
 ];
 const CANTIDADES: Record<string,string> = {"arroz":"150 g","papa":"320 g","pasta":"180 g","lenteja":"170 g","garbanzo":"190 g","huevo":"3 unidades","tomate":"200 g","cebolla":"100 g","zanahoria":"150 g","espinaca":"140 g","zapallo":"260 g","queso":"70 g","pollo":"260 g","atun":"140 g"};
+const TIEMPOS_CORREGIDOS: Record<string, string> = {
+  "Arroz con salsa de queso": "25 min",
+  "Tortilla de zanahoria": "20 min",
+  "Omelette de espinaca": "12 min",
+  "Frittata de zapallo": "25 min",
+  "Huevos gratinados con queso": "20 min",
+};
 export const RECETAS_LOTE_2: Receta[] = FICHAS.map((f,i)=>({
  id:`lote2-${i+1}`,titulo:f.titulo,
  descripcion:"Preparación casera con cantidades orientativas para dos personas.",
- tiempoPreparacion:"15 min",tiempoCoccion:"40 min",porciones:"2 personas",dificultad:"Fácil",
+ tiempoPreparacion:"15 min",tiempoCoccion:TIEMPOS_CORREGIDOS[f.titulo] ?? "40 min",porciones:"2 personas",dificultad:"Fácil",
  ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:f.pasos,
  costoAproximado:"Medio",preferencia:"Catálogo local sin IA",
  ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0
