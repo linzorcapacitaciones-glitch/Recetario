@@ -194,10 +194,10 @@ const FICHAS = [
       "queso"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Ralla o corta el queso y resérvalo.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava, pela y corta las papas; cuécelas en agua hirviendo durante 15 a 20 minutos, hasta que estén tiernas.",
+      "Ralla el queso mientras se cuecen las papas.",
+      "Escurre las papas, reserva dos cucharadas del agua de cocción y añade el queso con el agua caliente.",
+      "Remueve a fuego bajo hasta que el queso se funda y cubra las papas; sirve caliente."
     ]
   },
   {
@@ -312,10 +312,10 @@ const FICHAS = [
       "queso"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Ralla o corta el queso y resérvalo.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece la pasta en agua hirviendo según el tiempo indicado en el envase.",
+      "Ralla el queso y reserva dos cucharadas del agua caliente de cocción de la pasta.",
+      "Escurre la pasta y devuélvela a la olla a fuego bajo con el queso y el agua reservada.",
+      "Remueve hasta que el queso se funda y forme una salsa ligera; sirve de inmediato."
     ]
   },
   {
@@ -430,10 +430,10 @@ const FICHAS = [
       "queso"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Ralla o corta el queso y resérvalo.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga las lentejas secas y cuécelas en agua durante 25 a 35 minutos, hasta que estén tiernas.",
+      "Ralla el queso mientras se cuecen las lentejas.",
+      "Escurre las lentejas, reserva dos cucharadas de agua caliente de cocción y añade el queso.",
+      "Remueve a fuego bajo hasta que el queso se funda y se distribuya entre las lentejas; sirve caliente."
     ]
   },
   {
@@ -483,7 +483,7 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Lava y prepara tomate en trozos pequeños.",
       "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
       "Calienta todo junto hasta integrar los sabores y sirve."
@@ -496,7 +496,7 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Lava y prepara cebolla en trozos pequeños.",
       "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
       "Calienta todo junto hasta integrar los sabores y sirve."
@@ -509,7 +509,7 @@ const FICHAS = [
       "zanahoria"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Lava y prepara zanahoria en trozos pequeños.",
       "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
       "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
@@ -522,7 +522,7 @@ const FICHAS = [
       "espinaca"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Lava y prepara espinaca en trozos pequeños.",
       "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
       "Calienta todo junto hasta integrar los sabores y sirve."
@@ -535,7 +535,7 @@ const FICHAS = [
       "zapallo"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Lava y prepara zapallo en trozos pequeños.",
       "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
       "Calienta todo junto hasta integrar los sabores y sirve."
@@ -548,10 +548,10 @@ const FICHAS = [
       "queso"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Ralla o corta el queso y resérvalo.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga y escurre los garbanzos ya cocidos.",
+      "Ralla el queso y calienta dos cucharadas de agua en una sartén a fuego bajo.",
+      "Añade el queso al agua caliente y remueve suavemente hasta que se funda.",
+      "Incorpora los garbanzos y calienta durante 3 a 5 minutos, removiendo hasta cubrirlos con la salsa."
     ]
   },
   {
@@ -561,7 +561,7 @@ const FICHAS = [
       "arroz"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Cuece el arroz por separado hasta que esté tierno.",
       "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
       "Calienta todo junto hasta integrar los sabores y sirve."
@@ -574,7 +574,7 @@ const FICHAS = [
       "papa"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Cuece las papas en cubos hasta que estén tiernas.",
       "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
       "Calienta todo junto hasta integrar los sabores y sirve."
@@ -587,7 +587,7 @@ const FICHAS = [
       "huevo"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
+      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
       "Cuece los huevos hasta que queden firmes, o incorpóralos batidos y cocina completamente.",
       "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
       "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
@@ -601,10 +601,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Lava y prepara tomate en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Cocina los huevos hasta que estén completamente cuajados."
+      "Lava el tomate y la cebolla; córtalos en cubos pequeños.",
+      "Saltea la cebolla con un poco de aceite durante 3 minutos y añade el tomate durante 2 minutos más.",
+      "Bate los huevos en un recipiente limpio y viértelos sobre las verduras.",
+      "Remueve a fuego medio-bajo hasta que los huevos estén completamente cuajados; sirve de inmediato."
     ]
   },
   {
@@ -614,10 +614,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Lava y prepara cebolla en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Cocina los huevos hasta que estén completamente cuajados."
+      "Pela la cebolla y córtala en tiras finas.",
+      "Saltea la cebolla con un poco de aceite durante 5 a 8 minutos, hasta que esté tierna.",
+      "Bate los huevos en un recipiente limpio y agrégalos a la sartén con la cebolla.",
+      "Remueve a fuego medio-bajo hasta que los huevos estén completamente cuajados; sirve caliente."
     ]
   },
   {
@@ -679,10 +679,10 @@ const FICHAS = [
       "arroz"
     ],
     "pasos": [
+      "Cuece el arroz en agua durante 15 a 20 minutos, hasta que esté tierno, y escúrrelo si es necesario.",
       "Bate los huevos en un recipiente limpio.",
-      "Cuece el arroz por separado hasta que esté tierno.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Cocina los huevos hasta que estén completamente cuajados."
+      "Calienta el arroz cocido en una sartén con un poco de aceite durante 2 minutos.",
+      "Vierte los huevos batidos y remueve hasta que estén completamente cuajados e integrados con el arroz."
     ]
   },
   {
@@ -692,10 +692,10 @@ const FICHAS = [
       "papa"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Cuece las papas en cubos hasta que estén tiernas.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Cocina los huevos hasta que estén completamente cuajados."
+      "Lava, pela y corta las papas en cubos pequeños.",
+      "Cuece los cubos de papa en agua hirviendo durante 10 a 15 minutos, hasta que estén tiernos; escúrrelos.",
+      "Bate los huevos en un recipiente limpio y mézclalos con las papas cocidas.",
+      "Vierte la mezcla en una sartén ligeramente aceitada y cocina por ambos lados hasta que el huevo esté completamente cuajado."
     ]
   },
   {
@@ -705,15 +705,25 @@ const FICHAS = [
       "pollo"
     ],
     "pasos": [
-      "Bate los huevos en un recipiente limpio.",
-      "Corta el pollo en trozos y cocínalo por completo hasta alcanzar 74 °C en el centro.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Corta el pollo en cubos pequeños y cocínalo en una sartén con un poco de aceite hasta alcanzar 74 °C en el centro.",
+      "Bate los huevos en un recipiente limpio mientras se cocina el pollo.",
+      "Reduce el fuego, añade los huevos batidos a la sartén con el pollo ya cocido y mezcla suavemente.",
+      "Cocina removiendo hasta que los huevos estén completamente cuajados; sirve de inmediato."
     ]
   }
 ];
 const CANTIDADES: Record<string,string> = {"arroz":"150 g","papa":"320 g","pasta":"180 g","lenteja":"170 g","garbanzo":"190 g","huevo":"3 unidades","tomate":"200 g","cebolla":"100 g","zanahoria":"150 g","espinaca":"140 g","zapallo":"260 g","queso":"70 g","pollo":"260 g","atun":"140 g"};
 const TIEMPOS_CORREGIDOS: Record<string, string> = {
+  "Papas con salsa de queso": "20 min",
+  "Pasta con salsa de queso": "15 min",
+  "Lentejas con salsa de queso": "35 min",
+  "Garbanzos con salsa de queso": "10 min",
+  "Huevos revueltos con tomate": "10 min",
+  "Huevos encebollados": "12 min",
+  "Arroz con huevo a la sartén": "25 min",
+  "Tortilla de papas en cubos": "25 min",
+  "Revuelto de pollo y huevo": "20 min",
+
   "Arroz con salsa de queso": "25 min",
   "Tortilla de zanahoria": "20 min",
   "Omelette de espinaca": "12 min",
@@ -724,7 +734,7 @@ export const RECETAS_LOTE_2: Receta[] = FICHAS.map((f,i)=>({
  id:`lote2-${i+1}`,titulo:f.titulo,
  descripcion:"Preparación casera con cantidades orientativas para dos personas.",
  tiempoPreparacion:"15 min",tiempoCoccion:TIEMPOS_CORREGIDOS[f.titulo] ?? "40 min",porciones:"2 personas",dificultad:"Fácil",
- ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:f.pasos,
+ ingredientes:f.ids.map(id=>id === "garbanzo" ? "190 g de garbanzos cocidos y escurridos" : `${CANTIDADES[id]} de ${id}`),pasos:f.pasos,
  costoAproximado:"Medio",preferencia:"Catálogo local sin IA",
  ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0
 }));
