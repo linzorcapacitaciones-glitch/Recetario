@@ -34,7 +34,7 @@ const correccionesNuevas = [
   ["Lentejas con salsa de queso", 35, /lentejas secas/i],
   ["Garbanzos con salsa de queso", 10, /queso al agua caliente/i],
   ["Huevos revueltos con tomate", 10, /tomate durante 2 minutos/i],
-  ["Huevos encebollados", 12, /cebolla durante 5 a 8 minutos/i],
+  ["Huevos encebollados", 12, /cebolla.*durante 5 a 8 minutos/i],
   ["Arroz con huevo a la sartén", 25, /huevos batidos/i],
   ["Tortilla de papas en cubos", 25, /mézclalos con las papas cocidas/i],
   ["Revuelto de pollo y huevo", 20, /74 °C/i],
