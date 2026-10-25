@@ -11,10 +11,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Lava y prepara tomate en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece el arroz en agua durante 15 a 20 minutos, hasta que esté tierno, y escúrrelo si es necesario.",
+      "Lava y corta el tomate en cubos pequeños; pela y pica la cebolla.",
+      "Saltea la cebolla en una sartén con un poco de aceite durante 4 minutos; añade el tomate y cocina 3 minutos más.",
+      "Incorpora el arroz cocido y saltea 2 a 3 minutos, removiendo hasta que esté bien caliente."
     ]
   },
   {
@@ -24,10 +24,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Lava y prepara cebolla en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Pela la cebolla y córtala en cubos pequeños.",
+      "Sofríe la cebolla en una olla con un poco de aceite durante 5 minutos, hasta que esté tierna.",
+      "Añade el arroz seco y remueve durante 1 minuto para impregnarlo con el sofrito.",
+      "Agrega agua caliente según la proporción del envase; tapa y cocina a fuego bajo durante 15 a 20 minutos, hasta que el arroz esté tierno."
     ]
   },
   {
@@ -37,10 +37,10 @@ const FICHAS = [
       "zanahoria"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Lava y prepara zanahoria en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Cuece el arroz en agua durante 15 a 20 minutos, hasta que esté tierno; escúrrelo si es necesario.",
+      "Lava, pela y ralla la zanahoria; saltéala en una sartén con un poco de aceite durante 5 minutos.",
+      "Mezcla el arroz cocido con la zanahoria salteada y coloca la preparación en una fuente apta para horno.",
+      "Hornea a 190 °C durante 10 minutos, hasta que esté bien caliente, y sirve."
     ]
   },
   {
@@ -50,10 +50,10 @@ const FICHAS = [
       "espinaca"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Lava y prepara espinaca en trozos pequeños.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava la espinaca, retira los tallos duros y corta las hojas en tiras.",
+      "Coloca el arroz en una olla con agua caliente según el envase y cocina a fuego medio-bajo, removiendo ocasionalmente.",
+      "Agrega la espinaca cuando falten unos 5 minutos para terminar la cocción y mezcla hasta que se ablande.",
+      "Añade pequeñas cantidades de agua caliente si hace falta y remueve hasta que el arroz esté tierno y tenga una textura cremosa; sirve de inmediato."
     ]
   },
   {
@@ -63,10 +63,10 @@ const FICHAS = [
       "zapallo"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Lava y prepara zapallo en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece el arroz en agua durante 15 a 20 minutos, hasta que esté tierno, y escúrrelo si es necesario.",
+      "Pela el zapallo y córtalo en cubos pequeños; cuécelo en agua durante 8 a 12 minutos, hasta que esté tierno, y escúrrelo.",
+      "Calienta una sartén con un poco de aceite y saltea los cubos de zapallo durante 3 minutos, evitando deshacerlos.",
+      "Agrega el arroz cocido y saltea 2 a 3 minutos más, hasta que todo esté bien caliente."
     ]
   },
   {
@@ -714,6 +714,11 @@ const FICHAS = [
 ];
 const CANTIDADES: Record<string,string> = {"arroz":"150 g","papa":"320 g","pasta":"180 g","lenteja":"170 g","garbanzo":"190 g","huevo":"3 unidades","tomate":"200 g","cebolla":"100 g","zanahoria":"150 g","espinaca":"140 g","zapallo":"260 g","queso":"70 g","pollo":"260 g","atun":"140 g"};
 const TIEMPOS_CORREGIDOS: Record<string, string> = {
+  "Arroz salteado con tomate": "25 min",
+  "Arroz guisado con cebolla": "25 min",
+  "Arroz al horno con zanahoria": "30 min",
+  "Arroz cremoso con espinaca": "25 min",
+  "Arroz salteado con zapallo": "30 min",
   "Papas con salsa de queso": "20 min",
   "Pasta con salsa de queso": "15 min",
   "Lentejas con salsa de queso": "35 min",
