@@ -68,3 +68,23 @@ test("Los cinco platos con queso no sugieren triturar el queso para formar una s
     assert.ok(receta.pasos.every(p => !/tritúralo si corresponde/i.test(p)), receta.titulo);
   }
 });
+
+
+const arrozRevisado = [
+  ["Arroz salteado con tomate", 25, /saltea la cebolla/i],
+  ["Arroz guisado con cebolla", 25, /arroz seco/i],
+  ["Arroz al horno con zanahoria", 30, /hornea a 190 °C durante 10 minutos/i],
+  ["Arroz cremoso con espinaca", 25, /textura cremosa/i],
+  ["Arroz salteado con zapallo", 30, /cubos de zapallo/i],
+];
+
+test("Cinco preparaciones de arroz tienen técnicas específicas y tiempos realistas", () => {
+  for (const [titulo, minutos, tecnica] of arrozRevisado) {
+    const receta = RECETAS_LOTE_2.find(r => r.titulo === titulo);
+    assert.ok(receta, titulo);
+    assert.equal(Number.parseInt(receta.tiempoCoccion, 10), minutos, titulo);
+    assert.equal(receta.pasos.length, 4, titulo);
+    assert.ok(receta.pasos.some(p => tecnica.test(p)), titulo);
+    assert.ok(receta.pasos.every(p => !/saltea el acompañamiento|ingrediente principal ya cocido|tritúralo si corresponde/i.test(p)), titulo);
+  }
+});
