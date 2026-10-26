@@ -89,10 +89,10 @@ const FICHAS = [
       "pollo"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Corta el pollo en trozos y cocínalo por completo hasta alcanzar 74 °C en el centro.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece el arroz en agua durante 15 a 20 minutos hasta que esté tierno y escúrrelo si es necesario.",
+      "Corta el pollo crudo en cubos sobre una tabla separada y lávate las manos después de manipularlo.",
+      "Dora el pollo en una sartén con un poco de aceite durante 8 a 12 minutos, hasta que alcance 74 °C en el centro.",
+      "Incorpora el arroz cocido a la sartén y saltea durante 2 a 3 minutos hasta que todo esté bien caliente."
     ]
   },
   {
@@ -102,10 +102,10 @@ const FICHAS = [
       "atun"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Escurre el atún en conserva y resérvalo refrigerado hasta incorporarlo.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece el arroz en agua durante 15 a 20 minutos hasta que esté tierno.",
+      "Abre la conserva de atún y escurre su líquido justo antes de incorporarla.",
+      "Calienta una sartén con un poco de aceite, agrega el arroz cocido y remueve durante 2 minutos.",
+      "Incorpora el atún escurrido, mezcla suavemente y calienta 2 minutos más sin resecarlo."
     ]
   },
   {
@@ -115,10 +115,10 @@ const FICHAS = [
       "garbanzo"
     ],
     "pasos": [
-      "Cuece el arroz con agua hasta que esté tierno.",
-      "Utiliza las legumbres previamente cocidas y escurridas.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Cuece el arroz en agua durante 15 a 20 minutos y escúrrelo si es necesario.",
+      "Enjuaga y escurre los garbanzos previamente cocidos; no uses garbanzos secos sin cocer.",
+      "Mezcla el arroz cocido con los garbanzos y una cucharada de aceite en una fuente apta para horno.",
+      "Hornea a 190 °C durante 10 a 12 minutos hasta que la preparación esté bien caliente."
     ]
   },
   {
@@ -129,10 +129,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Lava y prepara tomate en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava, pela y corta las papas en cubos; cuécelas en agua durante 12 a 15 minutos hasta que estén tiernas y escúrrelas.",
+      "Lava y corta el tomate en cubos pequeños; pela y pica la cebolla.",
+      "Saltea la cebolla en una sartén con un poco de aceite durante 4 minutos; añade el tomate y cocina 3 minutos más.",
+      "Agrega las papas cocidas y saltea durante 3 minutos, removiendo con cuidado para no deshacerlas."
     ]
   },
   {
@@ -142,10 +142,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Lava y prepara cebolla en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava, pela y corta las papas en cubos medianos.",
+      "Pela y pica la cebolla; sofríela en una olla con un poco de aceite durante 5 minutos.",
+      "Agrega las papas y agua suficiente para cubrir parcialmente; tapa y cocina a fuego medio durante 15 a 20 minutos.",
+      "Comprueba que las papas estén tiernas, destapa para reducir el líquido si hace falta y sirve caliente."
     ]
   },
   {
@@ -729,6 +729,11 @@ const TIEMPOS_CORREGIDOS: Record<string, string> = {
   "Tortilla de papas en cubos": "25 min",
   "Revuelto de pollo y huevo": "20 min",
 
+  "Arroz salteado con pollo": "25 min",
+  "Arroz guisado con atún": "25 min",
+  "Arroz al horno con garbanzos": "35 min",
+  "Papas salteadas con tomate": "25 min",
+  "Papas guisadas con cebolla": "25 min",
   "Arroz con salsa de queso": "25 min",
   "Tortilla de zanahoria": "20 min",
   "Omelette de espinaca": "12 min",
