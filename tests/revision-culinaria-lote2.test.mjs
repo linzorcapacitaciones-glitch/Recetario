@@ -95,7 +95,7 @@ const nuevosPlatosRevisados = [
   ["Arroz guisado con atún", 25, /atún escurrido/],
   ["Arroz al horno con garbanzos", 35, /garbanzos previamente cocidos/],
   ["Papas salteadas con tomate", 25, /saltea la cebolla/],
-  ["Papas guisadas con cebolla", 25, /sof[rí]ela en una olla/],
+  ["Papas guisadas con cebolla", 25, /sofríela en una olla/],
 ];
 
 test("Cinco recetas adicionales tienen técnicas específicas, tiempos y seguridad", () => {
