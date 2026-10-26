@@ -88,3 +88,23 @@ test("Cinco preparaciones de arroz tienen técnicas específicas y tiempos reali
     assert.ok(receta.pasos.every(p => !/saltea el acompañamiento|ingrediente principal ya cocido|tritúralo si corresponde/i.test(p)), titulo);
   }
 });
+
+
+const nuevosPlatosRevisados = [
+  ["Arroz salteado con pollo", 25, /74 °C/],
+  ["Arroz guisado con atún", 25, /atún escurrido/],
+  ["Arroz al horno con garbanzos", 35, /garbanzos previamente cocidos/],
+  ["Papas salteadas con tomate", 25, /saltea la cebolla/],
+  ["Papas guisadas con cebolla", 25, /sof[rí]ela en una olla/],
+];
+
+test("Cinco recetas adicionales tienen técnicas específicas, tiempos y seguridad", () => {
+  for (const [titulo, minutos, tecnica] of nuevosPlatosRevisados) {
+    const receta = RECETAS_LOTE_2.find(r => r.titulo === titulo);
+    assert.ok(receta, titulo);
+    assert.equal(Number.parseInt(receta.tiempoCoccion, 10), minutos, titulo);
+    assert.equal(receta.pasos.length, 4, titulo);
+    assert.ok(receta.pasos.some(p => tecnica.test(p)), titulo);
+    assert.ok(receta.pasos.every(p => !/saltea el acompañamiento|ingrediente principal ya cocido|tritúralo si corresponde/i.test(p)), titulo);
+  }
+});
