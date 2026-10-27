@@ -155,10 +155,10 @@ const FICHAS = [
       "zanahoria"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Lava y prepara zanahoria en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Lava, pela y corta las papas en cubos; hiérvelas durante 12 a 15 minutos hasta que estén casi tiernas y escúrrelas.",
+      "Lava, pela y corta la zanahoria en rodajas delgadas; cuécela durante 8 a 10 minutos hasta ablandarla.",
+      "Mezcla las papas y la zanahoria con una cucharada de aceite en una fuente para horno y distribúyelas en una sola capa.",
+      "Hornea a 190 °C durante 15 minutos, hasta que las verduras estén tiernas y ligeramente doradas; sirve caliente."
     ]
   },
   {
@@ -168,10 +168,10 @@ const FICHAS = [
       "espinaca"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Lava y prepara espinaca en trozos pequeños.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava, pela y corta las papas; hiérvelas durante 15 a 20 minutos hasta que estén tiernas y escúrrelas.",
+      "Lava la espinaca, retira los tallos duros y córtala en tiras.",
+      "Saltea la espinaca durante 3 a 4 minutos en una sartén con un poco de aceite hasta que pierda volumen.",
+      "Machaca las papas con un poco del agua de cocción reservada hasta obtener una textura cremosa; incorpora la espinaca y calienta 2 minutos."
     ]
   },
   {
@@ -181,10 +181,10 @@ const FICHAS = [
       "zapallo"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Lava y prepara zapallo en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava, pela y corta las papas en cubos; cuécelas durante 12 a 15 minutos hasta que estén tiernas y escúrrelas.",
+      "Pela el zapallo, retira las semillas y córtalo en cubos pequeños de tamaño uniforme.",
+      "Saltea los cubos de zapallo en una sartén con un poco de aceite durante 10 a 12 minutos, añadiendo un poco de agua si es necesario, hasta ablandarlos.",
+      "Incorpora las papas cocidas y saltea durante 3 minutos más, mezclando con cuidado para conservar los cubos."
     ]
   },
   {
@@ -207,10 +207,10 @@ const FICHAS = [
       "pollo"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Corta el pollo en trozos y cocínalo por completo hasta alcanzar 74 °C en el centro.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava, pela y corta las papas en cubos; cuécelas durante 12 a 15 minutos hasta que estén tiernas y escúrrelas.",
+      "Corta el pollo crudo en cubos sobre una tabla separada de las verduras y lávate las manos después de manipularlo.",
+      "Cocina el pollo en una sartén con un poco de aceite durante 8 a 12 minutos, hasta que el centro alcance 74 °C.",
+      "Agrega las papas cocidas al pollo ya completamente cocido y saltea 3 minutos hasta calentar de manera uniforme."
     ]
   },
   {
@@ -220,10 +220,10 @@ const FICHAS = [
       "atun"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Escurre el atún en conserva y resérvalo refrigerado hasta incorporarlo.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Lava, pela y corta las papas en cubos medianos.",
+      "Coloca las papas en una olla con agua suficiente para cubrirlas parcialmente; cocina tapado durante 15 a 20 minutos hasta que estén tiernas.",
+      "Escurre el atún en conserva y desmenúzalo con un tenedor limpio.",
+      "Incorpora el atún a las papas cocidas y calienta 2 a 3 minutos, mezclando suavemente; sirve de inmediato."
     ]
   },
   {
