@@ -483,10 +483,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Lava y prepara tomate en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga y escurre garbanzos previamente cocidos; no utilices garbanzos secos sin cocer.",
+      "Lava el tomate y córtalo en cubos pequeños.",
+      "Saltea el tomate con aceite durante 5 minutos hasta que suelte jugo.",
+      "Incorpora los garbanzos cocidos y saltea 4 minutos hasta que estén calientes."
     ]
   },
   {
@@ -496,10 +496,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Lava y prepara cebolla en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga y escurre los garbanzos previamente cocidos.",
+      "Pela la cebolla y córtala en tiras finas.",
+      "Sofríe la cebolla con aceite durante 7 a 8 minutos hasta que esté tierna.",
+      "Añade los garbanzos y un poco de agua; cocina tapado durante 8 minutos."
     ]
   },
   {
@@ -509,10 +509,10 @@ const FICHAS = [
       "zanahoria"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Lava y prepara zanahoria en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Enjuaga y escurre garbanzos previamente cocidos.",
+      "Pela la zanahoria, córtala en cubos pequeños y hiérvela 8 minutos.",
+      "Mezcla los garbanzos y la zanahoria con aceite en una fuente apta para horno.",
+      "Hornea a 190 °C durante 12 a 15 minutos hasta que la zanahoria esté tierna y todo caliente."
     ]
   },
   {
@@ -522,10 +522,10 @@ const FICHAS = [
       "espinaca"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Lava y prepara espinaca en trozos pequeños.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga y escurre garbanzos previamente cocidos.",
+      "Lava la espinaca y retira los tallos duros.",
+      "Saltea la espinaca con aceite durante 3 minutos hasta que se ablande.",
+      "Agrega los garbanzos y un poco de agua; machaca una parte y cocina 5 minutos hasta espesar."
     ]
   },
   {
@@ -535,10 +535,10 @@ const FICHAS = [
       "zapallo"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Lava y prepara zapallo en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga y escurre garbanzos previamente cocidos.",
+      "Pela el zapallo, retira las semillas y córtalo en cubos pequeños.",
+      "Saltea el zapallo con aceite y un poco de agua durante 10 a 12 minutos hasta que esté tierno.",
+      "Añade los garbanzos y calienta 4 minutos, removiendo suavemente."
     ]
   },
   {
@@ -561,10 +561,10 @@ const FICHAS = [
       "arroz"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Cuece el arroz por separado hasta que esté tierno.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga y escurre garbanzos previamente cocidos.",
+      "Cuece el arroz según el envase durante unos 15 a 20 minutos y escúrrelo si hace falta.",
+      "Calienta una sartén con aceite y añade el arroz cocido.",
+      "Incorpora los garbanzos cocidos y saltea 4 minutos hasta que todo esté caliente."
     ]
   },
   {
@@ -574,10 +574,10 @@ const FICHAS = [
       "papa"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Cuece las papas en cubos hasta que estén tiernas.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Enjuaga y escurre garbanzos previamente cocidos.",
+      "Pela las papas y córtalas en cubos pequeños.",
+      "Cuece las papas en agua durante 12 a 15 minutos hasta que estén tiernas.",
+      "Agrega los garbanzos cocidos y cocina 5 minutos más con un poco de agua para formar un guiso."
     ]
   },
   {
@@ -587,10 +587,10 @@ const FICHAS = [
       "huevo"
     ],
     "pasos": [
-      "Enjuaga y escurre los garbanzos ya cocidos antes de incorporarlos a la preparación.",
-      "Cuece los huevos hasta que queden firmes, o incorpóralos batidos y cocina completamente.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Enjuaga y escurre garbanzos previamente cocidos.",
+      "Coloca los garbanzos en una fuente pequeña apta para horno y forma dos huecos.",
+      "Casca los huevos en los huecos sin incorporar restos de cáscara.",
+      "Hornea a 190 °C durante 15 a 20 minutos hasta que las claras y yemas estén completamente cuajadas."
     ]
   },
   {
