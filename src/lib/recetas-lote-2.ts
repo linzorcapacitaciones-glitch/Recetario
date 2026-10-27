@@ -247,10 +247,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Lava y prepara tomate en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece la pasta en agua hirviendo según el envase y reserva dos cucharadas del agua de cocción.",
+      "Lava y corta el tomate en cubos pequeños.",
+      "Saltea el tomate en una sartén con aceite durante 5 a 7 minutos, hasta que suelte jugo.",
+      "Incorpora la pasta escurrida y el agua reservada; mezcla 2 minutos y sirve caliente."
     ]
   },
   {
@@ -260,10 +260,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Lava y prepara cebolla en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece la pasta en agua hirviendo según el envase; reserva un poco de agua de cocción.",
+      "Pela la cebolla y córtala en tiras finas.",
+      "Sofríe la cebolla en una sartén con aceite durante 8 a 10 minutos, hasta que esté tierna y dorada.",
+      "Añade la pasta cocida y dos cucharadas de su agua; mezcla 2 minutos y sirve."
     ]
   },
   {
@@ -273,10 +273,10 @@ const FICHAS = [
       "zanahoria"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Lava y prepara zanahoria en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Cuece la pasta en agua hirviendo 2 minutos menos que el tiempo del envase y escúrrela.",
+      "Pela y ralla la zanahoria; saltéala con aceite durante 5 minutos.",
+      "Mezcla la pasta y la zanahoria con un poco de agua de cocción en una fuente apta para horno.",
+      "Hornea a 190 °C durante 10 a 12 minutos hasta que la pasta esté tierna y bien caliente."
     ]
   },
   {
@@ -286,10 +286,10 @@ const FICHAS = [
       "espinaca"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Lava y prepara espinaca en trozos pequeños.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece la pasta según el envase y reserva media taza del agua de cocción.",
+      "Lava la espinaca y córtala en tiras, retirando los tallos duros.",
+      "Saltea la espinaca con aceite durante 3 minutos y agrega gradualmente agua de cocción.",
+      "Incorpora la pasta y remueve 2 minutos hasta formar una salsa ligera que la recubra."
     ]
   },
   {
@@ -299,10 +299,10 @@ const FICHAS = [
       "zapallo"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Lava y prepara zapallo en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece la pasta según el envase y escúrrela.",
+      "Pela el zapallo, retira las semillas y córtalo en cubos pequeños.",
+      "Saltea el zapallo con aceite durante 10 a 12 minutos, añadiendo agua si hace falta, hasta que esté tierno.",
+      "Agrega la pasta cocida y mezcla 2 a 3 minutos hasta que todo esté caliente."
     ]
   },
   {
@@ -325,10 +325,10 @@ const FICHAS = [
       "pollo"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Corta el pollo en trozos y cocínalo por completo hasta alcanzar 74 °C en el centro.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece la pasta según el envase y escúrrela.",
+      "Corta el pollo crudo en cubos usando una tabla separada y lávate las manos.",
+      "Cocina el pollo en una sartén con aceite durante 8 a 12 minutos, hasta que alcance 74 °C en el centro.",
+      "Añade la pasta cocida y saltea 2 minutos hasta integrar los ingredientes."
     ]
   },
   {
@@ -338,10 +338,10 @@ const FICHAS = [
       "atun"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Escurre el atún en conserva y resérvalo refrigerado hasta incorporarlo.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Cuece la pasta según el envase y reserva dos cucharadas del agua de cocción.",
+      "Abre la conserva de atún y escúrrela.",
+      "Calienta la pasta en una sartén con aceite y el agua reservada durante 2 minutos.",
+      "Agrega el atún escurrido, mezcla suavemente y calienta 2 minutos más sin resecarlo."
     ]
   },
   {
@@ -351,10 +351,10 @@ const FICHAS = [
       "garbanzo"
     ],
     "pasos": [
-      "Cuece la pasta en agua hirviendo siguiendo el tiempo del envase.",
-      "Utiliza las legumbres previamente cocidas y escurridas.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Cuece la pasta 2 minutos menos de lo indicado en el envase y escúrrela.",
+      "Enjuaga y escurre garbanzos previamente cocidos; nunca uses garbanzos secos sin cocer.",
+      "Mezcla la pasta y los garbanzos con aceite y un poco de agua de cocción en una fuente.",
+      "Hornea a 190 °C durante 12 a 15 minutos hasta que la pasta esté tierna y todo esté caliente."
     ]
   },
   {
