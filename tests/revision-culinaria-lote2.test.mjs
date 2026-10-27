@@ -108,3 +108,21 @@ test("Cinco recetas adicionales tienen técnicas específicas, tiempos y segurid
     assert.ok(receta.pasos.every(p => !/saltea el acompañamiento|ingrediente principal ya cocido|tritúralo si corresponde/i.test(p)), titulo);
   }
 });
+
+const papasRevisadas = [
+  ["Papas al horno con zanahoria", /hornea a 190 °C durante 15 minutos/i],
+  ["Papas cremosas con espinaca", /machaca las papas/i],
+  ["Papas salteadas con zapallo", /saltea los cubos de zapallo/i],
+  ["Papas salteadas con pollo", /74 °C/],
+  ["Papas guisadas con atún", /atún a las papas cocidas/i],
+];
+
+test("Cinco recetas con papas explican técnicas, tiempos y cocción segura", () => {
+  for (const [titulo, tecnica] of papasRevisadas) {
+    const receta = RECETAS_LOTE_2.find(r => r.titulo === titulo);
+    assert.ok(receta, titulo);
+    assert.equal(receta.pasos.length, 4, titulo);
+    assert.ok(receta.pasos.some(p => tecnica.test(p)), titulo);
+    assert.ok(receta.pasos.every(p => !/saltea el acompañamiento|ingrediente principal ya cocido|tritúralo si corresponde|cocina el acompañamiento/i.test(p)), titulo);
+  }
+});
