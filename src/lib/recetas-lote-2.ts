@@ -233,10 +233,10 @@ const FICHAS = [
       "lenteja"
     ],
     "pasos": [
-      "Lava, pela y cuece las papas hasta que estén tiernas.",
-      "Utiliza las legumbres previamente cocidas y escurridas.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Lava, pela y corta las papas en cubos de 2 cm; hiérvelas 12 a 15 minutos hasta que estén casi tiernas y escúrrelas.",
+      "Enjuaga y escurre las lentejas previamente cocidas; si están secas, cuécelas antes según el envase.",
+      "Mezcla las papas y las lentejas cocidas con una cucharada de aceite en una fuente apta para horno.",
+      "Hornea a 190 °C durante 12 a 15 minutos hasta que las papas estén completamente tiernas y la preparación caliente; sirve."
     ]
   },
   {
