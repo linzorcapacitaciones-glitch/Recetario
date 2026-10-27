@@ -94,7 +94,7 @@ const nuevosPlatosRevisados = [
   ["Arroz salteado con pollo", 25, /74 °C/],
   ["Arroz guisado con atún", 25, /atún escurrido/],
   ["Arroz al horno con garbanzos", 35, /garbanzos previamente cocidos/],
-  ["Papas salteadas con tomate", 25, /saltea la cebolla/],
+  ["Papas salteadas con tomate", 25, /saltea la cebolla/i],
   ["Papas guisadas con cebolla", 25, /sofríela en una olla/],
 ];
 
