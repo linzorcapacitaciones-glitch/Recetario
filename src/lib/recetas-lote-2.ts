@@ -365,10 +365,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Lava y prepara tomate en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Utiliza lentejas previamente cocidas y escurridas; si están secas, cuécelas según el envase antes de empezar.",
+      "Lava el tomate y córtalo en cubos pequeños.",
+      "Saltea el tomate con aceite durante 5 minutos hasta que se ablande y suelte jugo.",
+      "Añade las lentejas cocidas y calienta 4 a 5 minutos, removiendo suavemente."
     ]
   },
   {
@@ -378,10 +378,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Lava y prepara cebolla en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Utiliza lentejas previamente cocidas; si están secas, cuécelas primero según el envase.",
+      "Pela la cebolla y pícala finamente.",
+      "Sofríe la cebolla con aceite durante 6 a 8 minutos hasta que esté tierna.",
+      "Incorpora las lentejas y un poco de agua; cocina tapado 8 minutos a fuego bajo."
     ]
   },
   {
@@ -391,10 +391,10 @@ const FICHAS = [
       "zanahoria"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Lava y prepara zanahoria en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Utiliza lentejas cocidas y escurridas; cocina las secas previamente según el envase.",
+      "Pela la zanahoria, córtala en cubos pequeños y hiérvela 8 minutos.",
+      "Mezcla las lentejas y la zanahoria con aceite en una fuente apta para horno.",
+      "Hornea a 190 °C durante 12 a 15 minutos hasta que todo esté caliente y la zanahoria tierna."
     ]
   },
   {
@@ -404,10 +404,10 @@ const FICHAS = [
       "espinaca"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Lava y prepara espinaca en trozos pequeños.",
-      "Cocina el acompañamiento con un poco de agua y tritúralo si corresponde para formar una salsa.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Utiliza lentejas ya cocidas; si están secas, cuécelas previamente según el envase.",
+      "Lava la espinaca y retira los tallos duros.",
+      "Saltea la espinaca con aceite durante 3 minutos hasta que reduzca su volumen.",
+      "Añade las lentejas y un poco de agua; machaca una pequeña parte y cocina 5 minutos para espesar."
     ]
   },
   {
@@ -417,10 +417,10 @@ const FICHAS = [
       "zapallo"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Lava y prepara zapallo en trozos pequeños.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Utiliza lentejas cocidas y escurridas; cocina las secas previamente.",
+      "Pela el zapallo, retira las semillas y córtalo en cubos pequeños.",
+      "Saltea el zapallo con aceite y un poco de agua durante 10 a 12 minutos hasta que esté tierno.",
+      "Agrega las lentejas y calienta 4 minutos, removiendo con cuidado."
     ]
   },
   {
@@ -443,10 +443,10 @@ const FICHAS = [
       "arroz"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Cuece el arroz por separado hasta que esté tierno.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Utiliza lentejas previamente cocidas y escurridas.",
+      "Cuece el arroz en agua según el envase durante unos 15 a 20 minutos.",
+      "Calienta aceite en una sartén e incorpora el arroz cocido y escurrido.",
+      "Añade las lentejas cocidas y saltea 4 minutos hasta que ambos ingredientes estén calientes."
     ]
   },
   {
@@ -456,10 +456,10 @@ const FICHAS = [
       "papa"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Cuece las papas en cubos hasta que estén tiernas.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Calienta todo junto hasta integrar los sabores y sirve."
+      "Utiliza lentejas previamente cocidas; cocina las secas antes según el envase.",
+      "Pela las papas y córtalas en cubos de tamaño uniforme.",
+      "Cuece las papas en una olla con agua durante 12 a 15 minutos hasta que estén tiernas.",
+      "Agrega las lentejas cocidas y cocina 5 minutos más con un poco del agua para formar un guiso."
     ]
   },
   {
@@ -469,10 +469,10 @@ const FICHAS = [
       "huevo"
     ],
     "pasos": [
-      "Cuece las legumbres previamente remojadas cuando corresponda, siguiendo el tiempo del envase, o usa legumbres ya cocidas.",
-      "Cuece los huevos hasta que queden firmes, o incorpóralos batidos y cocina completamente.",
-      "Saltea el acompañamiento con un poco de aceite; incorpora el ingrediente principal ya cocido.",
-      "Pasa a una fuente apta para horno y calienta a 190 °C hasta que la preparación esté bien caliente; sirve."
+      "Utiliza lentejas cocidas y escurridas; cocina las secas previamente.",
+      "Coloca las lentejas en una fuente pequeña apta para horno y haz dos huecos.",
+      "Casca los huevos en los huecos, evitando que caigan restos de cáscara.",
+      "Hornea a 190 °C durante 15 a 20 minutos, hasta que las claras y las yemas estén completamente cuajadas."
     ]
   },
   {
