@@ -79,7 +79,7 @@ const CLAVE_PRUEBA = "alacena-premium-prueba-v1";
 const listeners = new Set<() => void>();
 
 export function pruebaPremiumActiva() {
-  if (typeof window === "undefined") return false;
+  if (typeof window === "undefined" || import.meta.env.PROD) return false;
   try {
     return window.localStorage.getItem(CLAVE_PRUEBA) === "1";
   } catch {
@@ -106,6 +106,7 @@ export function usePlan() {
   }, []);
 
   const activarPrueba = useCallback((valor: boolean) => {
+    if (import.meta.env.PROD) return;
     try {
       if (valor) window.localStorage.setItem(CLAVE_PRUEBA, "1");
       else window.localStorage.removeItem(CLAVE_PRUEBA);
