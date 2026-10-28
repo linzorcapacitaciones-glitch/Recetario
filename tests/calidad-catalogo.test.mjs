@@ -92,7 +92,7 @@ test("Recetas con los mismos ingredientes tienen técnicas culinarias diferencia
 test("Todas las cantidades de ingredientes están definidas", () => {
  for (const receta of recetas) {
   for (const ingrediente of receta.ingredientes) {
-   assert.doesNotMatch(ingrediente, /\\bundefined\\b|\\bnull\\b|\\bNaN\\b/i, receta.titulo);
+   assert.doesNotMatch(ingrediente, /\bundefined\b|\bnull\b|\bNaN\b/i, receta.titulo);
   }
  }
  const tallarines=RECETAS_LOTE_10.find(r=>r.titulo==="Tallarines al pesto de espinaca");
