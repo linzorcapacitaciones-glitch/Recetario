@@ -78,3 +78,13 @@ test("Ningún lote conserva instrucciones genéricas detectadas en la revisión"
   for (const paso of receta.pasos) assert.doesNotMatch(paso, relleno, receta.titulo);
  }
 });
+
+test("Recetas con los mismos ingredientes tienen técnicas culinarias diferenciadas", () => {
+ const tortilla=RECETAS_LOTE_16.find(r=>r.titulo==="Tortilla de papas y arvejas al perejil");
+ const budin=RECETAS_LOTE_16.find(r=>r.titulo==="Budín de avena y manzana al horno");
+ const pure=RECETAS_LOTE_17.find(r=>r.titulo==="Puré rústico de arvejas y papa con menta");
+ assert.ok(tortilla?.pasos.some(p=>/cuajado/i.test(p)));
+ assert.ok(budin?.pasos.some(p=>/hornea a 180 °C durante 25 a 30 minutos/i.test(p)));
+ assert.ok(pure?.pasos.some(p=>/machaca/i.test(p)));
+ assert.ok(!recetas.some(r=>["Ensalada tibia de papa y arvejas","Panqueques de avena y manzana","Crema de arvejas y menta"].includes(r.titulo)));
+});
