@@ -189,7 +189,7 @@ const FICHAS=[
     "coc": 40
   },
   {
-    "titulo": "Papas rellenas de espinaca",
+    "titulo": "Tortitas de papa con espinaca y queso",
     "ids": [
       "papa",
       "espinaca",
@@ -197,13 +197,13 @@ const FICHAS=[
       "cebolla"
     ],
     "pasos": [
-      "Hornea las papas enteras hasta que estén tiernas.",
-      "Sofríe cebolla y espinaca picadas.",
-      "Abre las papas y retira parte de la pulpa.",
-      "Rellena con espinaca y queso y gratina hasta dorar."
+      "Pela las papas, córtalas en cubos y hiérvelas 15 minutos hasta que estén tiernas; escúrrelas y machácalas.",
+      "Pica la cebolla y la espinaca lavada; saltéalas con aceite 5 minutos hasta evaporar el líquido.",
+      "Mezcla el puré de papas con la espinaca, la cebolla y el queso; forma tortitas compactas.",
+      "Dora las tortitas en una sartén ligeramente aceitada 4 a 5 minutos por lado hasta que estén firmes y bien calientes."
     ],
     "prep": 15,
-    "coc": 50
+    "coc": 30
   },
   {
     "titulo": "Sopa de arroz con verduras",
