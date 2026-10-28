@@ -114,3 +114,11 @@ test("Cuatro preparaciones similares se diferencian por su técnica", () => {
  const croquetas=RECETAS_LOTE_14.find(r=>r.titulo==="Croquetas horneadas de porotos negros y avena");
  assert.ok(croquetas.ingredientes.some(i=>/porotos negros cocidos y escurridos/i.test(i)));
 });
+
+
+test("Las recetas del lote 3 especifican garbanzos ya cocidos", () => {
+ for (const receta of RECETAS_LOTE_3) {
+  if (!/garbanzo/i.test(receta.titulo)) continue;
+  assert.ok(receta.ingredientes.some(i=>/garbanzos cocidos y escurridos/i.test(i)),receta.titulo);
+ }
+});
