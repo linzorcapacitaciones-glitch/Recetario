@@ -88,3 +88,13 @@ test("Recetas con los mismos ingredientes tienen técnicas culinarias diferencia
  assert.ok(pure?.pasos.some(p=>/machaca/i.test(p)));
  assert.ok(!recetas.some(r=>["Ensalada tibia de papa y arvejas","Panqueques de avena y manzana","Crema de arvejas y menta"].includes(r.titulo)));
 });
+
+test("Todas las cantidades de ingredientes están definidas", () => {
+ for (const receta of recetas) {
+  for (const ingrediente of receta.ingredientes) {
+   assert.doesNotMatch(ingrediente, /\\bundefined\\b|\\bnull\\b|\\bNaN\\b/i, receta.titulo);
+  }
+ }
+ const tallarines=RECETAS_LOTE_10.find(r=>r.titulo==="Tallarines al pesto de espinaca");
+ assert.ok(tallarines?.ingredientes.some(i=>/150 g de espinaca/i.test(i)));
+});
