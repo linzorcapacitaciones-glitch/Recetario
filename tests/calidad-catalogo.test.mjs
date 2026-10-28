@@ -131,3 +131,14 @@ test("El falafel diferencia garbanzos secos y remojo obligatorio", () => {
  assert.ok(falafel.pasos.some(p=>/remoja.*12 horas/i.test(p)));
  assert.equal(Number.parseInt(falafel.tiempoCoccion,10),35);
 });
+
+
+test("Legumbres ya cocidas se identifican en la lista de ingredientes",()=>{
+ const lotes=[RECETAS_LOTE_4,RECETAS_LOTE_5,RECETAS_LOTE_6,RECETAS_LOTE_7,RECETAS_LOTE_8,RECETAS_LOTE_9,RECETAS_LOTE_10,RECETAS_LOTE_12,RECETAS_LOTE_13,RECETAS_LOTE_15,RECETAS_LOTE_16,RECETAS_LOTE_17];
+ for(const receta of lotes.flat()){
+  const pasos=receta.pasos.join(" ");
+  for(const [patron,ingrediente] of [[/garbanzos (?:previamente |ya )?cocidos/i,/de garbanzos cocidos y escurridos/i],[/lentejas (?:previamente |ya )?cocidas/i,/de lentejas cocidas y escurridas/i],[/porotos (?:previamente |ya )?cocidos/i,/de porotos cocidos y escurridos/i]]){
+   if(patron.test(pasos))assert.ok(receta.ingredientes.some(i=>ingrediente.test(i)),receta.titulo);
+  }
+ }
+});
