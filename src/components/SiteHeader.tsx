@@ -20,6 +20,7 @@ export function SiteHeader() {
           >
             Generar
           </Link>
+          <Link to="/plan-gratis" className="hover:bg-secondary rounded-full px-2 py-2 text-xs sm:px-4 sm:text-sm" activeProps={{ className: "bg-secondary" }}>Plan</Link>
           <Link
             to="/favoritos"
             className="hover:bg-secondary inline-flex items-center gap-1.5 rounded-full px-3 py-2 transition-colors sm:px-4"
