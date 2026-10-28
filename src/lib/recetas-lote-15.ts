@@ -70,7 +70,7 @@ const FICHAS=[
     "coc": 35
   },
   {
-    "titulo": "Crema de brócoli y papa con leche",
+    "titulo": "Pastel suave de brócoli y papas con leche",
     "ids": [
       "brocoli",
       "papa",
@@ -78,13 +78,13 @@ const FICHAS=[
       "leche"
     ],
     "pasos": [
-      "Lava el brócoli y corta la papa en cubos.",
-      "Sofríe cebolla picada hasta que esté transparente.",
-      "Añade las verduras y agua y cocina hasta ablandar.",
-      "Tritura con leche y calienta suavemente antes de servir."
+      "Precalienta el horno a 190 °C; pela las papas y córtalas en rodajas finas.",
+      "Hierve las papas durante 10 minutos y cuece el brócoli al vapor durante 5 minutos.",
+      "Sofríe la cebolla, machaca la mitad de las papas con la leche y mezcla con el brócoli y las rodajas restantes.",
+      "Extiende la mezcla en una fuente y hornea a 190 °C durante 15 a 20 minutos hasta que el centro esté bien caliente y la superficie ligeramente dorada."
     ],
     "prep": 12,
-    "coc": 25
+    "coc": 35
   },
   {
     "titulo": "Cuscús con berenjena asada",
