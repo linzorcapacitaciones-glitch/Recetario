@@ -122,3 +122,12 @@ test("Las recetas del lote 3 especifican garbanzos ya cocidos", () => {
   assert.ok(receta.ingredientes.some(i=>/garbanzos cocidos y escurridos/i.test(i)),receta.titulo);
  }
 });
+
+
+test("El falafel diferencia garbanzos secos y remojo obligatorio", () => {
+ const falafel=RECETAS_LOTE_11.find(r=>r.titulo==="Falafel al horno");
+ assert.ok(falafel);
+ assert.ok(falafel.ingredientes.some(i=>/garbanzos secos.*12 horas/i.test(i)));
+ assert.ok(falafel.pasos.some(p=>/remoja.*12 horas/i.test(p)));
+ assert.equal(Number.parseInt(falafel.tiempoCoccion,10),35);
+});
