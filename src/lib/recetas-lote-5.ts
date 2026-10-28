@@ -358,7 +358,7 @@ const FICHAS=[
       "Hierve el zapallo hasta que esté blando y escúrrelo muy bien.",
       "Sofríe cebolla picada y mezcla con el puré de zapallo.",
       "Añade huevos batidos y queso rallado.",
-      "Hornea a 180 °C hasta que el centro esté firme y bien cocido."
+      "Hornea a 180 °C durante 25 a 35 minutos, hasta que el centro esté firme y el huevo completamente cocido."
     ]
   },
   {
