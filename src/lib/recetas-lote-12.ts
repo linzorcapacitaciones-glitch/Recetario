@@ -121,7 +121,7 @@ const FICHAS=[
     "coc": 35
   },
   {
-    "titulo": "Huevos al horno con espinaca",
+    "titulo": "Revuelto de espinaca, tomate y queso",
     "ids": [
       "huevo",
       "espinaca",
@@ -129,13 +129,13 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Lava la espinaca y saltéala hasta reducir su volumen.",
-      "Reparte espinaca y tomate picado en dos fuentes pequeñas.",
-      "Agrega un huevo por fuente y cubre con queso.",
-      "Hornea a 180 °C hasta que los huevos estén completamente cuajados."
+      "Lava la espinaca y el tomate; corta el tomate en cubos pequeños.",
+      "Saltea la espinaca y el tomate con un poco de aceite durante 4 minutos hasta reducir el líquido.",
+      "Bate los huevos y viértelos en la sartén a fuego medio-bajo, removiendo continuamente.",
+      "Añade el queso y continúa removiendo hasta que los huevos estén completamente cuajados; sirve caliente."
     ],
     "prep": 10,
-    "coc": 18
+    "coc": 10
   },
   {
     "titulo": "Papas rústicas con salsa de yogur",
