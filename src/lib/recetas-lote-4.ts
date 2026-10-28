@@ -164,7 +164,7 @@ const FICHAS = [
       "Lava y saltea la espinaca hasta que pierda volumen.",
       "Coloca la espinaca y tomate picado en una fuente individual.",
       "Casca los huevos encima y agrega un poco de queso.",
-      "Hornea a 190 °C hasta que las claras y las yemas estén bien cuajadas."
+      "Hornea a 190 °C durante 12 a 18 minutos, comprobando que claras y yemas queden completamente cuajadas."
     ]
   },
   {
