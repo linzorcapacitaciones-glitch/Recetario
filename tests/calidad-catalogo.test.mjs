@@ -98,3 +98,19 @@ test("Todas las cantidades de ingredientes están definidas", () => {
  const tallarines=RECETAS_LOTE_10.find(r=>r.titulo==="Tallarines al pesto de espinaca");
  assert.ok(tallarines?.ingredientes.some(i=>/150 g de espinaca/i.test(i)));
 });
+
+test("Cuatro preparaciones similares se diferencian por su técnica", () => {
+ const casos=[
+  [RECETAS_LOTE_12,"Revuelto de espinaca, tomate y queso",/removiendo continuamente/i],
+  [RECETAS_LOTE_14,"Croquetas horneadas de porotos negros y avena",/hornea a 190 °C durante 20 a 25 minutos/i],
+  [RECETAS_LOTE_15,"Pastel suave de brócoli y papas con leche",/extiende la mezcla en una fuente/i],
+  [RECETAS_LOTE_16,"Tortitas de papa con espinaca y queso",/dora las tortitas/i],
+ ];
+ for (const [lote,titulo,tecnica] of casos) {
+  const receta=lote.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(receta.pasos.some(p=>tecnica.test(p)),titulo);
+ }
+ const croquetas=RECETAS_LOTE_14.find(r=>r.titulo==="Croquetas horneadas de porotos negros y avena");
+ assert.ok(croquetas.ingredientes.some(i=>/porotos negros cocidos y escurridos/i.test(i)));
+});
