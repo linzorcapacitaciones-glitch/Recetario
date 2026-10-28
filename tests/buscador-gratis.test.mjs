@@ -13,13 +13,13 @@ test("Buscar con arroz, pollo y tomate cambia realmente las coincidencias", () =
   assert.notEqual(a.recetas[0]?.titulo,b.recetas[0]?.titulo);
   assert.ok(a.recetas.every(r=>r.pasos.length>=4));
   assert.ok(a.recetas.every(r=>r.ingredientesCoincidentes?.length));
-  assert.ok(a.recetas.every(r=>r.porcentajeCoincidencia!>=0 && r.porcentajeCoincidencia!<=100));
+  assert.ok(a.recetas.every(r=>(r.porcentajeCoincidencia ?? -1)>=0 && (r.porcentajeCoincidencia ?? 101)<=100));
 });
 test("Acentos, plurales y conjunciones se reconocen", () => {
   assert.deepEqual(extraerIngredientes("atún, huevos y papas"),["atun","huevo","papa"]);
 });
 test("Ingredientes desconocidos no devuelven diez recetas inventadas", () => {
-  const r=buscarRecetasGratis("camarones, coco, limon");
+  const r=buscarRecetasGratis("tamarindo, rambután, wasabi");
   assert.equal(r.recetas.length,0);
   assert.equal(r.ingredientesReconocidos.length,0);
 });
@@ -32,4 +32,213 @@ test("Backend facturable permanece cerrado por defecto", () => {
   const src=readFileSync(new URL("../src/lib/recipes.functions.ts",import.meta.url),"utf8");
   assert.match(src,/RECIPE_AI_ENABLED/);
   assert.match(src,/!== "true"/);
+});
+
+test("El catálogo ampliado contiene al menos 100 recetas únicas", () => {
+  assert.ok(TOTAL_RECETAS_CATALOGO >= 100, `Solo hay ${TOTAL_RECETAS_CATALOGO} recetas`);
+});
+test("El buscador encuentra recetas con legumbres", () => {
+  const r=buscarRecetasGratis("garbanzos, cebolla, tomate");
+  assert.ok(r.recetas.length>0);
+  assert.ok(r.recetas.every(x=>x.pasos.length>=4));
+});
+
+test("Búsqueda natural sin comas reconoce arroz pollo papas", () => {
+ const r=buscarRecetasGratis("arroz pollo papas");
+ assert.deepEqual(extraerIngredientes("arroz pollo papas"),["arroz","pollo","papa"]);
+ assert.ok(r.recetas.length>0);
+ assert.ok(r.ingredientesReconocidos.includes("Arroz"));
+ assert.equal(r.ignorados.length,0);
+});
+test("Búsqueda natural reconoce frases con tengo y conjunciones", () => {
+ const r=buscarRecetasGratis("tengo arroz y pollo en casa");
+ assert.ok(r.recetas.length>0);
+ assert.ok(r.ingredientesReconocidos.includes("Pollo"));
+});
+
+test("El lote tres incluye quince recetas con instrucciones específicas", async () => {
+ const { RECETAS_LOTE_3 } = await import("../src/lib/recetas-lote-3.ts");
+ assert.equal(RECETAS_LOTE_3.length,15);
+ assert.equal(new Set(RECETAS_LOTE_3.map(r=>r.titulo.toLowerCase())).size,15);
+ assert.ok(RECETAS_LOTE_3.every(r=>r.pasos.length>=4 && r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=115);
+});
+
+test("Lote 4 incorpora 20 recetas únicas con instrucciones",async()=>{
+ const {RECETAS_LOTE_4}=await import("../src/lib/recetas-lote-4.ts");
+ assert.equal(RECETAS_LOTE_4.length,20);
+ assert.equal(new Set(RECETAS_LOTE_4.map(x=>x.titulo.toLowerCase())).size,20);
+ assert.ok(RECETAS_LOTE_4.every(x=>x.pasos.length>=4&&x.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=135,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 5 agrega 25 recetas con títulos únicos y cuatro pasos",async()=>{
+ const {RECETAS_LOTE_5}=await import("../src/lib/recetas-lote-5.ts");
+ assert.equal(RECETAS_LOTE_5.length,25);
+ assert.equal(new Set(RECETAS_LOTE_5.map(x=>x.titulo.toLowerCase())).size,25);
+ assert.ok(RECETAS_LOTE_5.every(x=>x.ingredientes.length>=3&&x.pasos.length>=4));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=160,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Buscador reconoce pescado, brócoli y otros ingredientes nuevos",()=>{
+ const r=buscarRecetasGratis("merluza papas limón");
+ assert.ok(r.recetas.length>0);
+ assert.ok(r.ingredientesReconocidos.includes("merluza"));
+ assert.ok(extraerIngredientes("brócoli, champiñones y pimentones").includes("brocoli"));
+});
+test("Lote 6 incorpora 15 recetas con ingredientes nuevos",async()=>{
+ const {RECETAS_LOTE_6}=await import("../src/lib/recetas-lote-6.ts");
+ assert.equal(RECETAS_LOTE_6.length,15);
+ assert.equal(new Set(RECETAS_LOTE_6.map(x=>x.titulo.toLowerCase())).size,15);
+ assert.ok(RECETAS_LOTE_6.every(x=>x.ingredientes.length>=3&&x.pasos.length>=4));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=175,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 7 incorpora 25 recetas y alcanza 200 fichas previstas",async()=>{
+ const {RECETAS_LOTE_7}=await import("../src/lib/recetas-lote-7.ts");
+ assert.equal(RECETAS_LOTE_7.length,25);
+ assert.equal(new Set(RECETAS_LOTE_7.map(x=>x.titulo.toLowerCase())).size,25);
+ assert.ok(RECETAS_LOTE_7.every(x=>x.pasos.length>=4&&x.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=200,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 8 contiene veinte preparaciones y amplía el catálogo",async()=>{
+ const {RECETAS_LOTE_8}=await import("../src/lib/recetas-lote-8.ts");
+ assert.equal(RECETAS_LOTE_8.length,20);
+ assert.equal(new Set(RECETAS_LOTE_8.map(r=>r.titulo.toLowerCase())).size,20);
+ assert.ok(RECETAS_LOTE_8.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=220,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 9 aporta 25 recetas y nueva meta de 500",async()=>{
+ const {RECETAS_LOTE_9}=await import("../src/lib/recetas-lote-9.ts");
+ assert.equal(RECETAS_LOTE_9.length,25);
+ assert.equal(new Set(RECETAS_LOTE_9.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(RECETAS_LOTE_9.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=245,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+ assert.ok(extraerIngredientes("quinoa, berenjenas, arvejas").includes("quinoa"));
+});
+
+test("Lote 10 suma treinta preparaciones y alcanza 275 recetas",async()=>{
+ const {RECETAS_LOTE_10}=await import("../src/lib/recetas-lote-10.ts");
+ assert.equal(RECETAS_LOTE_10.length,30);
+ assert.equal(new Set(RECETAS_LOTE_10.map(r=>r.titulo.toLowerCase())).size,30);
+ assert.ok(RECETAS_LOTE_10.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=275,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+ assert.ok(extraerIngredientes("acelga y polenta").includes("acelga"));
+});
+
+test("Lote 11 incorpora treinta recetas internacionales y supera 300",async()=>{
+ const {RECETAS_LOTE_11}=await import("../src/lib/recetas-lote-11.ts");
+ assert.equal(RECETAS_LOTE_11.length,30);
+ assert.equal(new Set(RECETAS_LOTE_11.map(r=>r.titulo.toLowerCase())).size,30);
+ assert.ok(RECETAS_LOTE_11.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=305,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+ assert.ok(extraerIngredientes("tofu, aceitunas y tortillas").includes("tofu"));
+});
+
+test("Lote 12 suma veinte recetas con tiempos de preparación diferenciados",async()=>{
+ const {RECETAS_LOTE_12}=await import("../src/lib/recetas-lote-12.ts");
+ assert.equal(RECETAS_LOTE_12.length,20);
+ assert.equal(new Set(RECETAS_LOTE_12.map(r=>r.titulo.toLowerCase())).size,20);
+ assert.ok(new Set(RECETAS_LOTE_12.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_12.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=325,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 13 incorpora 25 recetas y alcanza 350",async()=>{
+ const {RECETAS_LOTE_13}=await import("../src/lib/recetas-lote-13.ts");
+ assert.equal(RECETAS_LOTE_13.length,25);
+ assert.equal(new Set(RECETAS_LOTE_13.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(new Set(RECETAS_LOTE_13.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_13.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=350,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 14 suma veinticinco recetas y alcanza 375",async()=>{
+ const {RECETAS_LOTE_14}=await import("../src/lib/recetas-lote-14.ts");
+ assert.equal(RECETAS_LOTE_14.length,25);
+ assert.equal(new Set(RECETAS_LOTE_14.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(new Set(RECETAS_LOTE_14.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_14.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=375,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 15 aporta 25 preparaciones únicas y alcanza 400",async()=>{
+ const {RECETAS_LOTE_15}=await import("../src/lib/recetas-lote-15.ts");
+ assert.equal(RECETAS_LOTE_15.length,25);
+ assert.equal(new Set(RECETAS_LOTE_15.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(new Set(RECETAS_LOTE_15.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_15.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=400,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 16 agrega veinticinco recetas y alcanza 425",async()=>{
+ const {RECETAS_LOTE_16}=await import("../src/lib/recetas-lote-16.ts");
+ assert.equal(RECETAS_LOTE_16.length,25);
+ assert.equal(new Set(RECETAS_LOTE_16.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(new Set(RECETAS_LOTE_16.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_16.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=425,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 17 agrega 25 preparaciones y alcanza 450",async()=>{
+ const {RECETAS_LOTE_17}=await import("../src/lib/recetas-lote-17.ts");
+ assert.equal(RECETAS_LOTE_17.length,25);
+ assert.equal(new Set(RECETAS_LOTE_17.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(new Set(RECETAS_LOTE_17.map(r=>r.tiempoCoccion)).size>=5);
+ assert.ok(RECETAS_LOTE_17.every(r=>r.pasos.length>=4&&r.ingredientes.length>=3));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=450,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 18 añade 25 recetas distintas y alcanza 475",async()=>{
+ const {RECETAS_LOTE_18}=await import("../src/lib/recetas-lote-18.ts");
+ assert.equal(RECETAS_LOTE_18.length,25);
+ assert.equal(new Set(RECETAS_LOTE_18.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(TOTAL_RECETAS_CATALOGO>=475,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Lote 19 completa el objetivo de 500 recetas",async()=>{
+ const {RECETAS_LOTE_19}=await import("../src/lib/recetas-lote-19.ts");
+ assert.equal(RECETAS_LOTE_19.length,25);
+ assert.equal(new Set(RECETAS_LOTE_19.map(r=>r.titulo.toLowerCase())).size,25);
+ assert.ok(RECETAS_LOTE_19.every(r=>r.ingredientes.length>=3&&r.pasos.length>=4));
+ assert.ok(TOTAL_RECETAS_CATALOGO>=500,`Total: ${TOTAL_RECETAS_CATALOGO}`);
+});
+
+test("Alias acentuados y plurales de nuevos ingredientes se normalizan",()=>{
+ assert.deepEqual(extraerIngredientes("quínua, sésamo, peras y nueces"),["quinoa","sesamo","pera","nuez"]);
+ assert.ok(extraerIngredientes("brócoli y champiñones").includes("brocoli"));
+});
+
+test("Premium: inventario parcial cuantificado conserva ingredientes declarados sin cantidad",async()=>{
+ const {planificarSemana}=await import("../src/lib/planificador-semanal.ts");
+ const base=planificarSemana({personas:2,dias:1,comidasPorDia:1,presupuesto:0,despensa:"arroz, tomate",variante:0});
+ const mixto=planificarSemana({personas:2,dias:1,comidasPorDia:1,presupuesto:0,despensa:"arroz, tomate",inventarioCantidades:{arroz:500},variante:0});
+ assert.equal(mixto.platos.length,1);
+ assert.ok(mixto.compras.every(x=>x.cantidad>0&&Number.isFinite(x.costo)));
+ assert.ok(Number.isFinite(mixto.costoCompraEstimada));
+ assert.ok(base.compras.every(x=>x.cantidad>0));
+});
+test("Premium: descontar existencias acumuladas nunca genera compras negativas",async()=>{
+ const {planificarSemana}=await import("../src/lib/planificador-semanal.ts");
+ const r=planificarSemana({personas:2,dias:7,comidasPorDia:2,presupuesto:35000,despensa:"",inventarioCantidades:{arroz:100,papa:200,huevo:2}});
+ assert.equal(r.platos.length,14);
+ assert.ok(r.compras.every(x=>x.cantidad>0&&x.costo>=0));
+ assert.equal(r.costoCompraEstimada,r.compras.reduce((sum,x)=>sum+x.costo,0));
+ assert.ok(r.costoTotal>=r.costoCompraEstimada);
+});
+
+test("Premium: lista consolidada descuenta inventario por ingrediente sin duplicarlo",async()=>{
+ const {planificarSemana}=await import("../src/lib/planificador-semanal.ts");
+ const r=planificarSemana({personas:3,dias:7,comidasPorDia:2,presupuesto:0,despensa:"",inventarioCantidades:{arroz:250,papa:500,huevo:3},variante:1});
+ const total=new Map();
+ for(const comida of r.platos)for(const [id,cantidad] of comida.plato.ingredientes)total.set(id,(total.get(id)||0)+cantidad*3/2);
+ for(const [id,cantidad] of total){
+  const inventario={arroz:250,papa:500,huevo:3}[id]||0;
+  const esperado=Math.round(Math.max(0,cantidad-inventario)*10)/10;
+  const compra=r.compras.find(x=>x.id===id);
+  assert.equal(compra?.cantidad||0,esperado,`Compra incorrecta: ${id}`);
+ }
+ assert.equal(r.costoCompraEstimada,r.compras.reduce((s,x)=>s+x.costo,0));
 });
