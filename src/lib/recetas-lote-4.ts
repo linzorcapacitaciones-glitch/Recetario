@@ -284,7 +284,7 @@ const FICHAS = [
       "Cuece la pasta según el tiempo del envase.",
       "Saltea tomate picado hasta formar una salsa ligera.",
       "Agrega garbanzos previamente cocidos y espinaca lavada.",
-      "Mezcla con la pasta y calienta hasta integrar los sabores."
+      "Incorpora la pasta escurrida a la sartén con los garbanzos, la espinaca y el tomate; saltea 3 minutos hasta que esté bien caliente."
     ]
   },
   {
