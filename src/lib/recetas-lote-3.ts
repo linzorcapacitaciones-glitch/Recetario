@@ -29,7 +29,7 @@ const DATOS = [
       "Cuece las lentejas hasta que estén tiernas y escúrrelas.",
       "Sofríe cebolla y zanahoria; mezcla con las lentejas cocidas.",
       "Hierve las papas, escúrrelas y prepara un puré con un poco de agua de cocción.",
-      "Coloca las lentejas en una fuente, cubre con puré y hornea a 190 °C hasta dorar."
+      "Coloca las lentejas en una fuente, cubre con puré y hornea a 190 °C durante 15 a 20 minutos, hasta dorar."
     ]
   },
   {
@@ -73,7 +73,7 @@ const DATOS = [
       "Usa garbanzos completamente cocidos y bien escurridos.",
       "Machácalos y mezcla con cebolla y zanahoria ralladas y huevo batido.",
       "Forma hamburguesas compactas y distribúyelas en una bandeja aceitada.",
-      "Hornea a 200 °C hasta dorar y hasta que el huevo esté bien cocido."
+      "Hornea a 200 °C durante 20 a 25 minutos, hasta dorar y comprobar que el huevo esté completamente cuajado."
     ]
   },
   {
