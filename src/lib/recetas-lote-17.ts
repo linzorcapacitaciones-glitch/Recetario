@@ -2,7 +2,7 @@
 import type { Receta } from "./recipes.functions";
 const FICHAS=[
   {
-    "titulo": "Crema de arvejas y menta",
+    "titulo": "Puré rústico de arvejas y papa con menta",
     "ids": [
       "arveja",
       "papa",
@@ -10,10 +10,10 @@ const FICHAS=[
       "menta"
     ],
     "pasos": [
-      "Sofríe cebolla picada en una olla.",
-      "Añade papa en cubos y agua y cocina hasta ablandar.",
-      "Incorpora arvejas y cuece hasta que estén tiernas.",
-      "Agrega menta y tritura hasta obtener una crema suave."
+      "Pela y corta la papa en cubos; pica finamente la cebolla.",
+      "Sofríe la cebolla con un poco de aceite durante 4 minutos; añade la papa y agua apenas suficiente para cubrir.",
+      "Cocina 12 a 15 minutos, agrega las arvejas y continúa hasta que todo esté tierno; escurre casi todo el líquido.",
+      "Machaca las papas y las arvejas con un tenedor hasta obtener un puré espeso; incorpora la menta picada y sirve."
     ],
     "prep": 12,
     "coc": 25
