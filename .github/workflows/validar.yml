@@ -1,7 +1,7 @@
 name: Validar Recetario
 on:
   push:
-    branches: [main, feature/ampliacion-recetas-lote-1]
+    branches: [main, feature/ampliacion-recetas-lote-1, integracion/recetario-cierre-2026-10-28]
   pull_request:
     branches: [main, feature/buscador-gratuito-real, feature/premium-inventario-cantidades]
   workflow_dispatch:
