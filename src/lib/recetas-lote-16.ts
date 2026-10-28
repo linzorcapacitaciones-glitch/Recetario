@@ -308,7 +308,7 @@ const FICHAS=[
     "coc": 20
   },
   {
-    "titulo": "Ensalada tibia de papa y arvejas",
+    "titulo": "Tortilla de papas y arvejas al perejil",
     "ids": [
       "papa",
       "arveja",
@@ -316,10 +316,10 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Cuece las papas cortadas en cubos hasta que estén tiernas.",
-      "Cuece las arvejas por separado.",
-      "Hierve los huevos hasta que estén firmes.",
-      "Mezcla con perejil picado y sirve tibio."
+      "Pela las papas, córtalas en cubos pequeños y hiérvelas 10 a 12 minutos hasta que estén tiernas.",
+      "Cuece las arvejas 4 a 6 minutos en agua hirviendo y escúrrelas.",
+      "Bate los huevos con perejil picado y mezcla con las papas y arvejas cocidas.",
+      "Vierte la mezcla en una sartén ligeramente aceitada y cocina por ambos lados hasta que el huevo esté completamente cuajado."
     ],
     "prep": 12,
     "coc": 25
@@ -393,7 +393,7 @@ const FICHAS=[
     "coc": 0
   },
   {
-    "titulo": "Panqueques de avena y manzana",
+    "titulo": "Budín de avena y manzana al horno",
     "ids": [
       "avena",
       "manzana",
@@ -401,13 +401,13 @@ const FICHAS=[
       "leche"
     ],
     "pasos": [
-      "Ralla la manzana lavada y reserva.",
-      "Mezcla avena, huevo y leche hasta obtener una masa espesa.",
-      "Incorpora la manzana rallada y revuelve.",
-      "Cocina pequeñas porciones por ambos lados hasta que el huevo cuaje."
+      "Precalienta el horno a 180 °C y lava la manzana; córtala en láminas finas.",
+      "Mezcla la avena con el huevo y la leche hasta obtener una preparación homogénea.",
+      "Incorpora las láminas de manzana y vierte en una fuente pequeña ligeramente aceitada.",
+      "Hornea a 180 °C durante 25 a 30 minutos hasta que el centro esté firme y el huevo completamente cocido."
     ],
     "prep": 12,
-    "coc": 15
+    "coc": 30
   },
   {
     "titulo": "Bowl de arroz con salmón y pepino",
