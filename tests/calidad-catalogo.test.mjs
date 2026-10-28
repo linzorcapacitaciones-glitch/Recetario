@@ -66,3 +66,15 @@ test("Legumbres de preparación rápida declaran que están cocidas",()=>{
   }
  }
 });
+
+test("Las 500 fichas visibles del buscador tienen títulos normalizados distintos", async () => {
+ const { TOTAL_RECETAS_CATALOGO } = await import("../src/lib/buscador-gratis.ts");
+ assert.equal(TOTAL_RECETAS_CATALOGO, 500, "El catálogo debe contener exactamente 500 títulos únicos");
+});
+
+test("Ningún lote conserva instrucciones genéricas detectadas en la revisión", () => {
+ const relleno = /ingrediente principal ya cocido|saltea el acompañamiento|cocina el acompañamiento|tritúralo si corresponde|hasta integrar los sabores|cuece el arroz como acompañamiento|sirve a la temperatura adecuada|mezcla cuidadosamente los ingredientes/i;
+ for (const receta of recetas) {
+  for (const paso of receta.pasos) assert.doesNotMatch(paso, relleno, receta.titulo);
+ }
+});
