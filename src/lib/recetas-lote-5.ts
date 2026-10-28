@@ -283,7 +283,7 @@ const FICHAS=[
       "Cuece el arroz y reserva.",
       "Sofríe cebolla y zanahoria rallada hasta ablandar.",
       "Agrega garbanzos previamente cocidos y calienta.",
-      "Incorpora el arroz y mezcla hasta integrar los sabores."
+      "Añade el arroz ya cocido a la sartén con los garbanzos y las verduras; saltea 3 a 4 minutos hasta que todo esté caliente."
     ]
   },
   {
@@ -325,7 +325,7 @@ const FICHAS=[
       "arroz"
     ],
     "pasos": [
-      "Cuece el arroz como acompañamiento.",
+      "Enjuaga el arroz y cuécelo en agua durante 15 a 20 minutos, hasta que esté tierno; mantenlo tapado mientras preparas el pollo.",
       "Dora el pollo y continúa cocinando hasta alcanzar 74 °C.",
       "Hierve zanahoria y cebolla en poca agua hasta ablandar.",
       "Tritura las verduras, vierte la salsa sobre el pollo y sirve con arroz."
