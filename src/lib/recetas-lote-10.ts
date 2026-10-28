@@ -456,7 +456,7 @@ const FICHAS=[
     ]
   }
 ] as const;
-const CANTIDADES:Record<string,string>={"carne":"300 g","zapallo":"300 g","papa":"350 g","choclo":"250 g","zanahoria":"180 g","arveja":"200 g","tomate":"250 g","cebolla":"100 g","huevo":"2 unidades","poroto":"200 g","pollo":"300 g","harina":"200 g","mantequilla":"40 g","leche":"180 ml","queso":"100 g","albahaca":"8 hojas","pescado":"300 g","limon":"1 unidad","perejil":"1 cucharada","pan":"4 rebanadas","ajo":"2 dientes","acelga":"250 g","garbanzo":"200 g","jengibre":"10 g","arroz":"150 g","pimenton":"1 unidad","romero":"1 cucharadita","pasta":"180 g","betarraga":"2 unidades","pepino":"1 unidad","avena":"100 g","brocoli":"250 g","champinon":"200 g","polenta":"150 g","lenteja":"180 g","cuscus":"150 g","quinoa":"150 g","salmon":"300 g"};
+const CANTIDADES:Record<string,string>={"carne":"300 g","zapallo":"300 g","papa":"350 g","choclo":"250 g","zanahoria":"180 g","arveja":"200 g","tomate":"250 g","cebolla":"100 g","huevo":"2 unidades","poroto":"200 g","pollo":"300 g","harina":"200 g","mantequilla":"40 g","leche":"180 ml","queso":"100 g","albahaca":"8 hojas","pescado":"300 g","limon":"1 unidad","perejil":"1 cucharada","pan":"4 rebanadas","ajo":"2 dientes","acelga":"250 g","espinaca":"150 g","garbanzo":"200 g","jengibre":"10 g","arroz":"150 g","pimenton":"1 unidad","romero":"1 cucharadita","pasta":"180 g","betarraga":"2 unidades","pepino":"1 unidad","avena":"100 g","brocoli":"250 g","champinon":"200 g","polenta":"150 g","lenteja":"180 g","cuscus":"150 g","quinoa":"150 g","salmon":"300 g"};
 const TIEMPOS_COCCION:Record<string,number>={
  "Cazuela de vacuno con zapallo":90,"Carbonada casera":50,"Porotos granados":65,"Pastel de choclo":65
 };
