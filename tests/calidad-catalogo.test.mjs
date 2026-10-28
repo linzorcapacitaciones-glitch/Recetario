@@ -142,3 +142,10 @@ test("Legumbres ya cocidas se identifican en la lista de ingredientes",()=>{
   }
  }
 });
+
+
+test("La crema de zanahoria y coco especifica leche de coco",()=>{
+ const receta=RECETAS_LOTE_13.find(r=>r.titulo==="Crema de zanahoria y coco");
+ assert.ok(receta);
+ assert.ok(receta.ingredientes.some(i=>/150 ml de leche de coco/i.test(i)));
+});
