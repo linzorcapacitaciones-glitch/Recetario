@@ -175,7 +175,7 @@ const FICHAS=[
       "arroz"
     ],
     "pasos": [
-      "Cuece el arroz como acompañamiento.",
+      "Cuece el arroz en agua durante 15 a 20 minutos hasta que esté tierno; resérvalo caliente mientras cocinas el pollo.",
       "Cocina el pollo en sartén hasta alcanzar 74 °C.",
       "Mezcla yogur natural con limón y condimentos en un recipiente.",
       "Sirve el pollo caliente con arroz y añade la salsa fría al final."
