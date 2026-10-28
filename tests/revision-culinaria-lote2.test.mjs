@@ -126,3 +126,25 @@ test("Cinco recetas con papas explican técnicas, tiempos y cocción segura", ()
     assert.ok(receta.pasos.every(p => !/saltea el acompañamiento|ingrediente principal ya cocido|tritúralo si corresponde|cocina el acompañamiento/i.test(p)), titulo);
   }
 });
+
+test("Lote 2: tiempos ajustados para preparaciones rápidas y lentejas cocidas", () => {
+ const minutos = new Map([
+  ["Pasta guisada con atún", 20],
+  ["Pasta salteada con pollo", 25],
+  ["Lentejas salteadas con tomate", 10],
+  ["Lentejas al horno con huevo", 20],
+  ["Garbanzos guisados con cebolla", 15],
+  ["Garbanzos al horno con zanahoria", 25],
+  ["Papas al horno con lentejas", 30],
+ ]);
+ for (const [titulo, esperado] of minutos) {
+  const receta = RECETAS_LOTE_2.find(r => r.titulo === titulo);
+  assert.ok(receta, titulo);
+  assert.equal(Number.parseInt(receta.tiempoCoccion, 10), esperado, titulo);
+ }
+ for (const receta of RECETAS_LOTE_2) {
+  if (/lentejas/i.test(receta.titulo) || receta.ingredientes.some(i => /lenteja/i.test(i))) {
+   assert.ok(receta.ingredientes.filter(i => /lenteja/i.test(i)).every(i => /cocidas y escurridas/i.test(i)), receta.titulo);
+  }
+ }
+});
