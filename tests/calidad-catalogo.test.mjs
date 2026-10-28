@@ -149,3 +149,14 @@ test("La crema de zanahoria y coco especifica leche de coco",()=>{
  assert.ok(receta);
  assert.ok(receta.ingredientes.some(i=>/150 ml de leche de coco/i.test(i)));
 });
+
+
+test("Horneados críticos detallan tiempo orientativo y cocción completa",()=>{
+ const casos=[
+  [RECETAS_LOTE_3,"Hamburguesas de garbanzos al horno",/200 °C durante 20 a 25 minutos/],
+  [RECETAS_LOTE_3,"Pastel de papas con lentejas",/190 °C durante 15 a 20 minutos/],
+  [RECETAS_LOTE_4,"Huevos al horno sobre espinacas",/190 °C durante 12 a 18 minutos/],
+  [RECETAS_LOTE_5,"Budín de zapallo y huevo",/180 °C durante 25 a 35 minutos/]
+ ];
+ for(const [lote,titulo,patron] of casos){const receta=lote.find(r=>r.titulo===titulo);assert.ok(receta,titulo);assert.ok(receta.pasos.some(p=>patron.test(p)),titulo)}
+});
