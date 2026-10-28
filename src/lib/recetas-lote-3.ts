@@ -232,7 +232,7 @@ export const RECETAS_LOTE_3: Receta[] = DATOS.map((f,i)=>({
  id:`lote-3-${i+1}`,titulo:f.titulo,
  descripcion:"Preparación casera para dos personas, con cantidades orientativas.",
  tiempoPreparacion:"15 min",tiempoCoccion:"35 min",porciones:"2 personas",dificultad:"Fácil",
- ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],
+ ingredientes:f.ids.map(id=>id==="garbanzo" ? "200 g de garbanzos cocidos y escurridos" : `${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],
  costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",
  ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0
 }));
