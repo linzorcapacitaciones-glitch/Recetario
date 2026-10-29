@@ -14,7 +14,7 @@ import {
   type MenuSemanal,
 } from "@/lib/chef.functions";
 import { useListaCompras } from "@/lib/listaCompras";
-import { BENEFICIOS_PREMIUM, PRECIOS, usePlan } from "@/lib/plan";
+import { BENEFICIOS_PREMIUM, PRECIOS } from "@/lib/plan";
 
 export const Route = createFileRoute("/premium")({
   head: () => ({
@@ -38,7 +38,6 @@ export const Route = createFileRoute("/premium")({
 });
 
 function PremiumPagina() {
-  const { esPremium, activarPrueba } = usePlan();
 
   return (
     <div className="min-h-screen bg-background">
@@ -70,32 +69,15 @@ function PremiumPagina() {
           <Button type="button" className="min-h-12 rounded-full" disabled>
             ⭐ Próximamente Premium
           </Button>
-          <Button
-            type="button"
-            variant="outline"
-            className="min-h-12 rounded-full"
-            onClick={() => activarPrueba(!esPremium)}
-          >
-            {esPremium ? "Salir de la vista de prueba" : "Probar Chef IA sin costo (vista de prueba)"}
-          </Button>
           <p className="text-muted-foreground text-xs">
-            La planificación semanal es interactiva y calcula presupuestos sin IA. Las otras herramientas muestran ejemplos; no hay cobros ni acceso Premium comercial activo.
+            Puedes probar el planificador semanal y la lista de compras sin iniciar sesión ni contratar Premium.
+            Los cálculos son locales, los precios son simulados y las herramientas de IA permanecen desactivadas.
           </p>
         </div>
 
-        {esPremium ? (
-          <div className="mt-10 grid gap-10">
-            <PremiumDemo />
-          </div>
-        ) : (
-          <p className="text-muted-foreground mt-8 text-sm">
-            Activa la vista de prueba para usar el planificador semanal interactivo sin IA y explorar otras herramientas, o vuelve a{" "}
-            <Link to="/" className="text-primary underline">
-              generar recetas
-            </Link>
-            .
-          </p>
-        )}
+        <div className="mt-10 grid gap-10">
+          <PremiumDemo />
+        </div>
       </main>
     </div>
   );
