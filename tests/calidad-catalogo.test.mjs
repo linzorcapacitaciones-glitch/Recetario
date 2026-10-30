@@ -199,3 +199,24 @@ test("Lote 18: títulos, ingredientes y técnicas de cocción son coherentes",()
  assert.ok(pasta?.pasos.some(p=>/ásalo a 200 °C durante 15 a 20 minutos/i.test(p)));
  assert.ok(pasta?.pasos.some(p=>/mezcla la pasta escurrida con el tomate asado/i.test(p)));
 });
+
+test("Lote 19: las técnicas y el montaje corresponden al plato anunciado",()=>{
+ const buscar=t=>RECETAS_LOTE_19.find(r=>r.titulo===t);
+ const hamburguesas=buscar("Hamburguesas de garbanzos con betarraga");
+ assert.ok(hamburguesas?.pasos.some(p=>/forma hamburguesas compactas/i.test(p)));
+ assert.ok(hamburguesas?.pasos.some(p=>/cocina las hamburguesas/i.test(p)));
+ const sopa=buscar("Sopa de choclo con pollo y perejil");
+ assert.ok(sopa?.pasos.some(p=>/devuélvelo al caldo/i.test(p)));
+ const crema=buscar("Crema de zanahoria y jengibre con coco");
+ assert.ok(crema?.pasos.some(p=>/tritura la zanahoria cocida/i.test(p)));
+ const zapallitos=buscar("Zapallitos rellenos de lentejas");
+ assert.ok(zapallitos?.pasos.some(p=>/rellena las mitades/i.test(p)));
+ const tacos=buscar("Tacos de tofu con pimentón y palta");
+ assert.ok(tacos?.pasos.some(p=>/rellena las tortillas/i.test(p)));
+ const omelette=buscar("Omelette de acelga y tomate");
+ assert.ok(omelette?.pasos.some(p=>/dobla y cocina hasta que el huevo esté completamente cuajado/i.test(p)));
+ const berenjena=buscar("Berenjena al horno con garbanzos y yogur");
+ assert.ok(berenjena?.pasos.some(p=>/sirve la berenjena asada con los garbanzos/i.test(p)));
+ const pasta=buscar("Pasta con arvejas y ricota al limón");
+ assert.ok(pasta?.pasos.some(p=>/mezcla la pasta escurrida con las arvejas cocidas/i.test(p)));
+});
