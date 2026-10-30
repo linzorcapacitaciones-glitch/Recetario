@@ -160,3 +160,26 @@ test("Horneados críticos detallan tiempo orientativo y cocción completa",()=>{
  ];
  for(const [lote,titulo,patron] of casos){const receta=lote.find(r=>r.titulo===titulo);assert.ok(receta,titulo);assert.ok(receta.pasos.some(p=>patron.test(p)),titulo)}
 });
+
+test("Platos de varias cocciones no conservan duraciones globales subestimadas",()=>{
+ const casos=[
+  [RECETAS_LOTE_3,"Pastel de papas con lentejas",65],
+  [RECETAS_LOTE_3,"Zapallo relleno de garbanzos",50],
+  [RECETAS_LOTE_3,"Arroz caldoso con lentejas y tomate",50],
+  [RECETAS_LOTE_4,"Pastel de arroz con pollo",55],
+  [RECETAS_LOTE_4,"Papas rellenas de espinaca y queso",65],
+  [RECETAS_LOTE_4,"Papas al horno con pollo desmenuzado",65],
+  [RECETAS_LOTE_4,"Zapallo al horno con lentejas especiadas",55],
+  [RECETAS_LOTE_5,"Papas rellenas de lentejas",65],
+  [RECETAS_LOTE_5,"Pollo estofado con lentejas",55],
+  [RECETAS_LOTE_5,"Pasta al horno con pollo y tomate",50],
+  [RECETAS_LOTE_5,"Tortilla de lentejas y cebolla",50],
+  [RECETAS_LOTE_5,"Lentejas con arroz y espinaca",55]
+ ];
+ for(const [lote,titulo,minutos] of casos){
+  const receta=lote.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(Number.parseInt(receta.tiempoCoccion,10)>=minutos,
+    `${titulo}: revisar tiempo de cocción de varias etapas`);
+ }
+});
