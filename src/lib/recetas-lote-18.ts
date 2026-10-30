@@ -14,7 +14,7 @@ const FICHAS=[
     "pasos": [
       "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
       "Pela y corta la zanahoria en bastones; hornéala a 200 °C durante 20 a 25 minutos, hasta que esté tierna y ligeramente dorada.",
-      "Aliña con jugo de limón al terminar.",
+      "Mezcla la quinoa cocida con la zanahoria asada y aliña con jugo de limón.",
       "Añade perejil picado justo antes de servir."
 ]
   },
@@ -32,7 +32,7 @@ const FICHAS=[
       "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
       "Lamina y saltea los champiñones hasta que pierdan su agua.",
       "Cuece el arroz integral en agua siguiendo el tiempo indicado en el envase, hasta que esté tierno.",
-      "Pica y sofríe la cebolla hasta que esté transparente."
+      "Sofríe la cebolla picada, mezcla con los champiñones y sirve junto al pollo cocido y el arroz integral."
 ]
   },
   {
@@ -83,7 +83,7 @@ const FICHAS=[
       "Hornea el pescado a 190 °C hasta que alcance 63 °C.",
       "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
       "Lava y corta el tomate en cubos.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Saltea brevemente el ajo picado con el tomate y sirve junto al pescado horneado y las papas cocidas."
 ]
   },
   {
@@ -100,7 +100,7 @@ const FICHAS=[
       "Enjuaga y cuece las lentejas hasta que estén tiernas.",
       "Lava y corta el pepino en cubos.",
       "Pica la menta fresca y añádela al final.",
-      "Aliña con jugo de limón al terminar."
+      "Deja enfriar las lentejas, mezcla con el pepino y la menta y aliña con jugo de limón."
 ]
   },
   {
@@ -134,7 +134,7 @@ const FICHAS=[
       "Cuece el arroz en agua hasta que esté tierno.",
       "Corta la berenjena y hornéala a 200 °C hasta que esté tierna.",
       "Corta el tofu y dóralo en una sartén.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Saltea el ajo picado brevemente, mezcla con el tofu dorado y sirve sobre el arroz junto a la berenjena asada."
 ]
   },
   {
@@ -151,7 +151,7 @@ const FICHAS=[
       "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
       "Cuece las arvejas hasta que estén tiernas.",
       "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
-      "Pica y sofríe la cebolla hasta que esté transparente."
+      "Sofríe la cebolla picada, incorpora las arvejas y la zanahoria cocidas y sirve junto al pollo completamente cocido."
 ]
   },
   {
@@ -168,7 +168,7 @@ const FICHAS=[
       "Hidrata el cuscús con agua caliente según el envase.",
       "Usa garbanzos previamente cocidos y escurridos.",
       "Aliña con jugo de limón al terminar.",
-      "Añade perejil picado justo antes de servir."
+      "Mezcla el cuscús hidratado con los garbanzos cocidos, aliña con limón y añade perejil picado antes de servir."
 ]
   },
   {
@@ -185,7 +185,7 @@ const FICHAS=[
       "Lava y corta el repollo en tiras finas.",
       "Pela y corta la palta justo antes de servir.",
       "Cuece el choclo hasta que esté tierno.",
-      "Lava y corta el tomate en cubos."
+      "Lava y corta el tomate en cubos; mezcla con repollo, palta y choclo cocido y sirve."
 ]
   },
   {
@@ -216,10 +216,10 @@ const FICHAS=[
     "prep": 10,
     "coc": 12,
     "pasos": [
-      "Bate los huevos y cuájalos completamente en una sartén.",
-      "Lava y corta el tomate en cubos.",
-      "Añade albahaca fresca picada antes de servir.",
-      "Agrega el queso y calienta hasta que se funda."
+      "Bate los huevos en un bol y reserva.",
+      "Lava y corta el tomate en cubos y mezcla con la albahaca picada.",
+      "Vierte los huevos batidos en una sartén antiadherente y deja que comiencen a cuajar.",
+      "Agrega el tomate, la albahaca y el queso, dobla el omelette y cocina hasta que el huevo esté completamente cuajado."
 ]
   },
   {
@@ -233,10 +233,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 40,
     "pasos": [
-      "Enjuaga y cuece las lentejas hasta que estén tiernas.",
-      "Corta el zapallo en cubos y hornéalo a 200 °C hasta que esté tierno.",
-      "Pica y sofríe la cebolla hasta que esté transparente.",
-      "Pela y corta la zanahoria; saltéala hasta que esté tierna."
+      "Enjuaga las lentejas y ponlas en una olla con agua suficiente; cuece a fuego suave hasta que comiencen a ablandar.",
+      "Corta el zapallo y la zanahoria en cubos; incorpóralos a la olla de lentejas y cocina hasta que estén tiernos.",
+      "Sofríe la cebolla picada en una sartén hasta que esté transparente.",
+      "Agrega la cebolla sofrita a la olla, ajusta el caldo y deja hervir unos minutos antes de servir la sopa."
 ]
   },
   {
@@ -253,7 +253,7 @@ const FICHAS=[
       "Cuece el arroz en agua hasta que esté tierno.",
       "Escurre el atún en conserva antes de incorporarlo a la preparación.",
       "Lava y corta el pepino en cubos.",
-      "Aliña con jugo de limón al terminar."
+      "Enfría rápidamente el arroz cocido; mézclalo con atún escurrido y pepino y aliña con jugo de limón."
 ]
   },
   {
@@ -270,7 +270,7 @@ const FICHAS=[
       "Hornea el salmón a 190 °C hasta que alcance 63 °C.",
       "Cocina la coliflor al vapor hasta que esté tierna.",
       "Aliña con jugo de limón al terminar.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Saltea brevemente el ajo picado sin quemarlo; sirve el salmón cocido con la coliflor y el ajo y termina con limón."
 ]
   },
   {
@@ -287,7 +287,7 @@ const FICHAS=[
       "Calienta las tortillas por ambos lados.",
       "Usa porotos previamente cocidos y escurridos.",
       "Pela y corta la palta justo antes de servir.",
-      "Lava y corta el tomate en cubos."
+      "Lava y corta el tomate en cubos; rellena las tortillas calientes con porotos cocidos, palta y tomate."
 ]
   },
   {
@@ -301,10 +301,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
-      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Añade perejil picado justo antes de servir.",
-      "Agrega la leche y calienta suavemente sin hervir."
+      "Pela y corta la zanahoria en rodajas finas y las papas en cubos.",
+      "Cuece la zanahoria y las papas juntas en agua hasta que estén completamente tiernas.",
+      "Tritura las verduras con parte del agua de cocción hasta obtener una crema homogénea.",
+      "Agrega la leche, calienta suavemente sin hervir y añade perejil picado antes de servir."
 ]
   },
   {
@@ -321,7 +321,7 @@ const FICHAS=[
       "Cuece la pasta en agua hirviendo hasta que esté al dente.",
       "Lamina y saltea los champiñones hasta que pierdan su agua.",
       "Cuece las arvejas hasta que estén tiernas.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Saltea el ajo picado brevemente; mezcla los fideos escurridos con champiñones y arvejas cocidas y calienta todo antes de servir."
 ]
   },
   {
@@ -337,8 +337,8 @@ const FICHAS=[
     "pasos": [
       "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
       "Lava y saltea la espinaca brevemente.",
-      "Bate los huevos y cuájalos completamente en una sartén.",
-      "Aliña con jugo de limón al terminar."
+      "Cuece los huevos en agua hirviendo hasta que las yemas estén firmes; enfría, pela y corta.",
+      "Mezcla la quinoa con la espinaca y sirve con los huevos duros cortados; aliña con jugo de limón."
 ]
   },
   {
@@ -354,8 +354,8 @@ const FICHAS=[
     "pasos": [
       "Corta la berenjena y hornéala a 200 °C hasta que esté tierna.",
       "Lava y corta el tomate en cubos.",
-      "Agrega el queso y calienta hasta que se funda.",
-      "Añade albahaca fresca picada antes de servir."
+      "Cubre la berenjena asada con tomate y queso; gratina en el horno hasta que el queso se funda y dore.",
+      "Retira del horno y añade albahaca fresca picada antes de servir."
 ]
   },
   {
@@ -372,7 +372,7 @@ const FICHAS=[
       "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
       "Cuece las arvejas hasta que estén tiernas.",
       "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Agrega la leche y calienta suavemente sin hervir."
+      "Machaca las arvejas y las papas cocidas con la leche caliente hasta obtener un puré; sirve junto al pollo completamente cocido."
 ]
   },
   {
@@ -389,7 +389,7 @@ const FICHAS=[
       "Usa garbanzos previamente cocidos y escurridos.",
       "Cuece la betarraga hasta que esté tierna y córtala en cubos.",
       "Añade perejil picado justo antes de servir.",
-      "Aliña con jugo de limón al terminar."
+      "Mezcla los garbanzos cocidos con la betarraga tibia y el perejil; aliña con jugo de limón y sirve."
 ]
   },
   {
@@ -405,8 +405,8 @@ const FICHAS=[
     "pasos": [
       "Cuece el arroz en agua hasta que esté tierno.",
       "Cuece el choclo hasta que esté tierno.",
-      "Corta el pimentón y ásalo a 200 °C hasta que esté tierno.",
-      "Pica y sofríe la cebolla hasta que esté transparente."
+      "Corta el pimentón en tiras y saltéalo en sartén hasta que esté tierno y ligeramente dorado.",
+      "Sofríe la cebolla picada, incorpora el pimentón salteado y el choclo cocido y mezcla con el arroz antes de servir."
 ]
   },
   {
@@ -423,7 +423,7 @@ const FICHAS=[
       "Tuesta el pan hasta que esté dorado.",
       "Lamina y saltea los champiñones hasta que pierdan su agua.",
       "Pela y corta la palta justo antes de servir.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Saltea el ajo picado brevemente con los champiñones; sirve sobre las tostadas y termina con palta fresca."
 ]
   }
 ] as const;
