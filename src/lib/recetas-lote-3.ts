@@ -228,10 +228,16 @@ const DATOS = [
   }
 ] as const;
 const CANTIDADES: Record<string,string> = {"arroz":"150 g","zanahoria":"180 g","papa":"350 g","cebolla":"100 g","lenteja":"180 g","tomate":"220 g","huevo":"3 unidades","espinaca":"160 g","queso":"80 g","zapallo":"350 g","atun":"140 g","garbanzo":"200 g","pasta":"180 g","pollo":"300 g"};
+/** Duraciones orientativas revisadas para procesos de cocción consecutivos (no certificación culinaria). */
+const TIEMPOS_REVISADOS: Record<string,string> = {
+  "Pastel de papas con lentejas": "65 min",
+  "Zapallo relleno de garbanzos": "50 min",
+  "Arroz caldoso con lentejas y tomate": "50 min"
+};
 export const RECETAS_LOTE_3: Receta[] = DATOS.map((f,i)=>({
  id:`lote-3-${i+1}`,titulo:f.titulo,
  descripcion:"Preparación casera para dos personas, con cantidades orientativas.",
- tiempoPreparacion:"15 min",tiempoCoccion:"35 min",porciones:"2 personas",dificultad:"Fácil",
+ tiempoPreparacion:"15 min",tiempoCoccion:TIEMPOS_REVISADOS[f.titulo] ?? "35 min",porciones:"2 personas",dificultad:"Fácil",
  ingredientes:f.ids.map(id=>id==="garbanzo" ? "200 g de garbanzos cocidos y escurridos" : `${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],
  costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",
  ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0
