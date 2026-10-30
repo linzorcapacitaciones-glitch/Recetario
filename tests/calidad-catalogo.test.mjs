@@ -183,3 +183,19 @@ test("Platos de varias cocciones no conservan duraciones globales subestimadas",
     `${titulo}: revisar tiempo de cocción de varias etapas`);
  }
 });
+
+test("Lote 18: títulos, ingredientes y técnicas de cocción son coherentes",()=>{
+ const buscar=titulo=>RECETAS_LOTE_18.find(r=>r.titulo===titulo);
+ const quinoa=buscar("Ensalada de quinoa con zanahoria asada");
+ assert.ok(quinoa?.pasos.some(p=>/hornéala a 200 °C durante 20 a 25 minutos/i.test(p)));
+ const arroz=buscar("Pollo con champiñones y arroz integral");
+ assert.ok(arroz?.ingredientes.some(i=>/150 g de arroz integral/i.test(i)));
+ assert.ok(arroz?.pasos.some(p=>/cuece el arroz integral/i.test(p)));
+ assert.ok(Number.parseInt(arroz.tiempoCoccion,10)>=45);
+ const acelga=buscar("Tortilla de acelga y queso");
+ assert.ok(acelga?.pasos.some(p=>/pica las hojas/i.test(p)));
+ assert.ok(!acelga?.pasos.some(p=>/pícalas hojas/i.test(p)));
+ const pasta=buscar("Pasta con tomate asado y ricota");
+ assert.ok(pasta?.pasos.some(p=>/ásalo a 200 °C durante 15 a 20 minutos/i.test(p)));
+ assert.ok(pasta?.pasos.some(p=>/mezcla la pasta escurrida con el tomate asado/i.test(p)));
+});
