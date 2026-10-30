@@ -13,7 +13,7 @@ const FICHAS=[
     "coc": 30,
     "pasos": [
       "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
-      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
+      "Pela y corta la zanahoria en bastones; hornéala a 200 °C durante 20 a 25 minutos, hasta que esté tierna y ligeramente dorada.",
       "Aliña con jugo de limón al terminar.",
       "Añade perejil picado justo antes de servir."
 ]
@@ -27,11 +27,11 @@ const FICHAS=[
       "cebolla"
     ],
     "prep": 12,
-    "coc": 35,
+    "coc": 45,
     "pasos": [
       "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
       "Lamina y saltea los champiñones hasta que pierdan su agua.",
-      "Cuece el arroz en agua hasta que esté tierno.",
+      "Cuece el arroz integral en agua siguiendo el tiempo indicado en el envase, hasta que esté tierno.",
       "Pica y sofríe la cebolla hasta que esté transparente."
 ]
   },
@@ -63,7 +63,7 @@ const FICHAS=[
     "prep": 12,
     "coc": 18,
     "pasos": [
-      "Lava la acelga, pícalas hojas y escúrrelas bien.",
+      "Lava la acelga, pica las hojas y escúrrelas bien.",
       "Sofríe la cebolla picada y agrega la acelga hasta que se ablande y pierda humedad.",
       "Bate los huevos, mezcla con las verduras tibias y el queso desmenuzado.",
       "Vierte en una sartén antiadherente y cocina por ambos lados hasta que el centro quede cuajado."
@@ -115,8 +115,8 @@ const FICHAS=[
     "coc": 25,
     "pasos": [
       "Cuece la pasta en agua hirviendo hasta que esté al dente.",
-      "Lava y corta el tomate en cubos.",
-      "Incorpora la ricota al final para mantener su textura.",
+      "Lava y corta el tomate en mitades; ásalo a 200 °C durante 15 a 20 minutos, hasta que esté blando y ligeramente dorado.",
+      "Mezcla la pasta escurrida con el tomate asado e incorpora la ricota al final para mantener su textura.",
       "Añade albahaca fresca picada antes de servir."
 ]
   },
@@ -431,6 +431,7 @@ const CANTIDADES:Record<string,string>={"quinoa":"150 g","zanahoria":"180 g","li
 export const RECETAS_LOTE_18:Receta[]=FICHAS.map((f,i)=>({id:`lote-18-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{
  const cantidad=CANTIDADES[id];
  if(id==="coco")return cantidad;
+ if(id==="arroz"&&f.titulo==="Pollo con champiñones y arroz integral")return `${cantidad} de arroz integral`;
  if(id==="garbanzo")return `${cantidad} de garbanzos cocidos y escurridos`;
  if(id==="poroto")return `${cantidad} de porotos cocidos y escurridos`;
  const nombres:Record<string,string>={huevo:"huevos",champinon:"champiñones",atun:"atún",limon:"limón",pimenton:"pimentón",brocoli:"brócoli",salmon:"salmón",cuscus:"cuscús",tortilla:"tortillas",papa:"papas",nuez:"nueces",arveja:"arvejas",espinaca:"espinaca",lenteja:"lentejas",puerro:"puerro",zapallito:"zapallitos",pera:"pera",naranja:"naranjas",aceituna:"aceitunas"};
