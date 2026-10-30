@@ -220,3 +220,24 @@ test("Lote 19: las técnicas y el montaje corresponden al plato anunciado",()=>{
  const pasta=buscar("Pasta con arvejas y ricota al limón");
  assert.ok(pasta?.pasos.some(p=>/mezcla la pasta escurrida con las arvejas cocidas/i.test(p)));
 });
+
+test("Lote 18: crema, sopa, omelette y ensaladas ejecutan su técnica",()=>{
+ const buscar=t=>RECETAS_LOTE_18.find(r=>r.titulo===t);
+ const crema=buscar("Crema de zanahoria y papa con perejil");
+ assert.ok(crema?.pasos.some(p=>/tritura las verduras/i.test(p)));
+ const sopa=buscar("Sopa de lentejas con zapallo");
+ assert.ok(sopa?.pasos.some(p=>/ajusta el caldo/i.test(p)));
+ const huevo=buscar("Quinoa con espinaca y huevo duro");
+ assert.ok(huevo?.pasos.some(p=>/cuece los huevos en agua hirviendo/i.test(p)));
+ assert.ok(!huevo?.pasos.some(p=>/bate los huevos/i.test(p)));
+ const pimenton=buscar("Arroz con choclo y pimentón salteado");
+ assert.ok(pimenton?.pasos.some(p=>/saltéalo en sartén/i.test(p)));
+ const tacos=buscar("Tacos de porotos negros y palta");
+ assert.ok(tacos?.pasos.some(p=>/rellena las tortillas calientes/i.test(p)));
+ const pure=buscar("Pollo con puré de arvejas");
+ assert.ok(pure?.pasos.some(p=>/machaca las arvejas y las papas cocidas/i.test(p)));
+ const berenjenas=buscar("Berenjenas gratinadas con tomate");
+ assert.ok(berenjenas?.pasos.some(p=>/gratina en el horno/i.test(p)));
+ const omelette=buscar("Omelette de tomate y albahaca");
+ assert.ok(omelette?.pasos.some(p=>/dobla el omelette/i.test(p)));
+});
