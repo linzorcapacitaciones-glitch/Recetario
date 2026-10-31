@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useListaCompras } from "@/lib/listaCompras";
+import { firmaCompraPlan } from "@/lib/compras-cantidades";
 import {
   PRODUCTOS, IDS_INGREDIENTES, PRECIOS_REFERENCIA,
   type IngredienteId
@@ -59,8 +60,7 @@ export function PlanificadorSemanal() {
     const productos = plan.comprasNetas.filter(c => c.comprar > 0).map(c => ({
       id: c.id, nombre: c.nombre, cantidad: c.comprar, unidad: c.unidad === "unidad" ? "unidad" as const : "g" as const,
     }));
-    const fuente = JSON.stringify({ personas, dias, comidasPorDia, presupuesto, inventario, precios, variante,
-      platos: plan.platos.map(p => p.plato.id), compras: productos.map(p => [p.id, p.cantidad]) });
+    const fuente = firmaCompraPlan(personas, plan.platos.map(p => p.plato.id), productos);
     const total = agregarCantidades(productos, "Planificador semanal", fuente);
     setAviso(total > 0 ? `${total} productos incorporados o actualizados en tu lista de compras.` :
       "Esta planificación ya estaba incorporada a tu lista de compras.");
