@@ -30,3 +30,14 @@ export function consolidarComprasCuantificadas(
   }
   return { items, modificados };
 }
+
+/** Firma estable de una compra: no cambia por editar precios o presupuesto
+ * si los platos elegidos y las cantidades requeridas siguen iguales.
+ */
+export function firmaCompraPlan(personas: number, platos: string[], productos: ProductoCompra[]): string {
+  const compras = productos
+    .filter(p => p.cantidad > 0 && Number.isFinite(p.cantidad))
+    .map(p => [p.id, p.unidad, Math.round(p.cantidad * 10) / 10] as const)
+    .sort((a, b) => a[0].localeCompare(b[0]) || a[1].localeCompare(b[1]));
+  return JSON.stringify({ personas, platos, compras });
+}
