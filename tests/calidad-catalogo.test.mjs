@@ -241,3 +241,13 @@ test("Lote 18: crema, sopa, omelette y ensaladas ejecutan su técnica",()=>{
  const omelette=buscar("Omelette de tomate y albahaca");
  assert.ok(omelette?.pasos.some(p=>/dobla el omelette/i.test(p)));
 });
+
+test("Dos platos con tofu, champiñones y arroz tienen técnicas diferentes",()=>{
+ const salteado=RECETAS_LOTE_11.find(r=>r.titulo==="Salteado de tofu y champiñones");
+ const arroz=RECETAS_LOTE_16.find(r=>r.titulo==="Arroz con champiñones y tofu");
+ assert.ok(salteado && arroz);
+ assert.match(salteado.pasos.join(" "),/sobre el arroz/i);
+ assert.match(arroz.pasos.join(" "),/arroz crudo/i);
+ assert.match(arroz.pasos.join(" "),/tapa y cocina a fuego bajo durante 15 a 20 minutos/i);
+ assert.ok(Number.parseInt(arroz.tiempoCoccion,10)>=30);
+});
