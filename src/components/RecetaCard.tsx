@@ -10,6 +10,7 @@ import { ChefIAReceta } from "@/components/ChefIA";
 import { claveReceta } from "@/lib/resenas";
 import { disponibilidad, porcentaje } from "@/lib/coincidencia";
 import { registrarEvento } from "@/lib/analitica";
+import { detectarAlergenos } from "@/lib/alergenos";
 
 export function RecetaCard({
   receta,
@@ -24,6 +25,7 @@ export function RecetaCard({
 }) {
   const recetaId = claveReceta(receta.titulo);
   const estado = disponibilidad(receta);
+  const alergenos = detectarAlergenos(receta.ingredientes);
   const pct = porcentaje(receta);
   const tieneDatos = receta.porcentajeCoincidencia != null;
   const ref = useRef<HTMLElement | null>(null);
@@ -124,6 +126,14 @@ export function RecetaCard({
         </p>
       )}
 
+      {(alergenos.confirmados.length>0 || alergenos.verificar.length>0) && (
+        <div role="note" className="mt-4 rounded-xl border border-border bg-secondary/50 p-3 text-sm">
+          <p className="font-semibold">⚠️ Información sobre alérgenos</p>
+          {alergenos.confirmados.length>0 && <p className="mt-1">Ingredientes que contienen: {alergenos.confirmados.join(", ")}.</p>}
+          {alergenos.verificar.length>0 && <p className="mt-1">Verificar según la marca: {alergenos.verificar.join(", ")}.</p>}
+          <p className="mt-1 text-xs text-muted-foreground">Revisa siempre las etiquetas y posibles trazas o contaminación cruzada. Esta identificación automática no garantiza ausencia de otros alérgenos.</p>
+        </div>
+      )}
       <div className="mt-5 grid gap-5">
         <div>
           <h4 className="text-xs font-semibold tracking-[0.18em] text-accent-foreground uppercase">

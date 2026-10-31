@@ -112,13 +112,13 @@ const FICHAS=[
       "ajo"
     ],
     "pasos": [
-      "Cuece el arroz en agua hasta que esté tierno.",
-      "Corta el tofu en cubos y dóralo en sartén.",
-      "Añade champiñones laminados y ajo picado.",
-      "Mezcla el salteado con el arroz y sirve caliente."
+      "Corta el tofu en cubos, sécalo y dóralo con un poco de aceite; retíralo de la sartén.",
+      "Limpia y lamina los champiñones; saltéalos con el ajo picado hasta que evaporen su líquido.",
+      "Añade el arroz crudo a la sartén y remueve un minuto; incorpora agua caliente según la proporción indicada en el envase.",
+      "Tapa y cocina a fuego bajo durante 15 a 20 minutos, hasta que el arroz esté tierno; integra el tofu dorado al final y sirve."
     ],
     "prep": 12,
-    "coc": 20
+    "coc": 30
   },
   {
     "titulo": "Pescado con puré de zapallo",
@@ -189,7 +189,7 @@ const FICHAS=[
     "coc": 40
   },
   {
-    "titulo": "Papas rellenas de espinaca",
+    "titulo": "Tortitas de papa con espinaca y queso",
     "ids": [
       "papa",
       "espinaca",
@@ -197,13 +197,13 @@ const FICHAS=[
       "cebolla"
     ],
     "pasos": [
-      "Hornea las papas enteras hasta que estén tiernas.",
-      "Sofríe cebolla y espinaca picadas.",
-      "Abre las papas y retira parte de la pulpa.",
-      "Rellena con espinaca y queso y gratina hasta dorar."
+      "Pela las papas, córtalas en cubos y hiérvelas 15 minutos hasta que estén tiernas; escúrrelas y machácalas.",
+      "Pica la cebolla y la espinaca lavada; saltéalas con aceite 5 minutos hasta evaporar el líquido.",
+      "Mezcla el puré de papas con la espinaca, la cebolla y el queso; forma tortitas compactas.",
+      "Dora las tortitas en una sartén ligeramente aceitada 4 a 5 minutos por lado hasta que estén firmes y bien calientes."
     ],
     "prep": 15,
-    "coc": 50
+    "coc": 30
   },
   {
     "titulo": "Sopa de arroz con verduras",
@@ -308,7 +308,7 @@ const FICHAS=[
     "coc": 20
   },
   {
-    "titulo": "Ensalada tibia de papa y arvejas",
+    "titulo": "Tortilla de papas y arvejas al perejil",
     "ids": [
       "papa",
       "arveja",
@@ -316,10 +316,10 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Cuece las papas cortadas en cubos hasta que estén tiernas.",
-      "Cuece las arvejas por separado.",
-      "Hierve los huevos hasta que estén firmes.",
-      "Mezcla con perejil picado y sirve tibio."
+      "Pela las papas, córtalas en cubos pequeños y hiérvelas 10 a 12 minutos hasta que estén tiernas.",
+      "Cuece las arvejas 4 a 6 minutos en agua hirviendo y escúrrelas.",
+      "Bate los huevos con perejil picado y mezcla con las papas y arvejas cocidas.",
+      "Vierte la mezcla en una sartén ligeramente aceitada y cocina por ambos lados hasta que el huevo esté completamente cuajado."
     ],
     "prep": 12,
     "coc": 25
@@ -393,7 +393,7 @@ const FICHAS=[
     "coc": 0
   },
   {
-    "titulo": "Panqueques de avena y manzana",
+    "titulo": "Budín de avena y manzana al horno",
     "ids": [
       "avena",
       "manzana",
@@ -401,13 +401,13 @@ const FICHAS=[
       "leche"
     ],
     "pasos": [
-      "Ralla la manzana lavada y reserva.",
-      "Mezcla avena, huevo y leche hasta obtener una masa espesa.",
-      "Incorpora la manzana rallada y revuelve.",
-      "Cocina pequeñas porciones por ambos lados hasta que el huevo cuaje."
+      "Precalienta el horno a 180 °C y lava la manzana; córtala en láminas finas.",
+      "Mezcla la avena con el huevo y la leche hasta obtener una preparación homogénea.",
+      "Incorpora las láminas de manzana y vierte en una fuente pequeña ligeramente aceitada.",
+      "Hornea a 180 °C durante 25 a 30 minutos hasta que el centro esté firme y el huevo completamente cocido."
     ],
     "prep": 12,
-    "coc": 15
+    "coc": 30
   },
   {
     "titulo": "Bowl de arroz con salmón y pepino",
@@ -428,4 +428,4 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"choclo":"200 g","zanahoria":"180 g","cebolla":"100 g","leche":"180 ml","poroto":"200 g","pepino":"1 unidad","tomate":"220 g","limon":"1 unidad","pasta":"180 g","brocoli":"250 g","nuez":"50 g","ajo":"2 dientes","pollo":"300 g","arroz":"150 g","zapallo":"300 g","zapallito":"2 unidades","huevo":"2 unidades","avena":"100 g","queso":"80 g","betarraga":"2 unidades","garbanzo":"200 g","perejil":"1 cucharada","champinon":"200 g","tofu":"250 g","pescado":"300 g","papa":"350 g","cuscus":"150 g","naranja":"2 unidades","espinaca":"160 g","lenteja":"180 g","coliflor":"300 g","arveja":"180 g","tortilla":"4 unidades","repollo":"250 g","quinoa":"150 g","manzana":"1 unidad","albahaca":"8 hojas","berenjena":"1 unidad","pimenton":"1 unidad","salmon":"300 g","palta":"1 unidad"};
-export const RECETAS_LOTE_16:Receta[]=FICHAS.map((f,i)=>({id:`lote-16-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_16:Receta[]=FICHAS.map((f,i)=>({id:`lote-16-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

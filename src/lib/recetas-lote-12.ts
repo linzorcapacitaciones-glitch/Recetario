@@ -121,7 +121,7 @@ const FICHAS=[
     "coc": 35
   },
   {
-    "titulo": "Huevos al horno con espinaca",
+    "titulo": "Revuelto de espinaca, tomate y queso",
     "ids": [
       "huevo",
       "espinaca",
@@ -129,13 +129,13 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Lava la espinaca y saltéala hasta reducir su volumen.",
-      "Reparte espinaca y tomate picado en dos fuentes pequeñas.",
-      "Agrega un huevo por fuente y cubre con queso.",
-      "Hornea a 180 °C hasta que los huevos estén completamente cuajados."
+      "Lava la espinaca y el tomate; corta el tomate en cubos pequeños.",
+      "Saltea la espinaca y el tomate con un poco de aceite durante 4 minutos hasta reducir el líquido.",
+      "Bate los huevos y viértelos en la sartén a fuego medio-bajo, removiendo continuamente.",
+      "Añade el queso y continúa removiendo hasta que los huevos estén completamente cuajados; sirve caliente."
     ],
     "prep": 10,
-    "coc": 18
+    "coc": 10
   },
   {
     "titulo": "Papas rústicas con salsa de yogur",
@@ -343,4 +343,4 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"quinoa":"150 g","palta":"1 unidad","choclo":"200 g","tomate":"200 g","arroz":"150 g","atun":"140 g","pepino":"1 unidad","pasta":"180 g","aceituna":"60 g","queso":"80 g","zapallo":"300 g","leche":"150 ml","coco":"150 ml","cebolla":"100 g","pescado":"300 g","jengibre":"10 g","limon":"1 unidad","zanahoria":"180 g","pollo":"300 g","mostaza":"2 cucharadas","papa":"350 g","lenteja":"180 g","perejil":"1 cucharada","huevo":"2 unidades","espinaca":"160 g","yogur":"150 g","ajo":"2 dientes","champinon":"200 g","arveja":"180 g","avena":"100 g","pan":"4 rebanadas","garbanzo":"200 g","tahini":"40 g","coliflor":"300 g","curcuma":"1 cucharadita","acelga":"250 g","tortilla":"4 unidades","repollo":"200 g","brocoli":"250 g","betarraga":"2 unidades","naranja":"2 unidades","lechuga":"100 g"};
-export const RECETAS_LOTE_12:Receta[]=FICHAS.map((f,i)=>({id:`lote-12-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_12:Receta[]=FICHAS.map((f,i)=>({id:`lote-12-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

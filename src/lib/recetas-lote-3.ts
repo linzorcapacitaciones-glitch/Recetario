@@ -29,7 +29,7 @@ const DATOS = [
       "Cuece las lentejas hasta que estén tiernas y escúrrelas.",
       "Sofríe cebolla y zanahoria; mezcla con las lentejas cocidas.",
       "Hierve las papas, escúrrelas y prepara un puré con un poco de agua de cocción.",
-      "Coloca las lentejas en una fuente, cubre con puré y hornea a 190 °C hasta dorar."
+      "Coloca las lentejas en una fuente, cubre con puré y hornea a 190 °C durante 15 a 20 minutos, hasta dorar."
     ]
   },
   {
@@ -73,7 +73,7 @@ const DATOS = [
       "Usa garbanzos completamente cocidos y bien escurridos.",
       "Machácalos y mezcla con cebolla y zanahoria ralladas y huevo batido.",
       "Forma hamburguesas compactas y distribúyelas en una bandeja aceitada.",
-      "Hornea a 200 °C hasta dorar y hasta que el huevo esté bien cocido."
+      "Hornea a 200 °C durante 20 a 25 minutos, hasta dorar y comprobar que el huevo esté completamente cuajado."
     ]
   },
   {
@@ -228,11 +228,17 @@ const DATOS = [
   }
 ] as const;
 const CANTIDADES: Record<string,string> = {"arroz":"150 g","zanahoria":"180 g","papa":"350 g","cebolla":"100 g","lenteja":"180 g","tomate":"220 g","huevo":"3 unidades","espinaca":"160 g","queso":"80 g","zapallo":"350 g","atun":"140 g","garbanzo":"200 g","pasta":"180 g","pollo":"300 g"};
+/** Duraciones orientativas revisadas para procesos de cocción consecutivos (no certificación culinaria). */
+const TIEMPOS_REVISADOS: Record<string,string> = {
+  "Pastel de papas con lentejas": "65 min",
+  "Zapallo relleno de garbanzos": "50 min",
+  "Arroz caldoso con lentejas y tomate": "50 min"
+};
 export const RECETAS_LOTE_3: Receta[] = DATOS.map((f,i)=>({
  id:`lote-3-${i+1}`,titulo:f.titulo,
  descripcion:"Preparación casera para dos personas, con cantidades orientativas.",
- tiempoPreparacion:"15 min",tiempoCoccion:"35 min",porciones:"2 personas",dificultad:"Fácil",
- ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],
+ tiempoPreparacion:"15 min",tiempoCoccion:TIEMPOS_REVISADOS[f.titulo] ?? "35 min",porciones:"2 personas",dificultad:"Fácil",
+ ingredientes:f.ids.map(id=>id==="garbanzo" ? "200 g de garbanzos cocidos y escurridos" : `${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],
  costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",
  ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0
 }));

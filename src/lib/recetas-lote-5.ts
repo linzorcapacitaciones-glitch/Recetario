@@ -283,7 +283,7 @@ const FICHAS=[
       "Cuece el arroz y reserva.",
       "Sofríe cebolla y zanahoria rallada hasta ablandar.",
       "Agrega garbanzos previamente cocidos y calienta.",
-      "Incorpora el arroz y mezcla hasta integrar los sabores."
+      "Añade el arroz ya cocido a la sartén con los garbanzos y las verduras; saltea 3 a 4 minutos hasta que todo esté caliente."
     ]
   },
   {
@@ -325,7 +325,7 @@ const FICHAS=[
       "arroz"
     ],
     "pasos": [
-      "Cuece el arroz como acompañamiento.",
+      "Enjuaga el arroz y cuécelo en agua durante 15 a 20 minutos, hasta que esté tierno; mantenlo tapado mientras preparas el pollo.",
       "Dora el pollo y continúa cocinando hasta alcanzar 74 °C.",
       "Hierve zanahoria y cebolla en poca agua hasta ablandar.",
       "Tritura las verduras, vierte la salsa sobre el pollo y sirve con arroz."
@@ -358,7 +358,7 @@ const FICHAS=[
       "Hierve el zapallo hasta que esté blando y escúrrelo muy bien.",
       "Sofríe cebolla picada y mezcla con el puré de zapallo.",
       "Añade huevos batidos y queso rallado.",
-      "Hornea a 180 °C hasta que el centro esté firme y bien cocido."
+      "Hornea a 180 °C durante 25 a 35 minutos, hasta que el centro esté firme y el huevo completamente cocido."
     ]
   },
   {
@@ -378,4 +378,12 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"arroz":"150 g","zanahoria":"180 g","papa":"350 g","cebolla":"100 g","lenteja":"180 g","tomate":"220 g","huevo":"3 unidades","espinaca":"160 g","queso":"80 g","zapallo":"350 g","atun":"140 g","garbanzo":"200 g","pasta":"180 g","pollo":"300 g"};
-export const RECETAS_LOTE_5:Receta[]=FICHAS.map((f,i)=>({id:`lote-5-${i+1}`,titulo:f.titulo,descripcion:"Receta casera para dos personas con cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:"35 min",porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+/** Duraciones orientativas revisadas para procesos de cocción consecutivos (no certificación culinaria). */
+const TIEMPOS_REVISADOS: Record<string,string> = {
+  "Papas rellenas de lentejas": "65 min",
+  "Pollo estofado con lentejas": "55 min",
+  "Pasta al horno con pollo y tomate": "50 min",
+  "Tortilla de lentejas y cebolla": "50 min",
+  "Lentejas con arroz y espinaca": "55 min"
+};
+export const RECETAS_LOTE_5:Receta[]=FICHAS.map((f,i)=>({id:`lote-5-${i+1}`,titulo:f.titulo,descripcion:"Receta casera para dos personas con cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:TIEMPOS_REVISADOS[f.titulo] ?? "35 min",porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

@@ -49,7 +49,7 @@ const FICHAS=[
       "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
       "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
       "Cuece el brócoli al vapor hasta que esté tierno.",
-      "Aliña con jugo de limón al terminar."
+      "Sirve el pollo cocido junto a la quinoa y el brócoli, y aliña con jugo de limón."
 ]
   },
   {
@@ -134,7 +134,7 @@ const FICHAS=[
       "Hidrata el cuscús con agua caliente según el envase.",
       "Corta el zapallo en cubos y hornéalo a 200 °C hasta que esté tierno.",
       "Usa garbanzos previamente cocidos y escurridos.",
-      "Añade perejil picado justo antes de servir."
+      "Mezcla el cuscús hidratado con el zapallo asado y los garbanzos cocidos; agrega perejil picado y sirve."
 ]
   },
   {
@@ -151,7 +151,7 @@ const FICHAS=[
       "Usa porotos previamente cocidos y escurridos.",
       "Pela la naranja y separa los gajos.",
       "Lava y corta el repollo en tiras finas.",
-      "Aliña con jugo de limón al terminar."
+      "Mezcla los porotos con los gajos de naranja y el repollo cortado; aliña con jugo de limón y sirve."
 ]
   },
   {
@@ -199,10 +199,10 @@ const FICHAS=[
     "prep": 10,
     "coc": 15,
     "pasos": [
-      "Bate los huevos y cuájalos completamente en una sartén.",
-      "Lava y saltea la acelga hasta que se ablande.",
-      "Lava y corta el tomate en cubos.",
-      "Agrega el queso y calienta hasta que se funda."
+      "Bate los huevos en un bol y reserva mientras preparas el relleno.",
+      "Lava y saltea la acelga hasta que se ablande y pierda el exceso de humedad.",
+      "Agrega el tomate en cubos a la acelga, saltea brevemente y reserva el relleno.",
+      "Vierte los huevos batidos en una sartén; cuando empiecen a cuajar, añade el relleno y el queso, dobla y cocina hasta que el huevo esté completamente cuajado."
 ]
   },
   {
@@ -219,7 +219,7 @@ const FICHAS=[
       "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
       "Agrega romero durante la cocción y retira la rama antes de servir.",
       "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Pela y corta la zanahoria; saltéala hasta que esté tierna."
+      "Pela y corta la zanahoria; saltéala hasta que esté tierna y sirve con las papas y el pollo al romero."
 ]
   },
   {
@@ -236,7 +236,7 @@ const FICHAS=[
       "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
       "Pela y corta el mango en cubos.",
       "Lava y corta el pepino en cubos.",
-      "Pica la menta fresca y añádela al final."
+      "Deja enfriar la quinoa; mézclala con mango y pepino y añade la menta fresca picada al final."
 ]
   },
   {
@@ -252,8 +252,8 @@ const FICHAS=[
     "pasos": [
       "Cuece la pasta en agua hirviendo hasta que esté al dente.",
       "Cuece las arvejas hasta que estén tiernas.",
-      "Incorpora la ricota al final para mantener su textura.",
-      "Aliña con jugo de limón al terminar."
+      "Mezcla la pasta escurrida con las arvejas cocidas e incorpora la ricota fuera del fuego.",
+      "Aliña la pasta con jugo de limón, mezcla suavemente y sirve."
 ]
   },
   {
@@ -268,9 +268,9 @@ const FICHAS=[
     "coc": 25,
     "pasos": [
       "Hornea el pescado a 190 °C hasta que alcance 63 °C.",
-      "Lava y corta el tomate en cubos.",
-      "Incorpora aceitunas sin carozo al final.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Lava y corta el tomate en cubos; cocínalo en sartén con el ajo picado hasta formar una salsa.",
+      "Incorpora aceitunas sin carozo a la salsa de tomate y calienta brevemente.",
+      "Sirve el pescado horneado cubierto con la salsa de tomate, ajo y aceitunas."
 ]
   },
   {
@@ -286,8 +286,8 @@ const FICHAS=[
     "pasos": [
       "Usa garbanzos previamente cocidos y escurridos.",
       "Cuece la betarraga hasta que esté tierna y córtala en cubos.",
-      "Incorpora la avena para dar consistencia a la mezcla.",
-      "Bate los huevos y cuájalos completamente en una sartén."
+      "Machaca los garbanzos y mezcla con betarraga, avena y huevos batidos; forma hamburguesas compactas.",
+      "Cocina las hamburguesas en sartén por ambos lados hasta que estén doradas y el huevo completamente cocido."
 ]
   },
   {
@@ -301,10 +301,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 25,
     "pasos": [
-      "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
-      "Ralla el jengibre fresco.",
-      "Agrega la leche de coco y calienta a fuego bajo.",
-      "Pica y sofríe la cebolla hasta que esté transparente."
+      "Pela y corta la zanahoria en rodajas finas.",
+      "Pica la cebolla y sofríela junto al jengibre rallado hasta que esté transparente.",
+      "Agrega la zanahoria y agua suficiente para cubrirla; cuece hasta que esté tierna.",
+      "Tritura la zanahoria cocida con su caldo, incorpora la leche de coco y calienta suavemente antes de servir."
 ]
   },
   {
@@ -321,7 +321,7 @@ const FICHAS=[
       "Calienta las tortillas por ambos lados.",
       "Corta el tofu y dóralo en una sartén.",
       "Corta el pimentón y ásalo a 200 °C hasta que esté tierno.",
-      "Pela y corta la palta justo antes de servir."
+      "Pela y corta la palta; rellena las tortillas calientes con tofu dorado, pimentón asado y palta, y sirve."
 ]
   },
   {
@@ -338,7 +338,7 @@ const FICHAS=[
       "Cuece el arroz en agua hasta que esté tierno.",
       "Cuece el brócoli al vapor hasta que esté tierno.",
       "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
-      "Aliña con jugo de limón al terminar."
+      "Mezcla el arroz cocido con brócoli y zanahoria tibios; aliña con jugo de limón y sirve."
 ]
   },
   {
@@ -354,8 +354,8 @@ const FICHAS=[
     "pasos": [
       "Corta los zapallitos por la mitad, ahuécalos y hornéalos hasta que estén tiernos.",
       "Enjuaga y cuece las lentejas hasta que estén tiernas.",
-      "Lava y corta el tomate en cubos.",
-      "Agrega el queso y calienta hasta que se funda."
+      "Sofríe el tomate picado, mézclalo con las lentejas cocidas y rellena las mitades de zapallito.",
+      "Cubre los zapallitos rellenos con queso y gratina hasta que se funda; sirve caliente."
 ]
   },
   {
@@ -369,10 +369,10 @@ const FICHAS=[
     "prep": 12,
     "coc": 30,
     "pasos": [
-      "Cuece el choclo hasta que esté tierno.",
-      "Dora el pollo y cocina hasta que alcance 74 °C en el centro.",
-      "Corta las papas en cubos y cuécelas hasta que estén tiernas.",
-      "Añade perejil picado justo antes de servir."
+      "Pon el pollo en una olla con agua suficiente y lleva a hervor.",
+      "Agrega las papas en cubos y el choclo; cocina a fuego suave hasta que las verduras estén tiernas.",
+      "Comprueba que el pollo alcance 74 °C en el centro, retíralo, desmenúzalo y devuélvelo al caldo.",
+      "Ajusta el caldo de la sopa y añade perejil picado justo antes de servir."
 ]
   },
   {
@@ -386,10 +386,10 @@ const FICHAS=[
     "prep": 15,
     "coc": 35,
     "pasos": [
-      "Corta la berenjena y hornéala a 200 °C hasta que esté tierna.",
+      "Corta la berenjena en cubos y hornéala a 200 °C durante 25 a 30 minutos, hasta que esté tierna.",
       "Usa garbanzos previamente cocidos y escurridos.",
-      "Mezcla el yogur fuera del fuego.",
-      "Pica el ajo y saltéalo brevemente sin quemarlo."
+      "Saltea el ajo picado brevemente e incorpora los garbanzos cocidos para calentarlos.",
+      "Sirve la berenjena asada con los garbanzos al ajo y añade el yogur frío al final, fuera del fuego."
 ]
   },
   {
@@ -406,7 +406,7 @@ const FICHAS=[
       "Tuesta el pan hasta que esté dorado.",
       "Bate los huevos y cuájalos completamente en una sartén.",
       "Lava y saltea la espinaca brevemente.",
-      "Lava y corta el tomate en cubos."
+      "Lava y corta el tomate en cubos; sirve los huevos y la espinaca sobre las tostadas y termina con el tomate."
 ]
   },
   {
@@ -423,7 +423,7 @@ const FICHAS=[
       "Enjuaga y cuece la quinoa en agua hasta que esté tierna.",
       "Hornea el salmón a 190 °C hasta que alcance 63 °C.",
       "Cuece las arvejas hasta que estén tiernas.",
-      "Aliña con jugo de limón al terminar."
+      "Sirve el salmón bien cocido sobre la quinoa con las arvejas y aliña con jugo de limón."
 ]
   }
 ] as const;

@@ -164,7 +164,7 @@ const FICHAS = [
       "Lava y saltea la espinaca hasta que pierda volumen.",
       "Coloca la espinaca y tomate picado en una fuente individual.",
       "Casca los huevos encima y agrega un poco de queso.",
-      "Hornea a 190 °C hasta que las claras y las yemas estén bien cuajadas."
+      "Hornea a 190 °C durante 12 a 18 minutos, comprobando que claras y yemas queden completamente cuajadas."
     ]
   },
   {
@@ -284,7 +284,7 @@ const FICHAS = [
       "Cuece la pasta según el tiempo del envase.",
       "Saltea tomate picado hasta formar una salsa ligera.",
       "Agrega garbanzos previamente cocidos y espinaca lavada.",
-      "Mezcla con la pasta y calienta hasta integrar los sabores."
+      "Incorpora la pasta escurrida a la sartén con los garbanzos, la espinaca y el tomate; saltea 3 minutos hasta que esté bien caliente."
     ]
   },
   {
@@ -304,4 +304,11 @@ const FICHAS = [
   }
 ] as const;
 const CANTIDADES:Record<string,string> = {"arroz":"150 g","zanahoria":"180 g","papa":"350 g","cebolla":"100 g","lenteja":"180 g","tomate":"220 g","huevo":"3 unidades","espinaca":"160 g","queso":"80 g","zapallo":"350 g","atun":"140 g","garbanzo":"200 g","pasta":"180 g","pollo":"300 g"};
-export const RECETAS_LOTE_4: Receta[] = FICHAS.map((f,i)=>({id:`lote-4-${i+1}`,titulo:f.titulo,descripcion:"Preparación casera para dos personas con cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:"40 min",porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+/** Duraciones orientativas revisadas para procesos de cocción consecutivos (no certificación culinaria). */
+const TIEMPOS_REVISADOS: Record<string,string> = {
+  "Pastel de arroz con pollo": "55 min",
+  "Papas rellenas de espinaca y queso": "65 min",
+  "Papas al horno con pollo desmenuzado": "65 min",
+  "Zapallo al horno con lentejas especiadas": "55 min"
+};
+export const RECETAS_LOTE_4: Receta[] = FICHAS.map((f,i)=>({id:`lote-4-${i+1}`,titulo:f.titulo,descripcion:"Preparación casera para dos personas con cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:TIEMPOS_REVISADOS[f.titulo] ?? "40 min",porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
