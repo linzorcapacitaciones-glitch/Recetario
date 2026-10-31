@@ -112,13 +112,13 @@ const FICHAS=[
       "ajo"
     ],
     "pasos": [
-      "Cuece el arroz en agua hasta que esté tierno.",
-      "Corta el tofu en cubos y dóralo en sartén.",
-      "Añade champiñones laminados y ajo picado.",
-      "Mezcla el salteado con el arroz y sirve caliente."
+      "Corta el tofu en cubos, sécalo y dóralo con un poco de aceite; retíralo de la sartén.",
+      "Limpia y lamina los champiñones; saltéalos con el ajo picado hasta que evaporen su líquido.",
+      "Añade el arroz crudo a la sartén y remueve un minuto; incorpora agua caliente según la proporción indicada en el envase.",
+      "Tapa y cocina a fuego bajo durante 15 a 20 minutos, hasta que el arroz esté tierno; integra el tofu dorado al final y sirve."
     ],
     "prep": 12,
-    "coc": 20
+    "coc": 30
   },
   {
     "titulo": "Pescado con puré de zapallo",
