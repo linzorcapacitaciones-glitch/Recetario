@@ -384,7 +384,7 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece garbanzos remojados hasta que estén muy tiernos.",
+      "Utiliza garbanzos ya cocidos y escurridos para preparar el hummus.",
       "Tritura los garbanzos con limón y agua hasta formar una crema.",
       "Tuesta el pan y corta la palta en láminas.",
       "Unta el hummus y distribuye la palta sobre las tostadas."
