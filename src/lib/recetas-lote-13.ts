@@ -278,17 +278,16 @@ const FICHAS=[
     "ids": [
       "zanahoria",
       "coco",
-      "cebolla",
-      "jengibre"
+      "cebolla"
     ],
     "pasos": [
-      "Pela y corta las zanahorias en rodajas.",
-      "Sofríe cebolla con jengibre rallado.",
-      "Añade zanahoria y agua y cocina hasta que esté tierna.",
-      "Tritura e incorpora leche de coco antes de servir."
+      "Pela y corta las zanahorias en rodajas; ásalas a 200 °C durante 25 a 30 minutos hasta que estén tiernas y ligeramente doradas.",
+      "Sofríe la cebolla picada en una olla hasta que esté transparente.",
+      "Añade las zanahorias asadas y agua caliente hasta cubrir apenas; hierve suavemente 5 minutos.",
+      "Tritura hasta obtener una crema y añade la leche de coco fuera del fuego antes de servir."
     ],
     "prep": 12,
-    "coc": 25
+    "coc": 40
   },
   {
     "titulo": "Quinoa con champiñones al ajillo",
@@ -397,13 +396,12 @@ const FICHAS=[
     "ids": [
       "huevo",
       "queso",
-      "tomate",
-      "albahaca"
+      "tomate"
     ],
     "pasos": [
       "Lava y corta el tomate en cubos pequeños.",
       "Bate los huevos en un recipiente.",
-      "Vierte en una sartén y añade queso, tomate y albahaca.",
+      "Vierte los huevos en una sartén antiadherente y añade queso y tomate; cocina a fuego bajo para fundir el queso.",
       "Dobla y cocina hasta que el huevo esté completamente cuajado."
     ],
     "prep": 8,
