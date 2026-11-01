@@ -67,13 +67,14 @@ const FICHAS=[
       "harina",
       "tomate",
       "queso",
-      "pimenton"
+      "pimenton",
+      "levadura"
     ],
     "pasos": [
-      "Mezcla harina con agua, una pizca de sal y levadura y deja reposar la masa.",
+      "Mezcla la harina con 5 g de levadura seca, agua tibia y una pizca de sal; amasa y deja fermentar tapada 45 minutos o hasta que aumente de volumen.",
       "Estira la masa sobre una bandeja ligeramente aceitada.",
       "Cubre con tomate, queso y pimentón cortado fino.",
-      "Hornea a 220 °C hasta que la base esté cocida y el queso dorado."
+      "Hornea a 220 °C durante 15 a 20 minutos, hasta que la base esté cocida y el queso dorado."
     ]
   },
   {
@@ -82,13 +83,14 @@ const FICHAS=[
       "harina",
       "champinon",
       "espinaca",
-      "queso"
+      "queso",
+      "levadura"
     ],
     "pasos": [
-      "Prepara una masa con harina, agua, levadura y sal y deja fermentar.",
+      "Prepara una masa con harina, 5 g de levadura seca, agua tibia y sal; amasa y deja fermentar tapada 45 minutos o hasta que aumente de volumen.",
       "Estira la masa y distribuye queso rallado.",
       "Agrega champiñones laminados y espinaca lavada.",
-      "Hornea a 220 °C hasta que la masa esté cocida y los bordes dorados."
+      "Hornea a 220 °C durante 15 a 20 minutos, hasta que la masa esté cocida y los bordes dorados."
     ]
   },
   {
@@ -452,6 +454,6 @@ const FICHAS=[
     ]
   }
 ] as const;
-const CANTIDADES:Record<string,string>={"pasta":"180 g","zapallito":"2 unidades","zanahoria":"180 g","arveja":"180 g","berenjena":"1 unidad","tomate":"250 g","cebolla":"100 g","atun":"140 g","aceituna":"60 g","papa":"350 g","harina":"200 g","huevo":"2 unidades","queso":"100 g","pimenton":"1 unidad","champinon":"200 g","espinaca":"160 g","arroz":"150 g","tofu":"250 g","brocoli":"250 g","ajo":"2 dientes","limon":"1 unidad","garbanzo":"200 g","leche":"180 ml","pollo":"300 g","lenteja":"180 g","jengibre":"10 g","pepino":"1 unidad","tahini":"40 g","perejil":"1 cucharada","cuscus":"150 g","palta":"1 unidad","tortilla":"4 unidades","poroto":"200 g","lechuga":"100 g","choclo":"200 g","pescado":"300 g","albahaca":"8 hojas","quinoa":"150 g","coliflor":"300 g"};
+const CANTIDADES:Record<string,string>={"pasta":"180 g","zapallito":"2 unidades","zanahoria":"180 g","arveja":"180 g","berenjena":"1 unidad","tomate":"250 g","cebolla":"100 g","atun":"140 g","aceituna":"60 g","papa":"350 g","harina":"200 g","levadura":"5 g","huevo":"2 unidades","queso":"100 g","pimenton":"1 unidad","champinon":"200 g","espinaca":"160 g","arroz":"150 g","tofu":"250 g","brocoli":"250 g","ajo":"2 dientes","limon":"1 unidad","garbanzo":"200 g","leche":"180 ml","pollo":"300 g","lenteja":"180 g","jengibre":"10 g","pepino":"1 unidad","tahini":"40 g","perejil":"1 cucharada","cuscus":"150 g","palta":"1 unidad","tortilla":"4 unidades","poroto":"200 g","lechuga":"100 g","choclo":"200 g","pescado":"300 g","albahaca":"8 hojas","quinoa":"150 g","coliflor":"300 g"};
 const TIEMPOS_COCCION:Record<string,number>={};
-export const RECETAS_LOTE_11:Receta[]=FICHAS.map((f,i)=>({id:`lote-11-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:`${f.titulo==="Falafel al horno"?35:TIEMPOS_COCCION[f.titulo]??( /ensalada|tostada|sandwich|sándwich|ceviche/i.test(f.titulo)?0:/sopa|guiso|cazuela|porotos|lentejas|estofado|pastel/i.test(f.titulo)?45:35)} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>f.titulo==="Falafel al horno"&&id==="garbanzo"?"200 g de garbanzos secos (remojar 12 horas)":`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_11:Receta[]=FICHAS.map((f,i)=>({id:`lote-11-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${/^(Pizza casera de verduras|Pizza de champiñones y espinaca)$/.test(f.titulo)?60:15} min`,tiempoCoccion:`${f.titulo==="Falafel al horno"?35:TIEMPOS_COCCION[f.titulo]??( /ensalada|tostada|sandwich|sándwich|ceviche/i.test(f.titulo)?0:/sopa|guiso|cazuela|porotos|lentejas|estofado|pastel/i.test(f.titulo)?45:35)} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>f.titulo==="Falafel al horno"&&id==="garbanzo"?"200 g de garbanzos secos (remojar 12 horas)":`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
