@@ -251,3 +251,27 @@ test("Dos platos con tofu, champiñones y arroz tienen técnicas diferentes",()=
  assert.match(arroz.pasos.join(" "),/tapa y cocina a fuego bajo durante 15 a 20 minutos/i);
  assert.ok(Number.parseInt(arroz.tiempoCoccion,10)>=30);
 });
+
+test("Las pizzas incluyen levadura, fermentación y tiempo de horno verificable",()=>{
+ for(const titulo of ["Pizza casera de verduras","Pizza de champiñones y espinaca"]){
+  const receta=RECETAS_LOTE_11.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(receta.ingredientes.some(i=>/5 g de levadura/i.test(i)),titulo);
+  assert.ok(receta.pasos.some(p=>/fermentar.*45 minutos/i.test(p)),titulo);
+  assert.ok(receta.pasos.some(p=>/220 °C durante 15 a 20 minutos/i.test(p)),titulo);
+  assert.ok(Number.parseInt(receta.tiempoPreparacion,10)>=60,titulo);
+ }
+});
+
+test("Lote 8: tiempos de horno y legumbres precocidas coherentes",()=>{
+ const buscar=t=>RECETAS_LOTE_8.find(r=>r.titulo===t);
+ const porotos=buscar("Porotos con verduras asadas");
+ assert.ok(porotos?.ingredientes.some(i=>/porotos cocidos y escurridos/i.test(i)));
+ assert.ok(porotos?.pasos.some(p=>/20 a 25 minutos/i.test(p)));
+ const papas=buscar("Papas asadas con atún y yogur");
+ assert.ok(papas?.pasos.some(p=>/45 a 55 minutos/i.test(p)));
+ assert.ok(Number.parseInt(papas.tiempoCoccion,10)>=55);
+ const pollo=buscar("Pollo al horno con brócoli");
+ assert.ok(pollo?.pasos.some(p=>/25 a 35 minutos/i.test(p)));
+ assert.ok(pollo?.pasos.some(p=>/74 °C/i.test(p)));
+});
