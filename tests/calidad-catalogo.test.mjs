@@ -275,3 +275,18 @@ test("Lote 8: tiempos de horno y legumbres precocidas coherentes",()=>{
  assert.ok(pollo?.pasos.some(p=>/25 a 35 minutos/i.test(p)));
  assert.ok(pollo?.pasos.some(p=>/74 °C/i.test(p)));
 });
+
+test("Cremas de zanahoria y omelettes similares tienen ingredientes o técnicas diferenciadas",()=>{
+ const crema=RECETAS_LOTE_13.find(r=>r.titulo==="Crema de zanahoria y coco");
+ const cremaJengibre=RECETAS_LOTE_19.find(r=>r.titulo==="Crema de zanahoria y jengibre con coco");
+ assert.ok(crema && cremaJengibre);
+ assert.ok(crema.pasos.some(p=>/ásalas a 200 °C durante 25 a 30 minutos/i.test(p)));
+ assert.ok(!crema.ingredientes.some(i=>/jengibre/i.test(i)));
+ assert.ok(cremaJengibre.ingredientes.some(i=>/jengibre/i.test(i)));
+ assert.ok(Number.parseInt(crema.tiempoCoccion,10)>=40);
+ const omelette=RECETAS_LOTE_13.find(r=>r.titulo==="Omelette de queso y tomate");
+ const omeletteAlbahaca=RECETAS_LOTE_18.find(r=>r.titulo==="Omelette de tomate y albahaca");
+ assert.ok(omelette && omeletteAlbahaca);
+ assert.ok(!omelette.ingredientes.some(i=>/albahaca/i.test(i)));
+ assert.ok(omeletteAlbahaca.ingredientes.some(i=>/albahaca/i.test(i)));
+});
