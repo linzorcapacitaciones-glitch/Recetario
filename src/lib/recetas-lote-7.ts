@@ -309,8 +309,8 @@ const FICHAS=[
       "cebolla"
     ],
     "pasos": [
-      "Cuece los porotos remojados hasta que estén completamente tiernos.",
-      "Cuece el choclo y deja enfriar ambos ingredientes.",
+      "Utiliza porotos ya cocidos y escurridos; enjuágalos si son de conserva.",
+      "Cuece el choclo 8 a 10 minutos hasta que esté tierno y deja enfriar junto con los porotos.",
       "Lava y corta tomate y cebolla.",
       "Mezcla las legumbres con las verduras y sirve con aliño al gusto."
     ]
@@ -324,9 +324,9 @@ const FICHAS=[
       "cebolla"
     ],
     "pasos": [
-      "Cuece los porotos previamente remojados hasta que estén tiernos.",
+      "Utiliza porotos cocidos y escurridos, reservando un poco de agua para el guiso.",
       "Sofríe la cebolla y añade zapallo en cubos.",
-      "Incorpora los porotos con parte de su caldo y el arroz.",
+      "Incorpora los porotos cocidos, el arroz y agua caliente suficiente para cocerlo.",
       "Cocina hasta que el arroz y el zapallo estén blandos."
     ]
   },
@@ -377,5 +377,5 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"pescado":"300 g","zanahoria":"180 g","cebolla":"100 g","limon":"1 unidad","merluza":"300 g","tomate":"220 g","ajo":"2 dientes","salmon":"300 g","zapallo":"350 g","arroz":"150 g","pimenton":"1 unidad","atun":"140 g","palta":"1 unidad","lechuga":"150 g","carne":"300 g","papa":"350 g","huevo":"2 unidades","brocoli":"250 g","pollo":"300 g","champinon":"200 g","leche":"250 ml","choclo":"200 g","avena":"100 g","yogur":"200 g","manzana":"2 unidades","platano":"2 unidades","pan":"4 rebanadas","poroto":"200 g","garbanzo":"200 g","lenteja":"180 g","pepino":"1 unidad"};
-const TIEMPOS_COCCION:Record<string,number>={};
+const TIEMPOS_COCCION:Record<string,number>={"Ensalada de porotos con choclo":10};
 export const RECETAS_LOTE_7:Receta[]=FICHAS.map((f,i)=>({id:`lote-7-${i+1}`,titulo:f.titulo,descripcion:"Receta para dos personas con cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:`${TIEMPOS_COCCION[f.titulo]??( /ensalada|tostada|sandwich|sándwich|ceviche/i.test(f.titulo)?0:/sopa|guiso|cazuela|porotos|lentejas|estofado|pastel/i.test(f.titulo)?45:35)} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
