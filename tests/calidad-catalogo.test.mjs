@@ -290,3 +290,24 @@ test("Cremas de zanahoria y omelettes similares tienen ingredientes o técnicas 
  assert.ok(!omelette.ingredientes.some(i=>/albahaca/i.test(i)));
  assert.ok(omeletteAlbahaca.ingredientes.some(i=>/albahaca/i.test(i)));
 });
+
+test("Legumbres rápidas no exigen remojo y cocción de grano seco",()=>{
+ const casos=[
+  [RECETAS_LOTE_6,"Porotos negros guisados con pimentón",/porotos negros cocidos y escurridos/],
+  [RECETAS_LOTE_7,"Ensalada de porotos con choclo",/porotos cocidos y escurridos/],
+  [RECETAS_LOTE_7,"Porotos con zapallo y arroz",/porotos cocidos y escurridos/],
+  [RECETAS_LOTE_10,"Arroz con porotos negros",/porotos negros cocidos y escurridos/],
+  [RECETAS_LOTE_17,"Tostadas con hummus y palta",/garbanzos cocidos y escurridos/]
+ ];
+ for(const [lote,titulo,ingrediente] of casos){
+  const receta=lote.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(receta.ingredientes.some(i=>ingrediente.test(i)),titulo);
+  assert.ok(receta.pasos.every(p=>!/cuece (?:los )?(?:porotos|garbanzos) (?:previamente )?remojados/i.test(p)),titulo);
+ }
+ const ensalada=RECETAS_LOTE_7.find(r=>r.titulo==="Ensalada de porotos con choclo");
+ assert.ok(Number.parseInt(ensalada.tiempoCoccion,10)>=10);
+ const mazamorra=RECETAS_LOTE_10.find(r=>r.titulo==="Porotos granados con mazamorra");
+ assert.ok(mazamorra.ingredientes.some(i=>/porotos granados frescos/.test(i)));
+ assert.ok(Number.parseInt(mazamorra.tiempoCoccion,10)>=55);
+});
