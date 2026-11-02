@@ -311,3 +311,18 @@ test("Legumbres rápidas no exigen remojo y cocción de grano seco",()=>{
  assert.ok(mazamorra.ingredientes.some(i=>/porotos granados frescos/.test(i)));
  assert.ok(Number.parseInt(mazamorra.tiempoCoccion,10)>=55);
 });
+
+test("Veinte recetas adicionales tienen tiempos diferenciados y legumbres listas para uso",()=>{
+ assert.equal(RECETAS_ADICIONALES.length,20);
+ assert.ok(new Set(RECETAS_ADICIONALES.map(r=>r.tiempoCoccion)).size>=8);
+ const porTitulo=t=>RECETAS_ADICIONALES.find(r=>r.titulo===t);
+ for(const titulo of ["Ensalada de lentejas y tomate","Tomates rellenos de atún y garbanzos"]){
+  assert.equal(porTitulo(titulo)?.tiempoCoccion,"0 min",titulo);
+ }
+ for(const titulo of ["Ensalada de lentejas y tomate","Croquetas de lentejas y papa"]){
+  const receta=porTitulo(titulo);assert.ok(receta?.ingredientes.some(i=>/de lentejas cocidas y escurridas/i.test(i)),titulo);
+ }
+ for(const titulo of ["Garbanzos guisados con zapallo","Ensalada tibia de garbanzos y espinaca","Tomates rellenos de atún y garbanzos","Tortilla de garbanzos y espinaca"]){
+  const receta=porTitulo(titulo);assert.ok(receta?.ingredientes.some(i=>/de garbanzos cocidos y escurridos/i.test(i)),titulo);
+ }
+});
