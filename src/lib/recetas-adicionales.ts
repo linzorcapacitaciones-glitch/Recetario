@@ -25,7 +25,7 @@ const DATOS: Ficha[] = [
       "cebolla"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas y escúrrelas.",
+      "Utiliza lentejas ya cocidas y escurridas; enjuágalas si son de conserva.",
       "Lava y corta tomate y cebolla.",
       "Mezcla con las lentejas ya frías.",
       "Aliña y sirve."
@@ -81,7 +81,7 @@ const DATOS: Ficha[] = [
       "cebolla"
     ],
     "pasos": [
-      "Usa garbanzos cocidos o cuece los secos tras remojarlos.",
+      "Utiliza garbanzos ya cocidos y escurridos, de conserva o preparados con anticipación.",
       "Sofríe la cebolla picada.",
       "Agrega zapallo en cubos y agua; cocina hasta ablandar.",
       "Incorpora los garbanzos y hierve unos minutos."
@@ -221,7 +221,7 @@ const DATOS: Ficha[] = [
       "huevo"
     ],
     "pasos": [
-      "Cuece las lentejas y papas hasta ablandar.",
+      "Cuece las papas hasta ablandar y utiliza lentejas ya cocidas y escurridas.",
       "Aplasta ambas y mezcla con huevo.",
       "Forma pequeñas croquetas.",
       "Cocina por ambos lados hasta que el huevo esté completamente cuajado."
@@ -285,11 +285,38 @@ const DATOS: Ficha[] = [
   }
 ];
 const cantidades: Record<string,string> = { arroz:"150 g",zanahoria:"160 g",papa:"300 g",cebolla:"100 g",lenteja:"170 g",tomate:"220 g",huevo:"3 unidades",espinaca:"150 g",queso:"70 g",zapallo:"300 g",atun:"140 g",garbanzo:"190 g",pasta:"180 g",pollo:"260 g" };
+const TIEMPOS_COCCION: Record<string,number> = {
+  "Sopa de verduras con arroz":25,
+  "Ensalada de lentejas y tomate":0,
+  "Revuelto de espinacas y queso":8,
+  "Puré de papas y zapallo":20,
+  "Arroz con atún y zanahoria":22,
+  "Garbanzos guisados con zapallo":25,
+  "Pasta con salsa de zapallo y queso":20,
+  "Tortilla de zanahoria y cebolla":15,
+  "Ensalada tibia de garbanzos y espinaca":7,
+  "Pollo guisado con zapallo":25,
+  "Papas salteadas con huevo y queso":25,
+  "Arroz con espinaca y queso":20,
+  "Sopa de lentejas y zanahoria":35,
+  "Fideos con pollo y espinaca":20,
+  "Tomates rellenos de atún y garbanzos":0,
+  "Croquetas de lentejas y papa":25,
+  "Arroz con zapallo y cebolla":25,
+  "Ensalada de pasta con atún y tomate":12,
+  "Pollo con zanahoria y queso":15,
+  "Tortilla de garbanzos y espinaca":12
+};
+const LEGUMBRES_COCIDAS = new Set([
+  "Ensalada de lentejas y tomate","Garbanzos guisados con zapallo",
+  "Ensalada tibia de garbanzos y espinaca","Tomates rellenos de atún y garbanzos",
+  "Croquetas de lentejas y papa","Tortilla de garbanzos y espinaca"
+]);
 export const RECETAS_ADICIONALES: Receta[] = DATOS.map((f,i)=>({
  id:`ampliacion-${i+1}`,titulo:f.titulo,
  descripcion:"Preparación casera con ingredientes comunes, para dos personas.",
- tiempoPreparacion:"15 min",tiempoCoccion:"30 min",porciones:"2 personas",dificultad:"Fácil",
- ingredientes:f.ids.map(id=>`${cantidades[id]} de ${id}`),pasos:f.pasos,
+ tiempoPreparacion:"15 min",tiempoCoccion:`${TIEMPOS_COCCION[f.titulo]} min`,porciones:"2 personas",dificultad:"Fácil",
+ ingredientes:f.ids.map(id=>LEGUMBRES_COCIDAS.has(f.titulo)&&id==="garbanzo"?`${cantidades[id]} de garbanzos cocidos y escurridos`:LEGUMBRES_COCIDAS.has(f.titulo)&&id==="lenteja"?`${cantidades[id]} de lentejas cocidas y escurridas`:`${cantidades[id]} de ${id}`),pasos:f.pasos,
  costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",
  ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0
 }));
