@@ -336,3 +336,22 @@ test("Salteados con tomate del lote 2 incorporan la cebolla declarada",()=>{
   assert.ok(receta.pasos.some(p=>/cebolla/i.test(p)),titulo);
  }
 });
+
+
+test("Horneados de lotes 9 y 10 tienen duraciones coherentes",()=>{
+ const casos=[
+  [RECETAS_LOTE_9,"Lasaña de verduras",35,/190 °C durante 30 a 35 minutos/],
+  [RECETAS_LOTE_9,"Betarragas asadas con yogur",45,/200 °C durante 35 a 45 minutos/],
+  [RECETAS_LOTE_10,"Sopaipillas al horno con zapallo",40,/200 °C durante 15 a 20 minutos/],
+  [RECETAS_LOTE_10,"Empanaditas de queso al horno",25,/200 °C durante 18 a 22 minutos/],
+  [RECETAS_LOTE_10,"Papas al romero con pollo",45,/74 °C en el centro/]
+ ];
+ for(const [lote,titulo,tiempo,patron] of casos){
+  const receta=lote.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(Number.parseInt(receta.tiempoCoccion,10)>=tiempo,titulo);
+  assert.ok(receta.pasos.some(p=>patron.test(p)),titulo);
+ }
+ const lasana=RECETAS_LOTE_9.find(r=>r.titulo==="Lasaña de verduras");
+ assert.ok(lasana.ingredientes.some(i=>/láminas de lasaña precocidas/.test(i)));
+});
