@@ -326,3 +326,13 @@ test("Veinte recetas adicionales tienen tiempos diferenciados y legumbres listas
   const receta=porTitulo(titulo);assert.ok(receta?.ingredientes.some(i=>/de garbanzos cocidos y escurridos/i.test(i)),titulo);
  }
 });
+
+
+test("Salteados con tomate del lote 2 incorporan la cebolla declarada",()=>{
+ for(const titulo of ["Pasta salteada con tomate","Lentejas salteadas con tomate","Garbanzos salteados con tomate"]){
+  const receta=RECETAS_LOTE_2.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(receta.ingredientes.some(i=>/cebolla/i.test(i)),titulo);
+  assert.ok(receta.pasos.some(p=>/cebolla/i.test(p)),titulo);
+ }
+});
