@@ -355,3 +355,13 @@ test("Horneados de lotes 9 y 10 tienen duraciones coherentes",()=>{
  const lasana=RECETAS_LOTE_9.find(r=>r.titulo==="Lasaña de verduras");
  assert.ok(lasana.ingredientes.some(i=>/láminas de lasaña precocidas/.test(i)));
 });
+
+
+test("Dos arroces de zapallo usan técnicas culinarias diferenciadas",()=>{
+ const meloso=RECETAS_LOTE_4.find(r=>r.titulo==="Arroz meloso de zapallo");
+ const asado=RECETAS_LOTE_10.find(r=>r.titulo==="Arroz cremoso con zapallo asado");
+ assert.ok(meloso&&asado);
+ assert.ok(meloso.pasos.some(p=>/agua caliente gradualmente/.test(p)));
+ assert.ok(asado.pasos.some(p=>/ásalos a 200 °C durante 25 a 30 minutos/.test(p)));
+ assert.ok(Number.parseInt(asado.tiempoCoccion,10)>=40);
+});
