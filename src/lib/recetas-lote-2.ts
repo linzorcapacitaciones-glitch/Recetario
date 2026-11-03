@@ -249,7 +249,7 @@ const FICHAS = [
     "pasos": [
       "Cuece la pasta en agua hirviendo según el envase y reserva dos cucharadas del agua de cocción.",
       "Lava y corta el tomate en cubos pequeños.",
-      "Saltea el tomate en una sartén con aceite durante 5 a 7 minutos, hasta que suelte jugo.",
+      "Pela y pica la cebolla; sofríela en una sartén con aceite 3 a 4 minutos. Agrega el tomate cortado y saltea otros 5 minutos, hasta que suelte jugo.",
       "Incorpora la pasta escurrida y el agua reservada; mezcla 2 minutos y sirve caliente."
     ]
   },
@@ -367,7 +367,7 @@ const FICHAS = [
     "pasos": [
       "Utiliza lentejas previamente cocidas y escurridas; si están secas, cuécelas según el envase antes de empezar.",
       "Lava el tomate y córtalo en cubos pequeños.",
-      "Saltea el tomate con aceite durante 5 minutos hasta que se ablande y suelte jugo.",
+      "Pela y pica la cebolla; sofríela en aceite 3 a 4 minutos. Añade el tomate cortado y cocina 5 minutos hasta que se ablande y suelte jugo.",
       "Añade las lentejas cocidas y calienta 4 a 5 minutos, removiendo suavemente."
     ]
   },
@@ -485,7 +485,7 @@ const FICHAS = [
     "pasos": [
       "Enjuaga y escurre garbanzos previamente cocidos; no utilices garbanzos secos sin cocer.",
       "Lava el tomate y córtalo en cubos pequeños.",
-      "Saltea el tomate con aceite durante 5 minutos hasta que suelte jugo.",
+      "Pela y pica la cebolla; sofríela en aceite 3 a 4 minutos. Añade el tomate y cocina 5 minutos hasta que suelte jugo.",
       "Incorpora los garbanzos cocidos y saltea 4 minutos hasta que estén calientes."
     ]
   },
