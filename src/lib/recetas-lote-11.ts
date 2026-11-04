@@ -135,7 +135,7 @@ const FICHAS=[
       "Precalienta el horno a 200 °C y corta el tofu en cubos.",
       "Separa el brócoli en ramilletes y mezcla con ajo y limón.",
       "Distribuye tofu y brócoli sobre una bandeja.",
-      "Hornea hasta que el tofu esté dorado y el brócoli tierno."
+      "Hornea a 200 °C durante 20 a 25 minutos, volteando el tofu a mitad de cocción, hasta que esté dorado y el brócoli tierno."
     ]
   },
   {
