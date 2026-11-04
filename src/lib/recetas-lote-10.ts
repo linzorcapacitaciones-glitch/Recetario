@@ -377,7 +377,7 @@ const FICHAS=[
       "Cuece el brócoli al vapor y ralla la zanahoria.",
       "Bate los huevos y mezcla con las verduras y queso rallado.",
       "Vierte en una fuente pequeña ligeramente aceitada.",
-      "Hornea a 180 °C hasta que el centro esté firme y completamente cocido."
+      "Hornea a 180 °C durante 25 a 30 minutos, hasta que el centro esté firme y el huevo completamente cocido."
     ]
   },
   {
