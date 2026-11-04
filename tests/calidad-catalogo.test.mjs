@@ -365,3 +365,22 @@ test("Dos arroces de zapallo usan técnicas culinarias diferenciadas",()=>{
  assert.ok(asado.pasos.some(p=>/ásalos a 200 °C durante 25 a 30 minutos/.test(p)));
  assert.ok(Number.parseInt(asado.tiempoCoccion,10)>=40);
 });
+
+
+test("Horneados revisados declaran duración orientativa y técnica completa", () => {
+ const casos = [
+  [RECETAS_LOTE_9, "Frittata de brócoli y queso", /180 °C durante 15 a 20 minutos/],
+  [RECETAS_LOTE_10, "Budín de brócoli y zanahoria", /180 °C durante 25 a 30 minutos/],
+  [RECETAS_LOTE_11, "Tofu al horno con brócoli", /200 °C durante 20 a 25 minutos/],
+  [RECETAS_LOTE_17, "Berenjena asada con yogur", /200 °C durante 30 a 35 minutos/],
+ ];
+ for (const [lote, titulo, expresion] of casos) {
+  const receta = lote.find(r => r.titulo === titulo);
+  assert.ok(receta, titulo);
+  assert.ok(receta.pasos.some(p => expresion.test(p)), titulo);
+ }
+ const berenjena = RECETAS_LOTE_17.find(r => r.titulo === "Berenjena asada con yogur");
+ assert.ok(berenjena?.pasos.some(p => /ajo sin pelar.*15 a 20 minutos/.test(p)));
+ assert.ok(berenjena?.pasos.some(p => /ajo asado, pelado y machacado/.test(p)));
+ assert.ok(Number.parseInt(berenjena.tiempoCoccion, 10) >= 35);
+});
