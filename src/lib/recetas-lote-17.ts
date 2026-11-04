@@ -147,8 +147,8 @@ const FICHAS=[
     ],
     "pasos": [
       "Corta la berenjena por la mitad y haz cortes en la pulpa.",
-      "Hornea a 200 °C hasta que esté completamente tierna.",
-      "Mezcla yogur natural con ajo cocido y perejil.",
+      "Hornea la berenjena a 200 °C durante 30 a 35 minutos, hasta que esté tierna; coloca el ajo sin pelar en la misma bandeja durante los últimos 15 a 20 minutos, hasta que se ablande.",
+      "Mezcla yogur natural con el ajo asado, pelado y machacado, y perejil.",
       "Sirve la berenjena tibia con salsa de yogur."
     ],
     "prep": 12,
