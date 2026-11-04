@@ -373,7 +373,7 @@ const FICHAS=[
       "Cuece brevemente el brócoli al vapor.",
       "Sofríe cebolla picada en una sartén apta para horno.",
       "Añade brócoli, huevos batidos y queso rallado.",
-      "Termina la cocción en horno a 180 °C hasta que el centro esté completamente cuajado."
+      "Termina la cocción en horno a 180 °C durante 15 a 20 minutos, hasta que el centro esté completamente cuajado."
     ]
   }
 ] as const;
