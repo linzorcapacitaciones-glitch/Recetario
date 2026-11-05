@@ -132,7 +132,7 @@ const FICHAS=[
     "coc": 30,
     "pasos": [
       "Hidrata el cuscús con agua caliente según el envase.",
-      "Corta el zapallo en cubos y hornéalo a 200 °C hasta que esté tierno.",
+      "Corta el zapallo en cubos de 2 cm y hornéalo a 200 °C durante 25 a 30 minutos, hasta que esté tierno.",
       "Usa garbanzos previamente cocidos y escurridos.",
       "Mezcla el cuscús hidratado con el zapallo asado y los garbanzos cocidos; agrega perejil picado y sirve."
 ]
@@ -183,7 +183,7 @@ const FICHAS=[
     "coc": 30,
     "pasos": [
       "Cuece el arroz en agua hasta que esté tierno.",
-      "Enjuaga y cuece las lentejas hasta que estén tiernas.",
+      "Utiliza lentejas ya cocidas y escurridas; enjuágalas si vienen de conserva.",
       "Pela y corta la zanahoria; saltéala hasta que esté tierna.",
       "Sofríe la cebolla picada, incorpora las lentejas cocidas y la zanahoria salteada, mezcla con el arroz y calienta todo antes de servir."
 ]
@@ -352,10 +352,10 @@ const FICHAS=[
     "prep": 15,
     "coc": 35,
     "pasos": [
-      "Corta los zapallitos por la mitad, ahuécalos y hornéalos hasta que estén tiernos.",
-      "Enjuaga y cuece las lentejas hasta que estén tiernas.",
+      "Corta los zapallitos por la mitad, ahuécalos y hornéalos a 200 °C durante 20 a 25 minutos, hasta que estén tiernos.",
+      "Utiliza lentejas ya cocidas y escurridas; enjuágalas si vienen de conserva.",
       "Sofríe el tomate picado, mézclalo con las lentejas cocidas y rellena las mitades de zapallito.",
-      "Cubre los zapallitos rellenos con queso y gratina hasta que se funda; sirve caliente."
+      "Cubre los zapallitos rellenos con queso y gratina a 200 °C durante 5 a 8 minutos, hasta que se funda; sirve caliente."
 ]
   },
   {
@@ -433,6 +433,7 @@ export const RECETAS_LOTE_19:Receta[]=FICHAS.map((f,i)=>({id:`lote-19-${i+1}`,ti
  if(id==="coco")return cantidad;
  if(id==="garbanzo")return `${cantidad} de garbanzos cocidos y escurridos`;
  if(id==="poroto")return `${cantidad} de porotos cocidos y escurridos`;
+ if(id==="lenteja"&&/lentejas ya cocidas/i.test(f.pasos.join(" ")))return `${cantidad} de lentejas cocidas y escurridas`;
  const nombres:Record<string,string>={huevo:"huevos",champinon:"champiñones",atun:"atún",limon:"limón",pimenton:"pimentón",brocoli:"brócoli",salmon:"salmón",cuscus:"cuscús",tortilla:"tortillas",papa:"papas",nuez:"nueces",arveja:"arvejas",espinaca:"espinaca",lenteja:"lentejas",puerro:"puerro",zapallito:"zapallitos",pera:"pera",naranja:"naranjas",aceituna:"aceitunas"};
  return `${cantidad} de ${nombres[id]||id}`;
 }),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
