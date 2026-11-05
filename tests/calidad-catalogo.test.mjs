@@ -384,3 +384,50 @@ test("Horneados revisados declaran duración orientativa y técnica completa", (
  assert.ok(berenjena?.pasos.some(p => /ajo asado, pelado y machacado/.test(p)));
  assert.ok(Number.parseInt(berenjena.tiempoCoccion, 10) >= 35);
 });
+
+
+test("Legumbres de recetas rápidas declaran estado precocido y tiempos viables",()=>{
+ const casos=[
+  [RECETAS_LOTE_12,"Tostadas con hummus y tomate","garbanzos"],
+  [RECETAS_LOTE_12,"Ensalada tibia de lentejas y zapallo","lentejas"],
+  [RECETAS_LOTE_13,"Hamburguesas de garbanzos y zanahoria","garbanzos"],
+  [RECETAS_LOTE_13,"Ensalada de choclo con porotos","porotos"],
+  [RECETAS_LOTE_13,"Arroz con lentejas y cebolla dorada","lentejas"],
+  [RECETAS_LOTE_14,"Ensalada de lentejas y pimentón asado","lentejas"],
+  [RECETAS_LOTE_15,"Ensalada de lentejas con pera","lentejas"],
+  [RECETAS_LOTE_18,"Ensalada de lentejas con pepino y menta","lentejas"],
+  [RECETAS_LOTE_19,"Arroz con lentejas y zanahoria salteada","lentejas"],
+  [RECETAS_LOTE_19,"Zapallitos rellenos de lentejas","lentejas"]
+ ];
+ for(const [lote,titulo,legumbre] of casos){
+  const receta=lote.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(receta.ingredientes.some(i=>new RegExp(legumbre+" cocid[oa]s y escurrid[oa]s","i").test(i)),titulo);
+  assert.ok(receta.pasos.some(p=>new RegExp(legumbre+" ya cocid[oa]s","i").test(p)),titulo);
+  assert.ok(!receta.pasos.some(p=>new RegExp("cuece (?:los|las) "+legumbre,"i").test(p)),titulo);
+ }
+ for(const titulo of ["Ensalada de lentejas con pera","Ensalada de lentejas con pepino y menta"]){
+  const receta=[...RECETAS_LOTE_15,...RECETAS_LOTE_18].find(r=>r.titulo===titulo);
+  assert.equal(Number.parseInt(receta.tiempoCoccion,10),0,titulo);
+ }
+});
+
+test("Horneados auditados indican duraciones orientativas y tiempos totales compatibles",()=>{
+ const casos=[
+  [RECETAS_LOTE_12,"Ensalada tibia de lentejas y zapallo",/200 °C durante 25 a 30 minutos/],
+  [RECETAS_LOTE_12,"Papas rústicas con salsa de yogur",/210 °C durante 30 a 35 minutos/],
+  [RECETAS_LOTE_12,"Tortitas de zapallo y avena",/200 °C durante 18 a 22 minutos/],
+  [RECETAS_LOTE_14,"Ensalada de lentejas y pimentón asado",/200 °C durante 20 a 25 minutos/],
+  [RECETAS_LOTE_14,"Puré de coliflor con ajo asado",/200 °C durante 20 a 25 minutos/],
+  [RECETAS_LOTE_14,"Papas gratinadas con puerro",/190 °C durante 40 a 45 minutos/],
+  [RECETAS_LOTE_18,"Arroz con berenjena y tofu al ajo",/200 °C durante 20 a 25 minutos/],
+  [RECETAS_LOTE_19,"Cuscús con zapallo y garbanzos",/200 °C durante 25 a 30 minutos/],
+  [RECETAS_LOTE_19,"Zapallitos rellenos de lentejas",/200 °C durante 20 a 25 minutos/]
+ ];
+ for(const [lote,titulo,patron] of casos){
+  const receta=lote.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(receta.pasos.some(p=>patron.test(p)),titulo);
+ }
+ assert.ok(Number.parseInt(RECETAS_LOTE_12.find(r=>r.titulo==="Tortitas de zapallo y avena").tiempoCoccion,10)>=40);
+});
