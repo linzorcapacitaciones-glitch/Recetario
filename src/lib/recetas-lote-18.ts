@@ -95,12 +95,12 @@ const FICHAS=[
       "limon"
     ],
     "prep": 12,
-    "coc": 25,
+    "coc": 0,
     "pasos": [
-      "Enjuaga y cuece las lentejas hasta que estén tiernas.",
+      "Utiliza lentejas ya cocidas y escurridas; enjuágalas si vienen de conserva y mantenlas frías.",
       "Lava y corta el pepino en cubos.",
       "Pica la menta fresca y añádela al final.",
-      "Deja enfriar las lentejas, mezcla con el pepino y la menta y aliña con jugo de limón."
+      "Mezcla las lentejas frías con el pepino y la menta y aliña con jugo de limón."
 ]
   },
   {
@@ -132,7 +132,7 @@ const FICHAS=[
     "coc": 25,
     "pasos": [
       "Cuece el arroz en agua hasta que esté tierno.",
-      "Corta la berenjena y hornéala a 200 °C hasta que esté tierna.",
+      "Corta la berenjena en cubos de 2 cm y hornéala a 200 °C durante 20 a 25 minutos, hasta que esté tierna.",
       "Corta el tofu y dóralo en una sartén.",
       "Saltea el ajo picado brevemente, mezcla con el tofu dorado y sirve sobre el arroz junto a la berenjena asada."
 ]
@@ -434,6 +434,7 @@ export const RECETAS_LOTE_18:Receta[]=FICHAS.map((f,i)=>({id:`lote-18-${i+1}`,ti
  if(id==="arroz"&&f.titulo==="Pollo con champiñones y arroz integral")return `${cantidad} de arroz integral`;
  if(id==="garbanzo")return `${cantidad} de garbanzos cocidos y escurridos`;
  if(id==="poroto")return `${cantidad} de porotos cocidos y escurridos`;
+ if(id==="lenteja"&&/lentejas ya cocidas/i.test(f.pasos.join(" ")))return `${cantidad} de lentejas cocidas y escurridas`;
  const nombres:Record<string,string>={huevo:"huevos",champinon:"champiñones",atun:"atún",limon:"limón",pimenton:"pimentón",brocoli:"brócoli",salmon:"salmón",cuscus:"cuscús",tortilla:"tortillas",papa:"papas",nuez:"nueces",arveja:"arvejas",espinaca:"espinaca",lenteja:"lentejas",puerro:"puerro",zapallito:"zapallitos",pera:"pera",naranja:"naranjas",aceituna:"aceitunas"};
  return `${cantidad} de ${nombres[id]||id}`;
 }),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
