@@ -10,13 +10,13 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas y enfríalas rápidamente.",
+      "Utiliza lentejas ya cocidas y escurridas, frías y conservadas refrigeradas hasta preparar la ensalada.",
       "Lava la pera y córtala en cubos pequeños.",
       "Lava y seca las hojas de espinaca.",
       "Mezcla los ingredientes con jugo de limón."
     ],
     "prep": 12,
-    "coc": 25
+    "coc": 0
   },
   {
     "titulo": "Pasta con zapallo asado",
