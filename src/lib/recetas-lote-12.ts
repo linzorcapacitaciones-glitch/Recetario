@@ -112,8 +112,8 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas y escúrrelas.",
-      "Corta el zapallo en cubos y hornéalo hasta dorar.",
+      "Utiliza lentejas ya cocidas y escurridas y caliéntalas suavemente antes de mezclar.",
+      "Corta el zapallo en cubos de 2 cm y hornéalo a 200 °C durante 25 a 30 minutos, hasta que esté tierno y dorado.",
       "Sofríe cebolla cortada en pluma.",
       "Mezcla todo con perejil picado y sirve tibio."
     ],
@@ -147,7 +147,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Lava las papas y córtalas en gajos con cáscara.",
-      "Hornéalas a 210 °C hasta que estén tiernas y doradas.",
+      "Hornéalas a 210 °C durante 30 a 35 minutos, volteando a mitad de cocción, hasta que estén tiernas y doradas.",
       "Mezcla yogur natural con ajo picado y jugo de limón.",
       "Sirve las papas calientes con la salsa fría."
     ],
@@ -183,10 +183,10 @@ const FICHAS=[
       "Cuece el zapallo y aplástalo hasta obtener un puré espeso.",
       "Mezcla con avena, huevo y queso rallado.",
       "Forma tortitas pequeñas sobre una bandeja aceitada.",
-      "Hornea a 200 °C hasta que estén firmes y el huevo completamente cocido."
+      "Hornea a 200 °C durante 18 a 22 minutos, hasta que estén firmes y el huevo completamente cocido."
     ],
     "prep": 15,
-    "coc": 25
+    "coc": 40
   },
   {
     "titulo": "Tostadas con hummus y tomate",
@@ -197,7 +197,7 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén muy blandos y escúrrelos.",
+      "Utiliza garbanzos ya cocidos y escurridos; enjuágalos y caliéntalos suavemente para facilitar el triturado.",
       "Tritura los garbanzos con tahini y agua hasta formar una crema.",
       "Tuesta las rebanadas de pan por ambos lados.",
       "Unta con hummus y cubre con tomate fresco picado."
