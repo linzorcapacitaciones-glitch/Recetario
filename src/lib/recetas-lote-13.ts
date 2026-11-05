@@ -146,7 +146,7 @@ const FICHAS=[
       "avena"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén blandos y escúrrelos.",
+      "Utiliza garbanzos ya cocidos y escurridos; machácalos aún tibios para formar la masa.",
       "Machácalos con zanahoria rallada y avena.",
       "Añade huevo batido y forma hamburguesas.",
       "Cocina por ambos lados hasta que el huevo esté completamente cuajado."
@@ -163,7 +163,7 @@ const FICHAS=[
       "ajo"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas.",
+      "Utiliza lentejas ya cocidas y escurridas y caliéntalas al mezclarlas con el arroz.",
       "Cuece el arroz por separado.",
       "Corta la cebolla en pluma y dórala lentamente con ajo.",
       "Mezcla arroz y lentejas y cubre con cebolla dorada."
@@ -214,7 +214,7 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Cuece los porotos hasta que estén completamente tiernos.",
+      "Utiliza porotos ya cocidos y escurridos y enjuágalos si vienen de conserva.",
       "Cuece el choclo y enfría ambos ingredientes rápidamente.",
       "Lava y pica el tomate y el perejil.",
       "Mezcla todo y aliña al gusto."
