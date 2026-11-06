@@ -29,7 +29,7 @@ const FICHAS=[
     "prep": 12,
     "coc": 30,
     "pasos": [
-      "Asa el pimentón a 200 °C hasta que esté tierno; retira las semillas y la piel si se desprende fácilmente.",
+      "Asa el pimentón a 200 °C durante 20 a 25 minutos, hasta que esté tierno; retira las semillas y la piel si se desprende fácilmente.",
       "Cuece la pasta en agua con sal hasta que esté al dente y reserva media taza del agua de cocción.",
       "Saltea el ajo picado brevemente, añade el pimentón asado y tritura con un poco del agua reservada hasta obtener una salsa.",
       "Mezcla la pasta con la salsa, incorpora el queso fuera del fuego y ajusta la textura con más agua de cocción si hace falta."
@@ -316,11 +316,11 @@ const FICHAS=[
       "palta"
     ],
     "prep": 12,
-    "coc": 18,
+    "coc": 30,
     "pasos": [
       "Calienta las tortillas por ambos lados.",
       "Corta el tofu y dóralo en una sartén.",
-      "Corta el pimentón y ásalo a 200 °C hasta que esté tierno.",
+      "Corta el pimentón en tiras y ásalo a 200 °C durante 20 a 25 minutos, hasta que esté tierno.",
       "Pela y corta la palta; rellena las tortillas calientes con tofu dorado, pimentón asado y palta, y sirve."
 ]
   },
