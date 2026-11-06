@@ -46,7 +46,7 @@ const FICHAS=[
     "pasos": [
       "Mezcla miel y mostaza para formar una salsa.",
       "Corta la zanahoria en bastones y colócala en una fuente.",
-      "Unta el pollo con la salsa y hornea a 200 °C.",
+      "Unta el pollo con la salsa y hornea a 200 °C durante unos 25 a 35 minutos, según el grosor de las piezas; comprueba la temperatura interna antes de servir.",
       "Retira cuando el pollo alcance 74 °C y la zanahoria esté tierna."
     ],
     "prep": 12,
@@ -147,7 +147,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Lava la quinoa y cuécela hasta que esté tierna.",
-      "Corta el zapallo en cubos y hornéalo hasta dorar.",
+      "Corta el zapallo en cubos y hornéalo a 200 °C durante 25 a 30 minutos, hasta que esté tierno y dorado.",
       "Tuesta brevemente el sésamo en una sartén seca.",
       "Mezcla quinoa, zapallo, semillas y perejil."
     ],
