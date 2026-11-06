@@ -431,3 +431,27 @@ test("Horneados auditados indican duraciones orientativas y tiempos totales comp
  }
  assert.ok(Number.parseInt(RECETAS_LOTE_12.find(r=>r.titulo==="Tortitas de zapallo y avena").tiempoCoccion,10)>=40);
 });
+
+test("Horneados revisados incluyen tiempo orientativo, ingredientes y seguridad",()=>{
+ const casos=[
+  [RECETAS_LOTE_14,"Pollo con miel y mostaza",/200 °C durante unos 25 a 35 minutos/],
+  [RECETAS_LOTE_14,"Quinoa con zapallo y semillas",/200 °C durante 25 a 30 minutos/],
+  [RECETAS_LOTE_15,"Pasta con zapallo asado",/200 °C durante 25 a 30 minutos/],
+  [RECETAS_LOTE_15,"Cuscús con berenjena asada",/200 °C durante 20 a 25 minutos/],
+  [RECETAS_LOTE_17,"Ensalada de quinoa con tomate asado",/190 °C durante 15 a 20 minutos/],
+  [RECETAS_LOTE_19,"Pasta con salsa de pimentón asado",/200 °C durante 20 a 25 minutos/],
+  [RECETAS_LOTE_19,"Tacos de tofu con pimentón y palta",/200 °C durante 20 a 25 minutos/]
+ ];
+ for(const [lote,titulo,patron] of casos){
+  const r=lote.find(x=>x.titulo===titulo);
+  assert.ok(r,titulo);
+  assert.ok(r.pasos.some(p=>patron.test(p)),titulo);
+ }
+ const pasta=RECETAS_LOTE_15.find(x=>x.titulo==="Pasta con zapallo asado");
+ assert.ok(pasta.pasos.some(p=>/dientes de ajo sin pelar/.test(p)));
+ assert.ok(pasta.pasos.some(p=>/ajo asado pelado/.test(p)));
+ const tacos=RECETAS_LOTE_19.find(x=>x.titulo==="Tacos de tofu con pimentón y palta");
+ assert.ok(Number.parseInt(tacos.tiempoCoccion,10)>=25);
+ const pollo=RECETAS_LOTE_14.find(x=>x.titulo==="Pollo con miel y mostaza");
+ assert.ok(pollo.pasos.some(p=>/74 °C/.test(p)));
+});
