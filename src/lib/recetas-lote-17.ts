@@ -28,7 +28,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Enjuaga la quinoa y cuécela hasta que esté tierna.",
-      "Corta el tomate y hornéalo con ajo a 190 °C.",
+      "Corta el tomate y hornéalo con ajo a 190 °C durante 15 a 20 minutos, hasta que esté tierno y ligeramente asado.",
       "Deja entibiar los tomates asados.",
       "Mezcla con quinoa y albahaca picada."
     ],
