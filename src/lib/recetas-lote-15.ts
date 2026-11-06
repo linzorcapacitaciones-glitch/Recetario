@@ -27,9 +27,9 @@ const FICHAS=[
       "queso"
     ],
     "pasos": [
-      "Corta el zapallo en cubos y hornéalo a 200 °C hasta ablandar.",
+      "Corta el zapallo en cubos y hornéalo a 200 °C durante 25 a 30 minutos junto con los dientes de ajo sin pelar, hasta que ambos estén tiernos.",
       "Cuece la pasta hasta que esté al dente.",
-      "Machaca el zapallo con ajo asado y agua de cocción.",
+      "Machaca el zapallo con el ajo asado pelado y un poco del agua de cocción.",
       "Mezcla la salsa con la pasta y termina con queso."
     ],
     "prep": 12,
@@ -95,7 +95,7 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Corta la berenjena en cubos y hornéala a 200 °C hasta dorar.",
+      "Corta la berenjena en cubos y hornéala a 200 °C durante 20 a 25 minutos, hasta que esté tierna y dorada.",
       "Hidrata el cuscús siguiendo las instrucciones del envase.",
       "Lava y corta el tomate en cubos.",
       "Mezcla con la berenjena y perejil picado."
