@@ -99,17 +99,12 @@ export function extraerIngredientes(texto: string): string[] {
 }
 
 const porId = (id: string) => PRODUCTOS[id as IngredienteId]?.nombre ?? id;
-const extraerDeDescripcion = (ingredientes: string[]) => {
-  const ids=new Set<string>();
-  for(const linea of ingredientes) {
-    const texto=normalizar(linea);
-    for(const id of [...Object.keys(PRODUCTOS),...OTROS_INGREDIENTES]) {
-      if(new RegExp(`\\b${id}\\b`).test(texto) ||
-        Object.entries(clavesExtras).some(([alias,destino])=>destino===id && new RegExp(`\\b${alias}\\b`).test(texto))) ids.add(id);
-    }
-  }
-  return [...ids];
-};
+/** Reconoce ingredientes compuestos de una ficha sin sumar sus componentes.
+ * Ej.: leche de coco no equivale a leche de vaca; carne molida es un ingrediente.
+ */
+export function extraerDeDescripcion(ingredientes: string[]): string[] {
+  return [...new Set(ingredientes.flatMap(linea => extraerIngredientes(linea)))];
+}
 const fichasNuevas: Ficha[] = CATALOGO.map(plato => {
   const ids=plato.ingredientes.map(([id])=>id);
   const coste=Math.round(plato.ingredientes.reduce((a,[id,q])=>a+q*PRODUCTOS[id].precio,0));
