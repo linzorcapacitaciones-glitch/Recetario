@@ -455,3 +455,14 @@ test("Horneados revisados incluyen tiempo orientativo, ingredientes y seguridad"
  const pollo=RECETAS_LOTE_14.find(x=>x.titulo==="Pollo con miel y mostaza");
  assert.ok(pollo.pasos.some(p=>/74 °C/.test(p)));
 });
+
+
+test("Horneados del lote 3 indican tiempos verificables de cocción", () => {
+ const zapallo=RECETAS_LOTE_3.find(r=>r.titulo==="Zapallo relleno de garbanzos");
+ const pasta=RECETAS_LOTE_3.find(r=>r.titulo==="Pasta gratinada con espinaca");
+ assert.ok(zapallo&&pasta);
+ assert.ok(zapallo.pasos.some(p=>/200 °C durante 30 a 40 minutos/.test(p)));
+ assert.ok(zapallo.pasos.some(p=>/hornea diez minutos más/.test(p)));
+ assert.ok(Number.parseInt(zapallo.tiempoCoccion,10)>=50);
+ assert.ok(pasta.pasos.some(p=>/200 °C durante 8 a 12 minutos/.test(p)));
+});
