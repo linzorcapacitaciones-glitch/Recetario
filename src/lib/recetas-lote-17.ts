@@ -2,7 +2,7 @@
 import type { Receta } from "./recipes.functions";
 const FICHAS=[
   {
-    "titulo": "Crema de arvejas y menta",
+    "titulo": "Puré rústico de arvejas y papa con menta",
     "ids": [
       "arveja",
       "papa",
@@ -10,10 +10,10 @@ const FICHAS=[
       "menta"
     ],
     "pasos": [
-      "Sofríe cebolla picada en una olla.",
-      "Añade papa en cubos y agua y cocina hasta ablandar.",
-      "Incorpora arvejas y cuece hasta que estén tiernas.",
-      "Agrega menta y tritura hasta obtener una crema suave."
+      "Pela y corta la papa en cubos; pica finamente la cebolla.",
+      "Sofríe la cebolla con un poco de aceite durante 4 minutos; añade la papa y agua apenas suficiente para cubrir.",
+      "Cocina 12 a 15 minutos, agrega las arvejas y continúa hasta que todo esté tierno; escurre casi todo el líquido.",
+      "Machaca las papas y las arvejas con un tenedor hasta obtener un puré espeso; incorpora la menta picada y sirve."
     ],
     "prep": 12,
     "coc": 25
@@ -28,7 +28,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Enjuaga la quinoa y cuécela hasta que esté tierna.",
-      "Corta el tomate y hornéalo con ajo a 190 °C.",
+      "Corta el tomate y hornéalo con ajo a 190 °C durante 15 a 20 minutos, hasta que esté tierno y ligeramente asado.",
       "Deja entibiar los tomates asados.",
       "Mezcla con quinoa y albahaca picada."
     ],
@@ -147,8 +147,8 @@ const FICHAS=[
     ],
     "pasos": [
       "Corta la berenjena por la mitad y haz cortes en la pulpa.",
-      "Hornea a 200 °C hasta que esté completamente tierna.",
-      "Mezcla yogur natural con ajo cocido y perejil.",
+      "Hornea la berenjena a 200 °C durante 30 a 35 minutos, hasta que esté tierna; coloca el ajo sin pelar en la misma bandeja durante los últimos 15 a 20 minutos, hasta que se ablande.",
+      "Mezcla yogur natural con el ajo asado, pelado y machacado, y perejil.",
       "Sirve la berenjena tibia con salsa de yogur."
     ],
     "prep": 12,
@@ -384,7 +384,7 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece garbanzos remojados hasta que estén muy tiernos.",
+      "Utiliza garbanzos ya cocidos y escurridos para preparar el hummus.",
       "Tritura los garbanzos con limón y agua hasta formar una crema.",
       "Tuesta el pan y corta la palta en láminas.",
       "Unta el hummus y distribuye la palta sobre las tostadas."
@@ -428,4 +428,4 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"arveja":"180 g","papa":"350 g","cebolla":"100 g","menta":"6 hojas","quinoa":"150 g","tomate":"220 g","ajo":"2 dientes","albahaca":"8 hojas","pollo":"300 g","zanahoria":"180 g","leche":"180 ml","pasta":"180 g","coliflor":"300 g","limon":"1 unidad","choclo":"200 g","huevo":"2 unidades","queso":"80 g","pescado":"300 g","perejil":"1 cucharada","garbanzo":"200 g","pera":"1 unidad","pepino":"1 unidad","arroz":"150 g","tofu":"250 g","berenjena":"1 unidad","yogur":"150 g","lenteja":"180 g","betarraga":"2 unidades","avena":"100 g","salmon":"300 g","espinaca":"160 g","nuez":"50 g","cuscus":"150 g","brocoli":"250 g","lechuga":"100 g","aceituna":"60 g","tortilla":"4 unidades","poroto":"200 g","zapallo":"300 g","puerro":"1 unidad","repollo":"250 g","naranja":"2 unidades","champinon":"200 g","pan":"4 rebanadas","palta":"1 unidad"};
-export const RECETAS_LOTE_17:Receta[]=FICHAS.map((f,i)=>({id:`lote-17-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_17:Receta[]=FICHAS.map((f,i)=>({id:`lote-17-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

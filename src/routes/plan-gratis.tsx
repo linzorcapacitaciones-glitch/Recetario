@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { planificarSemana, type ResultadoPlan } from "@/lib/planificador-semanal";
 import { useListaCompras } from "@/lib/listaCompras";
+import { firmaCompraPlan, type ProductoCompra } from "@/lib/compras-cantidades";
 
 export const Route = createFileRoute("/plan-gratis")({
   component: PlanGratis,
@@ -17,7 +18,19 @@ function PlanGratis() {
   const [despensa, setDespensa] = useState("");
   const [resultado, setResultado] = useState<ResultadoPlan | null>(null);
   const [aviso, setAviso] = useState("");
-  const { agregar } = useListaCompras();
+  const { agregarCantidades } = useListaCompras();
+  const agregarFaltantes = () => {
+    if (!resultado) return;
+    const productos: ProductoCompra[] = resultado.compras.map(p => ({
+      id: p.id, nombre: p.nombre, cantidad: p.cantidad,
+      unidad: p.unidad === "unidad" ? "unidad" : "g",
+    }));
+    const fuente = firmaCompraPlan(resultado.personas, resultado.platos.map(p => p.plato.id), productos);
+    const modificados = agregarCantidades(productos, "Plan gratuito", fuente);
+    setAviso(modificados > 0
+      ? `${modificados} producto(s) incorporados o actualizados en tu lista.`
+      : "Esta planificación ya estaba incorporada a tu lista de compras.");
+  };
   const clp = (n: number) => new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 }).format(n);
   const enviar = (e: FormEvent) => {
     e.preventDefault();
@@ -44,7 +57,7 @@ function PlanGratis() {
         <div className="mt-4 grid gap-3">{resultado.platos.map((item,i)=><article key={i} className="rounded-xl border bg-card p-4"><p className="text-xs text-muted-foreground">{item.dia} · {item.comida}</p><h3 className="font-semibold">{item.plato.titulo}</h3><p className="text-sm">Ingredientes: {item.plato.ingredientes.map(([id,q])=>id+" ("+q*resultado.personas/2+")").join(", ")}</p><p className="text-sm text-muted-foreground">Costo estimado: {clp(item.costoIngredientes)}</p></article>)}</div>
         <h2 className="font-display mt-7 text-xl">Ingredientes por comprar</h2>
         <ul className="mt-2 list-inside list-disc text-sm">{resultado.compras.map(p=><li key={p.id}>{p.nombre}: {p.cantidad} {p.unidad} · {clp(p.costo)}</li>)}</ul>
-        <button className="mt-4 rounded-full bg-primary px-5 py-3 text-primary-foreground" type="button" onClick={()=>setAviso(`${agregar(resultado.compras.map(p=>`${p.nombre}: ${p.cantidad} ${p.unidad}`),"Plan gratuito")} ingrediente(s) agregados.`)}>Agregar faltantes a mi lista</button>
+        <button className="mt-4 rounded-full bg-primary px-5 py-3 text-primary-foreground" type="button" onClick={agregarFaltantes}>Agregar faltantes a mi lista</button>
         {aviso && <p className="mt-2 text-sm text-primary">{aviso}</p>}
         <p className="mt-4 text-xs text-muted-foreground">Las cantidades son estimaciones para planificar. Revisa porciones, disponibilidad y precios antes de comprar.</p>
         <Link to="/lista" className="mt-3 inline-block text-primary underline">Ver lista de compras</Link>

@@ -27,13 +27,13 @@ function Demo() {
           <p className="mt-3 text-sm text-muted-foreground">
             Las recetas de esta página son datos de muestra, NO han sido generadas con IA.
             Puedes revisar los pasos, los favoritos y la presentación sin consumir créditos.
-            La generación real todavía requiere que OpenAI API tenga cuota disponible.
+            La búsqueda gratuita utiliza el catálogo local; las funciones de IA permanecen desactivadas en esta versión.
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Ingredientes de muestra: pollo, arroz, tomate y huevo. Una receta requiere comprar queso.
           </p>
           <Link to="/" className="mt-4 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm text-primary-foreground">
-            Volver a generación con IA
+            Volver al buscador gratuito
           </Link>
         </div>
         <h2 className="font-display my-7 text-2xl">10 recetas de muestra</h2>

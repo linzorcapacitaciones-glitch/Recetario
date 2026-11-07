@@ -4,7 +4,7 @@ import { CornerDownLeft, Sparkles } from "lucide-react";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { RecetaCard } from "@/components/RecetaCard";
-import { buscarRecetasGratis, explorarCatalogo, type ResultadoBusqueda } from "@/lib/buscador-gratis";
+import { buscarRecetasGratis, type ResultadoBusqueda } from "@/lib/buscador-gratis";
 import { useFavoritos } from "@/lib/favoritos";
 import { PersonalizarBusqueda } from "@/components/PersonalizarBusqueda";
 import { AnuncioPlaceholder } from "@/components/AnuncioPlaceholder";
@@ -20,13 +20,13 @@ const heroImg = "https://pantry-to-plate-pro-86.lovable.app/assets/cocina-hero-C
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alacena — recetas con lo que ya tienes en casa" },
+      { title: "Alacena — 10 recetas con lo que ya tienes en casa" },
       {
         name: "description",
         content:
           "Escribe tus ingredientes y descubre recetas del catálogo gratuito, con ingredientes y pasos sin consumir IA.",
       },
-      { property: "og:title", content: "Alacena — recetas con lo que ya tienes en casa" },
+      { property: "og:title", content: "Alacena — 10 recetas con lo que ya tienes en casa" },
       {
         property: "og:description",
         content: "Busca recetas reales de un catálogo gratuito usando los ingredientes que tienes en casa, sin llamadas a IA.",
@@ -46,9 +46,6 @@ function Index() {
   const { alternar, esFavorito } = useFavoritos();
   const { mostrarPublicidad } = usePlan();
   const [resultado, setResultado] = useState<ResultadoBusqueda | null>(null);
-  const [limite, setLimite] = useState(10);
-  const [explorando, setExplorando] = useState(false);
-  const [ultimaBusqueda, setUltimaBusqueda] = useState<{ texto: string; preferencias: Preferencias } | null>(null);
 
   useEffect(() => {
     registrarEvento("app_open");
@@ -66,10 +63,7 @@ function Index() {
       conTiempo: Boolean(c.tiempo),
       modo: "catalogo_local",
     });
-    const busqueda = buscarRecetasGratis(valor, c, 10);
-    setLimite(10);
-    setExplorando(false);
-    setUltimaBusqueda({ texto: valor, preferencias: c });
+    const busqueda = buscarRecetasGratis(valor, c);
     setResultado(busqueda);
     registrarEvento("recipe_results_view", { totalRecetas: busqueda.recetas.length, modo: "catalogo_local" });
   };
@@ -131,14 +125,6 @@ function Index() {
               </Link>
             </p>
 
-            <button type="button" className="mt-5 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10" onClick={() => {
-              setExplorando(true);
-              setLimite(10);
-              setUltimaBusqueda(null);
-              setResultado(explorarCatalogo(10));
-              registrarEvento("recipe_results_view", { totalRecetas: 10, modo: "explorar_catalogo" });
-            }}>Explorar todas las recetas sin ingresar ingredientes</button>
-
             <PersonalizarBusqueda valor={prefs} onChange={setPrefs} />
 
             <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
@@ -161,7 +147,7 @@ function Index() {
         {resultado && (
           <div className="mb-6 rounded-2xl border border-border bg-card p-4 text-sm">
             <p className="font-semibold">Catálogo gratuito: {resultado.totalCatalogo} recetas revisables, sin llamadas a OpenAI.</p>
-            <p className="text-muted-foreground mt-1">{explorando ? `Explorando el catálogo: ${recetas.length} de ${resultado.totalCatalogo} recetas.` : `Encontramos ${resultado.totalCoincidentes} recetas compatibles; mostramos ${recetas.length}, ordenadas por ingredientes disponibles y faltantes.`}</p>
+            <p className="text-muted-foreground mt-1">Encontramos {resultado.totalCoincidentes} recetas compatibles; mostramos hasta 10, ordenadas por ingredientes disponibles y faltantes.</p>
             {resultado.ingredientesReconocidos.length > 0 && <p className="mt-2">Reconocidos: {resultado.ingredientesReconocidos.join(", ")}.</p>}
             {resultado.ignorados.length > 0 && <p className="text-muted-foreground mt-2">Sin coincidencia en el catálogo: {resultado.ignorados.join(", ")}. No se usarán para puntuar recetas.</p>}
             {resultado.totalCoincidentes===0 && <p className="mt-2 text-primary">Prueba con arroz, pollo, huevo, tomate, papa, lentejas, atún o pasta; o amplía el tiempo máximo en tus preferencias.</p>}
@@ -174,7 +160,7 @@ function Index() {
           <>
             <div className="mb-8 flex items-end justify-between gap-4">
               <h2 className="font-display text-3xl tracking-tight">
-                {explorando ? "Explora nuestras recetas" : `Tus ${recetas.length} recetas recomendadas`}
+                Tus {recetas.length} recetas recomendadas
               </h2>
               <p className="text-muted-foreground text-sm">Guarda las que te gusten con ♥</p>
             </div>
@@ -190,28 +176,6 @@ function Index() {
               ))}
             </div>
           </>
-        )}
-        {resultado && (ultimaBusqueda || explorando) && recetas.length < resultado.totalCoincidentes && (
-          <div className="mt-10 mx-auto max-w-xl rounded-2xl border border-border bg-card p-5 text-center">
-            {limite < 15 ? (
-              <>
-                <p className="mb-3 font-semibold">Hay más recetas para ti</p>
-                <p className="mb-4 text-sm text-muted-foreground">Este es un espacio reservado para publicidad. Todavía no hay anuncios reales ni ingresos publicitarios activos.</p>
-                {mostrarPublicidad && <AnuncioPlaceholder className="mb-4" />}
-                <button type="button" className="rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground hover:opacity-90" onClick={() => {
-                  const siguiente = Math.min(15, resultado.totalCoincidentes);
-                  setLimite(siguiente);
-                  setResultado(explorando ? explorarCatalogo(siguiente) : buscarRecetasGratis(ultimaBusqueda!.texto, ultimaBusqueda!.preferencias, siguiente));
-                }}>Ver 5 recetas adicionales (prueba sin anuncio real)</button>
-              </>
-            ) : (
-              <>
-                <p className="font-semibold">¿Quieres ver todas las coincidencias?</p>
-                <p className="mt-2 text-sm text-muted-foreground">El acceso completo estará disponible con Premium cuando se activen las suscripciones verificadas.</p>
-                <Link to="/premium" className="mt-4 inline-block rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground">Conocer Premium</Link>
-              </>
-            )}
-          </div>
         )}
       </main>
     </div>

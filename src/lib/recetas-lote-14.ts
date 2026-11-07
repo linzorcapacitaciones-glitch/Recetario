@@ -46,7 +46,7 @@ const FICHAS=[
     "pasos": [
       "Mezcla miel y mostaza para formar una salsa.",
       "Corta la zanahoria en bastones y colócala en una fuente.",
-      "Unta el pollo con la salsa y hornea a 200 °C.",
+      "Unta el pollo con la salsa y hornea a 200 °C durante unos 25 a 35 minutos, según el grosor de las piezas; comprueba la temperatura interna antes de servir.",
       "Retira cuando el pollo alcance 74 °C y la zanahoria esté tierna."
     ],
     "prep": 12,
@@ -147,7 +147,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Lava la quinoa y cuécela hasta que esté tierna.",
-      "Corta el zapallo en cubos y hornéalo hasta dorar.",
+      "Corta el zapallo en cubos y hornéalo a 200 °C durante 25 a 30 minutos, hasta que esté tierno y dorado.",
       "Tuesta brevemente el sésamo en una sartén seca.",
       "Mezcla quinoa, zapallo, semillas y perejil."
     ],
@@ -166,7 +166,7 @@ const FICHAS=[
       "Corta las papas en láminas finas y lava el puerro.",
       "Distribuye las papas y el puerro en una fuente.",
       "Vierte leche y cubre con queso rallado.",
-      "Hornea a 190 °C hasta que las papas estén tiernas y doradas."
+      "Hornea a 190 °C durante 40 a 45 minutos, hasta que las papas estén tiernas al pincharlas y la superficie esté dorada."
     ],
     "prep": 15,
     "coc": 45
@@ -197,8 +197,8 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas.",
-      "Hornea el pimentón hasta ablandarlo y córtalo en tiras.",
+      "Utiliza lentejas ya cocidas y escurridas.",
+      "Hornea el pimentón a 200 °C durante 20 a 25 minutos, hasta ablandarlo, y córtalo en tiras.",
       "Pica cebolla muy fina y mezcla con las lentejas.",
       "Añade pimentón y limón y sirve tibio."
     ],
@@ -257,7 +257,7 @@ const FICHAS=[
     "coc": 0
   },
   {
-    "titulo": "Hamburguesas de porotos negros con avena",
+    "titulo": "Croquetas horneadas de porotos negros y avena",
     "ids": [
       "poroto",
       "avena",
@@ -265,13 +265,13 @@ const FICHAS=[
       "huevo"
     ],
     "pasos": [
-      "Cuece los porotos negros hasta que estén tiernos y escúrrelos.",
-      "Machaca los porotos y mezcla con avena y cebolla sofrita.",
-      "Añade huevo batido y forma hamburguesas compactas.",
-      "Cocina por ambos lados hasta que el huevo esté completamente cuajado."
+      "Precalienta el horno a 190 °C y utiliza porotos negros previamente cocidos y bien escurridos.",
+      "Machaca los porotos y mézclalos con la avena y la cebolla finamente picada.",
+      "Agrega el huevo batido, forma croquetas pequeñas y colócalas en una bandeja ligeramente aceitada.",
+      "Hornea a 190 °C durante 20 a 25 minutos, girándolas a mitad de cocción, hasta que el huevo esté completamente cocido."
     ],
     "prep": 15,
-    "coc": 20
+    "coc": 25
   },
   {
     "titulo": "Cuscús con champiñones y espinaca",
@@ -384,7 +384,7 @@ const FICHAS=[
       "queso"
     ],
     "pasos": [
-      "Hornea los dientes de ajo envueltos hasta que estén tiernos.",
+      "Envuelve los dientes de ajo con su piel y hornéalos a 200 °C durante 20 a 25 minutos, hasta que estén tiernos; deja entibiar y retira la piel antes de triturar.",
       "Cuece la coliflor al vapor hasta que esté muy blanda.",
       "Tritura la coliflor con ajo asado y leche caliente.",
       "Agrega queso y sirve el puré caliente."
@@ -428,4 +428,4 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"pasta":"180 g","espinaca":"160 g","ricota":"120 g","ajo":"2 dientes","arroz":"150 g","zapallito":"2 unidades","limon":"1 unidad","cebolla":"100 g","pollo":"300 g","miel":"2 cucharadas","mostaza":"2 cucharadas","zanahoria":"180 g","champinon":"200 g","puerro":"1 unidad","papa":"350 g","leche":"180 ml","garbanzo":"200 g","mango":"1 unidad","pepino":"1 unidad","huevo":"2 unidades","queso":"80 g","salmon":"300 g","sesamo":"2 cucharadas","brocoli":"250 g","tomate":"220 g","albahaca":"8 hojas","quinoa":"150 g","zapallo":"300 g","perejil":"1 cucharada","tofu":"250 g","lenteja":"180 g","pimenton":"1 unidad","atun":"140 g","yogur":"150 g","menta":"6 hojas","poroto":"200 g","avena":"100 g","cuscus":"150 g","pescado":"300 g","arveja":"180 g","tortilla":"4 unidades","repollo":"250 g","coliflor":"300 g","berenjena":"1 unidad","betarraga":"2 unidades","lechuga":"100 g"};
-export const RECETAS_LOTE_14:Receta[]=FICHAS.map((f,i)=>({id:`lote-14-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_14:Receta[]=FICHAS.map((f,i)=>({id:`lote-14-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>id==="poroto"?"200 g de porotos negros cocidos y escurridos":id==="lenteja"&&/lentejas ya cocidas/i.test(f.pasos.join(" "))?`${CANTIDADES[id]} de lentejas cocidas y escurridas`:`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

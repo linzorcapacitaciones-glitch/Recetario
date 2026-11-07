@@ -33,7 +33,7 @@ export type Receta = Omit<RecetaIA, Extra> &
   };
 
 const ResponseSchema = z.object({
-  recetas: z.array(RecipeSchema).length(10),
+  recetas: z.array(RecipeSchema),
 });
 
 const jsonSchema = {
@@ -191,10 +191,14 @@ export const generarRecetas = createServerFn({
     async ({
       data,
     }): Promise<{ recetas: Receta[] }> => {
+      // La generación facturable está cerrada por defecto hasta implementar
+      // autenticación, cuotas, limitación de tasa y control de gasto en servidor.
+      if (process.env["RECIPE_AI_ENABLED"] !== "true") {
+        throw new Error("La generación avanzada con IA está temporalmente deshabilitada. Usa el buscador gratuito del catálogo.");
+      }
       const config = obtenerConfigIA();
 
       const res = await fetch(config.url, {
-        signal: AbortSignal.timeout(60000),
         method: "POST",
 
         headers: config.headers,
@@ -316,12 +320,19 @@ export const generarRecetas = createServerFn({
         );
 
         throw new Error(
-          "La IA no entregó exactamente diez recetas completas y válidas. Inténtalo nuevamente.",
+          "La IA respondió en un formato inesperado. Inténtalo nuevamente.",
+        );
+      }
+
+      if (parsed.recetas.length === 0) {
+        throw new Error(
+          "La IA no devolvió recetas. Inténtalo nuevamente.",
         );
       }
 
       const normalizadas: Receta[] =
         parsed.recetas
+          .slice(0, 10)
           .map((r, i) => {
             const coinciden =
               r.ingredientesCoincidentes.length;

@@ -163,7 +163,7 @@ const FICHAS=[
       "Corta el zapallito en láminas finas y cocínalo brevemente.",
       "Prepara una salsa con tomate picado y un poco de agua.",
       "Alterna capas de láminas de pasta para lasaña, salsa, zapallito y queso.",
-      "Hornea siguiendo el tiempo indicado para la pasta hasta que esté completamente tierna."
+      "Hornea a 190 °C durante 30 a 35 minutos, con la fuente cubierta los primeros 25 minutos, hasta que las láminas de lasaña estén completamente tiernas y el centro bien caliente."
     ]
   },
   {
@@ -266,7 +266,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Lava y pela las betarragas y córtalas en gajos.",
-      "Hornea a 200 °C hasta que estén tiernas.",
+      "Hornea los gajos de betarraga a 200 °C durante 35 a 45 minutos, hasta que estén tiernos al pincharlos.",
       "Mezcla yogur natural con ajo muy picado y jugo de limón.",
       "Sirve las betarragas tibias con la salsa fresca."
     ]
@@ -373,10 +373,10 @@ const FICHAS=[
       "Cuece brevemente el brócoli al vapor.",
       "Sofríe cebolla picada en una sartén apta para horno.",
       "Añade brócoli, huevos batidos y queso rallado.",
-      "Termina la cocción en horno a 180 °C hasta que el centro esté completamente cuajado."
+      "Termina la cocción en horno a 180 °C durante 15 a 20 minutos, hasta que el centro esté completamente cuajado."
     ]
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"quinoa":"150 g","zapallo":"300 g","zanahoria":"180 g","pimenton":"1 unidad","pepino":"1 unidad","tomate":"200 g","limon":"1 unidad","cuscus":"150 g","garbanzo":"200 g","cebolla":"100 g","berenjena":"1 unidad","arroz":"150 g","queso":"80 g","zapallito":"2 unidades","huevo":"2 unidades","coliflor":"300 g","papa":"300 g","leche":"150 ml","ajo":"2 dientes","brocoli":"250 g","pasta":"180 g","champinon":"180 g","choclo":"180 g","betarraga":"2 unidades","lechuga":"100 g","yogur":"150 g","repollo":"250 g","carne":"250 g","arveja":"200 g","menta":"6 hojas","avena":"80 g","lenteja":"180 g","perejil":"1 cucharada"};
-const TIEMPOS_COCCION:Record<string,number>={};
-export const RECETAS_LOTE_9:Receta[]=FICHAS.map((f,i)=>({id:`lote-9-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:`${TIEMPOS_COCCION[f.titulo]??( /ensalada|tostada|sandwich|sándwich|ceviche/i.test(f.titulo)?0:/sopa|guiso|cazuela|porotos|lentejas|estofado|pastel/i.test(f.titulo)?45:30)} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+const TIEMPOS_COCCION:Record<string,number>={"Lasaña de verduras":35,"Betarragas asadas con yogur":45};
+export const RECETAS_LOTE_9:Receta[]=FICHAS.map((f,i)=>({id:`lote-9-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:`${TIEMPOS_COCCION[f.titulo]??( /ensalada|tostada|sandwich|sándwich|ceviche/i.test(f.titulo)?0:/sopa|guiso|cazuela|porotos|lentejas|estofado|pastel/i.test(f.titulo)?45:30)} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{if(f.titulo==="Lasaña de verduras"&&id==="pasta")return "180 g de láminas de lasaña precocidas";const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

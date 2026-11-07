@@ -14,7 +14,7 @@ import {
   type MenuSemanal,
 } from "@/lib/chef.functions";
 import { useListaCompras } from "@/lib/listaCompras";
-import { BENEFICIOS_PREMIUM, PRECIOS, usePlan } from "@/lib/plan";
+import { BENEFICIOS_PREMIUM, PRECIOS } from "@/lib/plan";
 
 export const Route = createFileRoute("/premium")({
   head: () => ({
@@ -38,7 +38,6 @@ export const Route = createFileRoute("/premium")({
 });
 
 function PremiumPagina() {
-  const { esPremium, activarPrueba } = usePlan();
 
   return (
     <div className="min-h-screen bg-background">
@@ -70,25 +69,15 @@ function PremiumPagina() {
           <Button type="button" className="min-h-12 rounded-full" disabled>
             ⭐ Próximamente Premium
           </Button>
-          <p className="text-muted-foreground text-xs">La vista de prueba Premium está desactivada en producción hasta habilitar suscripciones verificadas.</p>
           <p className="text-muted-foreground text-xs">
-            La planificación semanal es interactiva y calcula presupuestos sin IA. Las otras herramientas muestran ejemplos; no hay cobros ni acceso Premium comercial activo.
+            Puedes probar el planificador semanal y la lista de compras sin iniciar sesión ni contratar Premium.
+            Los cálculos son locales, los precios son simulados y las herramientas de IA permanecen desactivadas.
           </p>
         </div>
 
-        {esPremium ? (
-          <div className="mt-10 grid gap-10">
-            <PremiumDemo />
-          </div>
-        ) : (
-          <p className="text-muted-foreground mt-8 text-sm">
-            El planificador semanal gratuito está disponible desde el menú principal. Premium se habilitará cuando estén listos los cobros y la verificación de suscripciones. También puedes volver a{" "}
-            <Link to="/" className="text-primary underline">
-              generar recetas
-            </Link>
-            .
-          </p>
-        )}
+        <div className="mt-10 grid gap-10">
+          <PremiumDemo />
+        </div>
       </main>
     </div>
   );
