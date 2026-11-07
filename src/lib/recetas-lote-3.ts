@@ -116,7 +116,7 @@ const DATOS = [
     ],
     "pasos": [
       "Corta el zapallo en mitades y retira las semillas.",
-      "Hornea a 200 °C hasta que la pulpa esté tierna.",
+      "Hornea las mitades de zapallo a 200 °C durante 30 a 40 minutos, según su tamaño, hasta que la pulpa esté tierna al pincharla.",
       "Sofríe cebolla y tomate; incorpora garbanzos previamente cocidos.",
       "Rellena las mitades de zapallo y hornea diez minutos más."
     ]
@@ -193,7 +193,7 @@ const DATOS = [
       "Cuece la pasta según el tiempo indicado en el envase.",
       "Lava y saltea la espinaca; mezcla con tomate picado.",
       "Combina la pasta con las verduras en una fuente apta para horno.",
-      "Cubre con queso y gratina a 200 °C hasta fundir y dorar."
+      "Cubre con queso y gratina a 200 °C durante 8 a 12 minutos, hasta que el queso se funda y se dore ligeramente."
     ]
   },
   {
