@@ -376,7 +376,7 @@ const FICHAS=[
 ]
   },
   {
-    "titulo": "Ensalada tibia de garbanzos y betarraga",
+    "titulo": "Ensalada tibia de garbanzos crocantes y betarraga",
     "ids": [
       "garbanzo",
       "betarraga",
@@ -384,12 +384,12 @@ const FICHAS=[
       "limon"
     ],
     "prep": 12,
-    "coc": 35,
+    "coc": 40,
     "pasos": [
-      "Usa garbanzos previamente cocidos y escurridos.",
-      "Cuece la betarraga hasta que esté tierna y córtala en cubos.",
-      "Añade perejil picado justo antes de servir.",
-      "Mezcla los garbanzos cocidos con la betarraga tibia y el perejil; aliña con jugo de limón y sirve."
+      "Cuece la betarraga entera durante 35 a 40 minutos, hasta que esté tierna; pélala cuando entibie y córtala en cubos.",
+      "Escurre y seca bien los garbanzos previamente cocidos para que queden crocantes al horno.",
+      "Extiende los garbanzos con un poco de aceite en una bandeja y hornéalos a 200 °C durante 20 a 25 minutos, removiendo a mitad de cocción; puedes hornearlos mientras se cuece la betarraga.",
+      "Mezcla la betarraga tibia con jugo de limón y perejil picado; incorpora los garbanzos recién horneados al servir para conservar su textura crocante."
 ]
   },
   {
