@@ -466,3 +466,15 @@ test("Horneados del lote 3 indican tiempos verificables de cocción", () => {
  assert.ok(Number.parseInt(zapallo.tiempoCoccion,10)>=50);
  assert.ok(pasta.pasos.some(p=>/200 °C durante 8 a 12 minutos/.test(p)));
 });
+
+test("Dos ensaladas de betarraga y garbanzos tienen técnicas culinarias distintas", () => {
+ const fria=RECETAS_LOTE_16.find(r=>r.titulo==="Ensalada de betarraga con garbanzos");
+ const tibia=RECETAS_LOTE_18.find(r=>r.titulo==="Ensalada tibia de garbanzos crocantes y betarraga");
+ assert.ok(fria&&tibia);
+ assert.ok(fria.pasos.some(p=>/mezcla con garbanzos/i.test(p)));
+ assert.ok(!fria.pasos.some(p=>/hornea|hornéalos/i.test(p)));
+ assert.ok(tibia.pasos.some(p=>/200 °C durante 20 a 25 minutos/i.test(p)));
+ assert.ok(tibia.pasos.some(p=>/incorpora los garbanzos recién horneados/i.test(p)));
+ assert.ok(tibia.ingredientes.some(i=>/garbanzos cocidos y escurridos/i.test(i)));
+ assert.ok(Number.parseInt(tibia.tiempoCoccion,10)>=40);
+});
