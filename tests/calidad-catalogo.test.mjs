@@ -478,3 +478,25 @@ test("Dos ensaladas de betarraga y garbanzos tienen técnicas culinarias distint
  assert.ok(tibia.ingredientes.some(i=>/garbanzos cocidos y escurridos/i.test(i)));
  assert.ok(Number.parseInt(tibia.tiempoCoccion,10)>=40);
 });
+
+
+test("Horneados del lote 4 incluyen tiempos explícitos y duración global suficiente", () => {
+ const casos = [
+  ["Pastel de arroz con pollo", /190 °C durante 10 a 15 minutos/, 55],
+  ["Papas rellenas de espinaca y queso", /200 °C durante 45 a 55 minutos/, 65],
+  ["Pasta con salsa de tomate asado", /200 °C durante 20 a 25 minutos/, 40],
+  ["Garbanzos crocantes con ensalada de tomate", /200 °C durante 25 a 30 minutos/, 40],
+  ["Budín salado de arroz y espinaca", /180 °C durante 25 a 30 minutos/, 50],
+  ["Arroz con atún y zapallo asado", /200 °C durante 25 a 30 minutos/, 40],
+ ];
+ for (const [titulo, patron, minimo] of casos) {
+  const receta = RECETAS_LOTE_4.find(r => r.titulo === titulo);
+  assert.ok(receta, titulo);
+  assert.ok(receta.pasos.some(p => patron.test(p)), titulo);
+  assert.ok(Number.parseInt(receta.tiempoCoccion, 10) >= minimo, titulo);
+ }
+ const papas = RECETAS_LOTE_4.find(r => r.titulo === "Papas rellenas de espinaca y queso");
+ assert.ok(papas.pasos.some(p => /200 °C durante 5 a 8 minutos/.test(p)));
+ const garbanzos = RECETAS_LOTE_4.find(r => r.titulo === "Garbanzos crocantes con ensalada de tomate");
+ assert.ok(garbanzos.pasos.some(p => /removiendo a mitad de cocción/.test(p)));
+});
