@@ -70,10 +70,10 @@ const FICHAS=[
       "cebolla"
     ],
     "pasos": [
-      "Asa el zapallo cortado en rodajas a 200 °C hasta que esté tierno.",
+      "Asa el zapallo cortado en rodajas a 200 °C durante 25 a 30 minutos, hasta que esté tierno al pincharlo.",
       "Sofríe cebolla y espinaca hasta que pierdan humedad.",
       "Distribuye las verduras sobre el zapallo en una fuente.",
-      "Cubre con queso y gratina hasta dorar."
+      "Cubre con queso y gratina a 200 °C durante 5 a 8 minutos, hasta que se funda y dore ligeramente."
     ]
   },
   {
@@ -175,7 +175,7 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Hornea las papas lavadas hasta que estén tiernas.",
+      "Hornea las papas enteras y lavadas a 200 °C durante 45 a 55 minutos, según su tamaño, hasta que estén tiernas al pincharlas.",
       "Cuece las lentejas por separado hasta ablandar.",
       "Sofríe cebolla y tomate; mezcla con las lentejas escurridas.",
       "Abre las papas, ahueca un poco y rellena con el guiso."
