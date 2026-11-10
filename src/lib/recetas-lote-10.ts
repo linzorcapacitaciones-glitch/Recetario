@@ -90,8 +90,8 @@ const FICHAS=[
     "pasos": [
       "Cuece las papas y aplástalas hasta formar un puré.",
       "Cocina el pollo hasta alcanzar 74 °C y desmenúzalo.",
-      "Sofríe cebolla y mezcla con el pollo y huevo duro picado.",
-      "Coloca el relleno en una fuente, cubre con puré y hornea hasta dorar."
+      "Cuece el huevo en agua hirviendo durante 10 a 12 minutos, enfríalo, pélalo y pícalo; sofríe la cebolla y mezcla ambos con el pollo.",
+      "Coloca el relleno en una fuente, cubre con puré y hornea a 200 °C durante 15 a 20 minutos, hasta que la superficie se dore."
     ]
   },
   {
