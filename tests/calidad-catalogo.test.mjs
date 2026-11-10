@@ -237,7 +237,7 @@ test("Lote 18: crema, sopa, omelette y ensaladas ejecutan su técnica",()=>{
  const pure=buscar("Pollo con puré de arvejas");
  assert.ok(pure?.pasos.some(p=>/machaca las arvejas y las papas cocidas/i.test(p)));
  const berenjenas=buscar("Berenjenas gratinadas con tomate");
- assert.ok(berenjenas?.pasos.some(p=>/gratina en el horno/i.test(p)));
+ assert.ok(berenjenas?.pasos.some(p=>/gratina(?: en el horno| a 200 °C)/i.test(p)));
  const omelette=buscar("Omelette de tomate y albahaca");
  assert.ok(omelette?.pasos.some(p=>/dobla el omelette/i.test(p)));
 });
