@@ -352,9 +352,9 @@ const FICHAS=[
     "prep": 12,
     "coc": 35,
     "pasos": [
-      "Corta la berenjena y hornéala a 200 °C hasta que esté tierna.",
+      "Corta la berenjena y hornéala a 200 °C durante 25 a 30 minutos, hasta que esté tierna al pincharla.",
       "Lava y corta el tomate en cubos.",
-      "Cubre la berenjena asada con tomate y queso; gratina en el horno hasta que el queso se funda y dore.",
+      "Cubre la berenjena asada con tomate y queso; gratina a 200 °C durante 5 a 8 minutos, hasta que el queso se funda y dore.",
       "Retira del horno y añade albahaca fresca picada antes de servir."
 ]
   },
