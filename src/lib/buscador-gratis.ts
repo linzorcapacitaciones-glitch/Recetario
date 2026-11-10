@@ -134,6 +134,8 @@ for(const ficha of [...fichasDemo,...fichasNuevas]) {
   if(!sinDuplicados.has(clave))sinDuplicados.set(clave,ficha);
 }
 export const TOTAL_RECETAS_CATALOGO=sinDuplicados.size;
+/** Exposición de solo lectura para validar todas las fichas efectivamente visibles, incluidas las del planificador. */
+export const RECETAS_CATALOGO_COMPLETO: readonly Receta[] = [...sinDuplicados.values()].map(f => f.receta);
 export type ResultadoBusqueda={
   recetas:Receta[]; ingredientesReconocidos:string[]; ignorados:string[];
   totalCatalogo:number; totalCoincidentes:number;
