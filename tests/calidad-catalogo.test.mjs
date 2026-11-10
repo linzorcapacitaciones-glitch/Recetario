@@ -500,3 +500,27 @@ test("Horneados del lote 4 incluyen tiempos explícitos y duración global sufic
  const garbanzos = RECETAS_LOTE_4.find(r => r.titulo === "Garbanzos crocantes con ensalada de tomate");
  assert.ok(garbanzos.pasos.some(p => /removiendo a mitad de cocción/.test(p)));
 });
+
+test("Horneados revisados declaran tiempos, temperaturas y pasos previos necesarios", () => {
+ const casos = [
+  [RECETAS_LOTE_5, "Zapallo gratinado con espinaca", /25 a 30 minutos/, /5 a 8 minutos/],
+  [RECETAS_LOTE_5, "Papas rellenas de lentejas", /45 a 55 minutos/, /200 °C/],
+  [RECETAS_LOTE_9, "Berenjenas rellenas de arroz", /25 a 30 minutos/, /6 a 8 minutos/],
+  [RECETAS_LOTE_9, "Coliflor al horno con queso", /25 a 30 minutos/, /5 a 7 minutos/],
+  [RECETAS_LOTE_10, "Pastel de papas con pollo", /10 a 12 minutos/, /15 a 20 minutos/],
+  [RECETAS_LOTE_15, "Berenjenas rellenas de quinoa", /25 a 30 minutos/, /6 a 8 minutos/],
+  [RECETAS_LOTE_18, "Berenjenas gratinadas con tomate", /25 a 30 minutos/, /5 a 8 minutos/],
+ ];
+ for (const [lote, titulo, primero, segundo] of casos) {
+  const receta = lote.find(r => r.titulo === titulo);
+  assert.ok(receta, titulo);
+  const pasos = receta.pasos.join(" ");
+  assert.match(pasos, primero, titulo);
+  assert.match(pasos, segundo, titulo);
+  assert.match(pasos, /200 °C/, titulo);
+ }
+ for (const titulo of ["Berenjenas rellenas de arroz", "Coliflor al horno con queso"]) {
+  const receta = RECETAS_LOTE_9.find(r => r.titulo === titulo);
+  assert.ok(Number.parseInt(receta.tiempoCoccion, 10) >= 40, titulo);
+ }
+});
