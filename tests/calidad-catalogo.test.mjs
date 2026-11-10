@@ -524,3 +524,22 @@ test("Horneados revisados declaran tiempos, temperaturas y pasos previos necesar
   assert.ok(Number.parseInt(receta.tiempoCoccion, 10) >= 40, titulo);
  }
 });
+
+test("Las 500 fichas finales, incluidas las originadas en el planificador, cumplen estructura mínima", async () => {
+ const { RECETAS_CATALOGO_COMPLETO, TOTAL_RECETAS_CATALOGO } = await import("../src/lib/buscador-gratis.ts");
+ assert.equal(RECETAS_CATALOGO_COMPLETO.length, 500);
+ assert.equal(TOTAL_RECETAS_CATALOGO, 500);
+ const vistos = new Set();
+ for (const r of RECETAS_CATALOGO_COMPLETO) {
+  const clave = normalizar(r.titulo);
+  assert.ok(clave && !vistos.has(clave), "Título vacío o repetido: " + r.titulo);
+  vistos.add(clave);
+  assert.ok(r.ingredientes.length >= 2, r.titulo);
+  assert.ok(r.pasos.length >= 4 && r.pasos.every(p => p.trim().length >= 8), r.titulo);
+  assert.ok(r.ingredientes.filter(x => /[0-9]|media|medio/.test(x)).length >= 2, r.titulo);
+  const prep = Number.parseInt(r.tiempoPreparacion, 10);
+  const coc = Number.parseInt(r.tiempoCoccion, 10);
+  assert.ok(Number.isFinite(prep) && prep >= 0 && prep <= 240, r.titulo);
+  assert.ok(Number.isFinite(coc) && coc >= 0 && coc <= 240, r.titulo);
+ }
+});
