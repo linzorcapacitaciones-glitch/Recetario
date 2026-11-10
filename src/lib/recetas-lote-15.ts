@@ -384,10 +384,10 @@ const FICHAS=[
       "queso"
     ],
     "pasos": [
-      "Corta las berenjenas a lo largo y hornéalas hasta ablandar.",
+      "Corta las berenjenas a lo largo y hornéalas a 200 °C durante 25 a 30 minutos, hasta que la pulpa esté tierna.",
       "Cuece la quinoa previamente enjuagada.",
       "Retira parte de la pulpa y mézclala con quinoa y tomate.",
-      "Rellena las berenjenas, cubre con queso y gratina."
+      "Rellena las berenjenas, cubre con queso y gratina a 200 °C durante 6 a 8 minutos, hasta que el queso se funda y dore."
     ],
     "prep": 18,
     "coc": 40
