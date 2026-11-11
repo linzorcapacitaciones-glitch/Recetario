@@ -543,3 +543,29 @@ test("Las 500 fichas finales, incluidas las originadas en el planificador, cumpl
   assert.ok(Number.isFinite(coc) && coc >= 0 && coc <= 240, r.titulo);
  }
 });
+
+
+test("Ensaladas, tostadas y sándwiches que requieren cocción no declaran cero minutos", () => {
+ const lotes=[RECETAS_LOTE_6,RECETAS_LOTE_7,RECETAS_LOTE_8,RECETAS_LOTE_9,RECETAS_LOTE_10,RECETAS_LOTE_11];
+ const calor=/\\b(?:cuece|hierve|hornea|cocina|saltea|dora|tuesta|calienta)\\b/i;
+ for(const receta of lotes.flat()){
+  if(!/ensalada|tostada|sandwich|sándwich|ceviche/i.test(receta.titulo))continue;
+  if(calor.test(receta.pasos.join(" ")))
+   assert.ok(Number.parseInt(receta.tiempoCoccion,10)>0,receta.titulo);
+ }
+ const casos=[
+  [RECETAS_LOTE_6,"Ensalada de pollo con lechuga y palta",20],
+  [RECETAS_LOTE_7,"Ensalada de lentejas y pepino",30],
+  [RECETAS_LOTE_8,"Ensalada de pasta con pollo y pepino",25],
+  [RECETAS_LOTE_9,"Ensalada de remolacha y huevo",45],
+  [RECETAS_LOTE_10,"Ensalada de garbanzos y betarraga",45],
+  [RECETAS_LOTE_11,"Ensalada tibia de quinoa y tofu",25],
+ ];
+ for(const [lote,titulo,minutos] of casos){
+  const receta=lote.find(r=>r.titulo===titulo);
+  assert.ok(receta,titulo);
+  assert.ok(Number.parseInt(receta.tiempoCoccion,10)>=minutos,titulo);
+ }
+ const garbanzos=RECETAS_LOTE_10.find(r=>r.titulo==="Ensalada de garbanzos y betarraga");
+ assert.ok(garbanzos.pasos.some(p=>/escurre los garbanzos previamente cocidos/i.test(p)));
+});
