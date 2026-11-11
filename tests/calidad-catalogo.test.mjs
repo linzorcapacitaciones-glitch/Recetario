@@ -547,7 +547,7 @@ test("Las 500 fichas finales, incluidas las originadas en el planificador, cumpl
 
 test("Ensaladas, tostadas y sándwiches que requieren cocción no declaran cero minutos", () => {
  const lotes=[RECETAS_LOTE_6,RECETAS_LOTE_7,RECETAS_LOTE_8,RECETAS_LOTE_9,RECETAS_LOTE_10,RECETAS_LOTE_11];
- const calor=/\\b(?:cuece|hierve|hornea|cocina|saltea|dora|tuesta|calienta)\\b/i;
+ const calor=/\b(?:cuece|hierve|hornea|cocina|saltea|dora|tuesta|calienta)\b/i;
  for(const receta of lotes.flat()){
   if(!/ensalada|tostada|sandwich|sándwich|ceviche/i.test(receta.titulo))continue;
   if(calor.test(receta.pasos.join(" ")))
