@@ -345,7 +345,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Cuece la betarraga hasta que esté tierna y deja enfriar.",
-      "Cuece o escurre garbanzos previamente cocidos.",
+      "Escurre los garbanzos previamente cocidos y enjuágalos si vienen en conserva.",
       "Lava y corta el pepino y la betarraga en cubos.",
       "Mezcla con los garbanzos y aliña con limón."
     ]
@@ -457,7 +457,5 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"carne":"300 g","zapallo":"300 g","papa":"350 g","choclo":"250 g","zanahoria":"180 g","arveja":"200 g","tomate":"250 g","cebolla":"100 g","huevo":"2 unidades","poroto":"200 g","pollo":"300 g","harina":"200 g","mantequilla":"40 g","leche":"180 ml","queso":"100 g","albahaca":"8 hojas","pescado":"300 g","limon":"1 unidad","perejil":"1 cucharada","pan":"4 rebanadas","ajo":"2 dientes","acelga":"250 g","espinaca":"150 g","garbanzo":"200 g","jengibre":"10 g","arroz":"150 g","pimenton":"1 unidad","romero":"1 cucharadita","pasta":"180 g","betarraga":"2 unidades","pepino":"1 unidad","avena":"100 g","brocoli":"250 g","champinon":"200 g","polenta":"150 g","lenteja":"180 g","cuscus":"150 g","quinoa":"150 g","salmon":"300 g"};
-const TIEMPOS_COCCION:Record<string,number>={
- "Cazuela de vacuno con zapallo":90,"Carbonada casera":50,"Porotos granados":65,"Pastel de choclo":65,"Porotos granados con mazamorra":55,"Sopaipillas al horno con zapallo":40,"Empanaditas de queso al horno":25,"Papas al romero con pollo":45,"Arroz cremoso con zapallo asado":40
-};
+const TIEMPOS_COCCION:Record<string,number>={"Cazuela de vacuno con zapallo":90,"Carbonada casera":50,"Porotos granados":65,"Pastel de choclo":65,"Porotos granados con mazamorra":55,"Sopaipillas al horno con zapallo":40,"Empanaditas de queso al horno":25,"Papas al romero con pollo":45,"Arroz cremoso con zapallo asado":40,"Ensalada chilena con huevo duro":12,"Pebre con tostadas caseras":5,"Ensalada de garbanzos y betarraga":45};
 export const RECETAS_LOTE_10:Receta[]=FICHAS.map((f,i)=>({id:`lote-10-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:`${TIEMPOS_COCCION[f.titulo]??( /ensalada|tostada|sandwich|sándwich|ceviche/i.test(f.titulo)?0:/sopa|guiso|cazuela|porotos|lentejas|estofado|pastel/i.test(f.titulo)?45:35)} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(f.titulo==="Arroz con porotos negros"&&id==="poroto")return `${CANTIDADES[id]} de porotos negros cocidos y escurridos`;if(f.titulo==="Porotos granados con mazamorra"&&id==="poroto")return `${CANTIDADES[id]} de porotos granados frescos`;if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
