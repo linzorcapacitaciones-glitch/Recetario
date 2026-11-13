@@ -37,6 +37,14 @@ test("Los últimos 50 platos no contienen instrucciones genéricas de relleno",(
  for(const receta of recientes)for(const paso of receta.pasos)assert.doesNotMatch(paso,relleno,receta.titulo);
 });
 
+test("Tomaticán de huevo usa huevos enteros cuajados en salsa, no revueltos",()=>{
+ const receta=RECETAS_LOTE_3.find(r=>r.titulo==="Tomaticán de huevo");
+ assert.ok(receta);
+ assert.ok(receta.pasos.some(p=>/salsa espesa/i.test(p)));
+ assert.ok(receta.pasos.some(p=>/casca los huevos enteros/i.test(p)&&/tapa la sartén/i.test(p)&&/claras y las yemas estén firmes/i.test(p)));
+ assert.ok(receta.pasos.every(p=>!/huevos batidos|revuelve.*cuajados/i.test(p)));
+});
+
 test("Lotes antiguos incluyen tiempos diferenciados y no un valor fijo",()=>{
  for(const lote of [RECETAS_LOTE_6,RECETAS_LOTE_7,RECETAS_LOTE_8,RECETAS_LOTE_9,RECETAS_LOTE_10,RECETAS_LOTE_11]){
   assert.ok(new Set(lote.map(r=>r.tiempoCoccion)).size>=2,"Lote sin variación en cocción");
