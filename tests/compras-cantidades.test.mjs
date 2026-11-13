@@ -46,3 +46,29 @@ test("El planificador gratuito usa compras cuantificadas y evita duplicar la mis
  assert.equal(repetida.modificados,0);
  assert.equal(repetida.items.length,2);
 });
+
+test("Una compra ya marcada no se reabre cuando se agrega un plan distinto",()=>{
+ const primera=consolidarComprasCuantificadas([], [arroz], "Plan", "plan-1", 100);
+ const comprada={...primera.items[0], comprado:true};
+ const segunda=consolidarComprasCuantificadas([comprada], [{...arroz,cantidad:250}], "Plan", "plan-2", 200);
+ assert.equal(segunda.items.length,2);
+ assert.equal(segunda.items[0].comprado,true);
+ assert.equal(segunda.items[0].cantidad,150);
+ assert.equal(segunda.items[1].comprado,false);
+ assert.equal(segunda.items[1].cantidad,250);
+ assert.equal(segunda.items[1].nombre,"250 g de Arroz");
+});
+
+test("Compras pendientes se consolidan sin volver a sumar una fuente repetida",()=>{
+ const primera=consolidarComprasCuantificadas([], [arroz], "Plan", "plan-1", 100);
+ const comprada={...primera.items[0], comprado:true};
+ const segunda=consolidarComprasCuantificadas([comprada], [{...arroz,cantidad:250}], "Plan", "plan-2", 200);
+ const tercera=consolidarComprasCuantificadas(segunda.items, [{...arroz,cantidad:300}], "Plan", "plan-3", 300);
+ const repetida=consolidarComprasCuantificadas(tercera.items, [{...arroz,cantidad:300}], "Plan", "plan-3", 400);
+ assert.equal(tercera.items.length,2);
+ assert.equal(tercera.items[0].comprado,true);
+ assert.equal(tercera.items[1].comprado,false);
+ assert.equal(tercera.items[1].cantidad,550);
+ assert.equal(repetida.modificados,0);
+ assert.equal(repetida.items[1].cantidad,550);
+});
