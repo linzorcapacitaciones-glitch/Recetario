@@ -1,6 +1,6 @@
 /**
  * Buscador gratuito y real, sin llamadas de red ni tokens.
- * Catálogo editorial ampliado. Revisión culinaria y de alérgenos pendiente antes del lanzamiento.
+ * Catálogo editorial pequeño: ampliar y revisar antes del lanzamiento.
  */
 import type { Receta } from "./recipes.functions";
 import { RECETAS_DEMO } from "./recetas-demo.ts";
@@ -99,17 +99,12 @@ export function extraerIngredientes(texto: string): string[] {
 }
 
 const porId = (id: string) => PRODUCTOS[id as IngredienteId]?.nombre ?? id;
-const extraerDeDescripcion = (ingredientes: string[]) => {
-  const ids=new Set<string>();
-  for(const linea of ingredientes) {
-    const texto=normalizar(linea);
-    for(const id of [...Object.keys(PRODUCTOS),...OTROS_INGREDIENTES]) {
-      if(new RegExp(`\\b${id}\\b`).test(texto) ||
-        Object.entries(clavesExtras).some(([alias,destino])=>destino===id && new RegExp(`\\b${alias}\\b`).test(texto))) ids.add(id);
-    }
-  }
-  return [...ids];
-};
+/** Reconoce ingredientes compuestos de una ficha sin sumar sus componentes.
+ * Ej.: leche de coco no equivale a leche de vaca; carne molida es un ingrediente.
+ */
+export function extraerDeDescripcion(ingredientes: string[]): string[] {
+  return [...new Set(ingredientes.flatMap(linea => extraerIngredientes(linea)))];
+}
 const fichasNuevas: Ficha[] = CATALOGO.map(plato => {
   const ids=plato.ingredientes.map(([id])=>id);
   const coste=Math.round(plato.ingredientes.reduce((a,[id,q])=>a+q*PRODUCTOS[id].precio,0));
@@ -139,15 +134,13 @@ for(const ficha of [...fichasDemo,...fichasNuevas]) {
   if(!sinDuplicados.has(clave))sinDuplicados.set(clave,ficha);
 }
 export const TOTAL_RECETAS_CATALOGO=sinDuplicados.size;
+/** Exposición de solo lectura para validar todas las fichas efectivamente visibles, incluidas las del planificador. */
+export const RECETAS_CATALOGO_COMPLETO: readonly Receta[] = [...sinDuplicados.values()].map(f => f.receta);
 export type ResultadoBusqueda={
   recetas:Receta[]; ingredientesReconocidos:string[]; ignorados:string[];
   totalCatalogo:number; totalCoincidentes:number;
 };
-export function explorarCatalogo(limite=12):ResultadoBusqueda {
-  const recetas=[...sinDuplicados.values()].slice(0,Math.max(1,Math.min(limite,500))).map(({receta})=>receta);
-  return {recetas,ingredientesReconocidos:[],ignorados:[],totalCatalogo:TOTAL_RECETAS_CATALOGO,totalCoincidentes:TOTAL_RECETAS_CATALOGO};
-}
-export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}, limite=10):ResultadoBusqueda {
+export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}):ResultadoBusqueda {
   const ingredientes=extraerIngredientes(texto);
   const conocidos=new Set(ingredientes);
   const piezas=normalizar(texto).split(/[,;\n]+|\s+y\s+|\s+\+\s+/).map(s=>s.trim()).filter(Boolean);
@@ -169,7 +162,7 @@ export function buscarRecetasGratis(texto:string, preferencias:Preferencias={}, 
     ignorados,
     totalCatalogo:TOTAL_RECETAS_CATALOGO,
     totalCoincidentes:orden.length,
-    recetas:orden.slice(0,Math.max(1,Math.min(limite,500))).map(({ficha,coincidentes,faltantes,pct},i)=>({
+    recetas:orden.slice(0,10).map(({ficha,coincidentes,faltantes,pct},i)=>({
       ...ficha.receta,mejorOpcion:i===0,
       ingredientesCoincidentes:coincidentes.map(porId),
       ingredientesFaltantes:faltantes.map(porId),

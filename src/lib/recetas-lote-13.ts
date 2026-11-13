@@ -146,7 +146,7 @@ const FICHAS=[
       "avena"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén blandos y escúrrelos.",
+      "Utiliza garbanzos ya cocidos y escurridos; machácalos aún tibios para formar la masa.",
       "Machácalos con zanahoria rallada y avena.",
       "Añade huevo batido y forma hamburguesas.",
       "Cocina por ambos lados hasta que el huevo esté completamente cuajado."
@@ -163,7 +163,7 @@ const FICHAS=[
       "ajo"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas.",
+      "Utiliza lentejas ya cocidas y escurridas y caliéntalas al mezclarlas con el arroz.",
       "Cuece el arroz por separado.",
       "Corta la cebolla en pluma y dórala lentamente con ajo.",
       "Mezcla arroz y lentejas y cubre con cebolla dorada."
@@ -214,7 +214,7 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Cuece los porotos hasta que estén completamente tiernos.",
+      "Utiliza porotos ya cocidos y escurridos y enjuágalos si vienen de conserva.",
       "Cuece el choclo y enfría ambos ingredientes rápidamente.",
       "Lava y pica el tomate y el perejil.",
       "Mezcla todo y aliña al gusto."
@@ -278,17 +278,16 @@ const FICHAS=[
     "ids": [
       "zanahoria",
       "coco",
-      "cebolla",
-      "jengibre"
+      "cebolla"
     ],
     "pasos": [
-      "Pela y corta las zanahorias en rodajas.",
-      "Sofríe cebolla con jengibre rallado.",
-      "Añade zanahoria y agua y cocina hasta que esté tierna.",
-      "Tritura e incorpora leche de coco antes de servir."
+      "Pela y corta las zanahorias en rodajas; ásalas a 200 °C durante 25 a 30 minutos hasta que estén tiernas y ligeramente doradas.",
+      "Sofríe la cebolla picada en una olla hasta que esté transparente.",
+      "Añade las zanahorias asadas y agua caliente hasta cubrir apenas; hierve suavemente 5 minutos.",
+      "Tritura hasta obtener una crema y añade la leche de coco fuera del fuego antes de servir."
     ],
     "prep": 12,
-    "coc": 25
+    "coc": 40
   },
   {
     "titulo": "Quinoa con champiñones al ajillo",
@@ -397,13 +396,12 @@ const FICHAS=[
     "ids": [
       "huevo",
       "queso",
-      "tomate",
-      "albahaca"
+      "tomate"
     ],
     "pasos": [
       "Lava y corta el tomate en cubos pequeños.",
       "Bate los huevos en un recipiente.",
-      "Vierte en una sartén y añade queso, tomate y albahaca.",
+      "Vierte los huevos en una sartén antiadherente y añade queso y tomate; cocina a fuego bajo para fundir el queso.",
       "Dobla y cocina hasta que el huevo esté completamente cuajado."
     ],
     "prep": 8,
@@ -428,4 +426,4 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"zapallito":"2 unidades","cebolla":"100 g","papa":"350 g","albahaca":"8 hojas","arroz":"150 g","huevo":"2 unidades","arveja":"180 g","zanahoria":"180 g","pimenton":"1 unidad","salmon":"300 g","limon":"1 unidad","pasta":"180 g","betarraga":"2 unidades","yogur":"150 g","ajo":"2 dientes","pollo":"300 g","zapallo":"300 g","romero":"1 cucharadita","cuscus":"150 g","queso":"80 g","perejil":"1 cucharada","repollo":"250 g","manzana":"1 unidad","garbanzo":"200 g","avena":"100 g","lenteja":"180 g","pescado":"300 g","berenjena":"1 unidad","tofu":"250 g","choclo":"200 g","poroto":"200 g","tomate":"220 g","brocoli":"250 g","harina":"150 g","leche":"200 ml","espinaca":"160 g","palta":"1 unidad","coco":"150 ml","jengibre":"10 g","quinoa":"150 g","champinon":"200 g","aceituna":"60 g","coliflor":"300 g","pepino":"1 unidad","pan":"4 rebanadas"};
-export const RECETAS_LOTE_13:Receta[]=FICHAS.map((f,i)=>({id:`lote-13-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_13:Receta[]=FICHAS.map((f,i)=>({id:`lote-13-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="coco")return `${CANTIDADES[id]} de leche de coco`;if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

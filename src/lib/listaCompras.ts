@@ -4,6 +4,7 @@
  * para poder evolucionar más adelante hacia la lista de un menú completo.
  */
 import { useCallback, useEffect, useState } from "react";
+import { consolidarComprasCuantificadas, type ProductoCompra } from "./compras-cantidades";
 
 const CLAVE = "alacena-lista-compras-v1";
 
@@ -12,6 +13,10 @@ export type ItemCompra = {
   nombre: string;
   origen: string;
   comprado: boolean;
+  productoId?: string;
+  cantidad?: number;
+  unidad?: "g" | "unidad";
+  fuentes?: string[];
 };
 
 function leer(): ItemCompra[] {
@@ -50,18 +55,27 @@ export function useListaCompras() {
 
   const agregar = useCallback((nombres: string[], origen: string) => {
     const actuales = leer();
-    const existentes = new Set(actuales.map((i) => i.nombre.toLowerCase()));
-    const nuevos = nombres
-      .map((n) => n.trim())
-      .filter((n) => n && !existentes.has(n.toLowerCase()))
-      .map((nombre, i) => ({
-        id: `${Date.now()}-${i}-${nombre.slice(0, 12)}`,
-        nombre,
-        origen,
-        comprado: false,
-      }));
+    const clave = (s: string) => s.toLocaleLowerCase("es").normalize("NFD").replace(/\p{M}/gu, "").replace(/\s+/g, " ").trim();
+    const existentes = new Set(actuales.map((i) => clave(i.nombre)));
+    const nuevos: ItemCompra[] = [];
+    for (const entrada of nombres) {
+      const nombre = entrada.trim();
+      const identificador = clave(nombre);
+      if (!identificador || existentes.has(identificador)) continue;
+      existentes.add(identificador);
+      nuevos.push({
+        id: `${Date.now()}-${nuevos.length}-${nombre.slice(0, 12)}`,
+        nombre, origen, comprado: false,
+      });
+    }
     escribir([...actuales, ...nuevos]);
     return nuevos.length;
+  }, []);
+
+  const agregarCantidades = useCallback((productos: ProductoCompra[], origen: string, fuente: string) => {
+    const resultado = consolidarComprasCuantificadas(leer(), productos, origen, fuente, Date.now());
+    if (resultado.modificados > 0) escribir(resultado.items);
+    return resultado.modificados;
   }, []);
 
   const alternar = useCallback((id: string) => {
@@ -74,5 +88,5 @@ export function useListaCompras() {
 
   const vaciar = useCallback(() => escribir([]), []);
 
-  return { items, agregar, alternar, quitar, vaciar };
+  return { items, agregar, agregarCantidades, alternar, quitar, vaciar };
 }

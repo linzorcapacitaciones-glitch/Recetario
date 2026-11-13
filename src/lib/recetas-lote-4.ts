@@ -44,7 +44,7 @@ const FICHAS = [
       "Cuece el arroz en agua hasta que esté tierno.",
       "Cocina el pollo completamente a 74 °C y desmenúzalo.",
       "Sofríe la cebolla y mézclala con el pollo y el arroz.",
-      "Pasa a una fuente, cubre con queso y hornea a 190 °C hasta gratinar."
+      "Pasa a una fuente, cubre con queso y hornea a 190 °C durante 10 a 15 minutos, hasta que el queso esté fundido y ligeramente dorado."
     ]
   },
   {
@@ -56,10 +56,10 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Hornea las papas enteras y lavadas a 200 °C hasta que estén blandas.",
+      "Hornea las papas enteras y lavadas a 200 °C durante 45 a 55 minutos, según su tamaño, hasta que estén tiernas al pincharlas.",
       "Saltea cebolla picada y espinaca lavada hasta evaporar su líquido.",
       "Abre las papas, retira parte de la pulpa y mezcla con el salteado.",
-      "Rellena, agrega queso y hornea hasta que se derrita."
+      "Rellena las papas, agrega el queso y vuelve a hornear a 200 °C durante 5 a 8 minutos, hasta que se derrita."
     ]
   },
   {
@@ -147,7 +147,7 @@ const FICHAS = [
     ],
     "pasos": [
       "Corta tomates y cebolla, distribúyelos en una bandeja aceitada.",
-      "Hornea a 200 °C hasta que las verduras estén blandas y doradas.",
+      "Hornea a 200 °C durante 20 a 25 minutos, hasta que los tomates y la cebolla estén tiernos y ligeramente dorados.",
       "Tritura las verduras asadas para obtener una salsa.",
       "Cuece la pasta, mezcla con la salsa caliente y termina con queso."
     ]
@@ -164,7 +164,7 @@ const FICHAS = [
       "Lava y saltea la espinaca hasta que pierda volumen.",
       "Coloca la espinaca y tomate picado en una fuente individual.",
       "Casca los huevos encima y agrega un poco de queso.",
-      "Hornea a 190 °C hasta que las claras y las yemas estén bien cuajadas."
+      "Hornea a 190 °C durante 12 a 18 minutos, comprobando que claras y yemas queden completamente cuajadas."
     ]
   },
   {
@@ -177,7 +177,7 @@ const FICHAS = [
     ],
     "pasos": [
       "Escurre y seca muy bien garbanzos previamente cocidos.",
-      "Distribúyelos con aceite en una bandeja y hornea a 200 °C hasta dorar.",
+      "Distribuye los garbanzos cocidos y bien secos con aceite en una bandeja, y hornea a 200 °C durante 25 a 30 minutos, removiendo a mitad de cocción, hasta que estén dorados y crocantes.",
       "Lava y corta tomate, cebolla y zanahoria en trozos pequeños.",
       "Sirve los garbanzos tibios sobre la ensalada recién preparada."
     ]
@@ -194,7 +194,7 @@ const FICHAS = [
       "Cuece el arroz y déjalo entibiar.",
       "Lava y saltea la espinaca; escurre el exceso de líquido.",
       "Mezcla arroz, espinaca, huevos batidos y queso rallado.",
-      "Hornea en una fuente a 180 °C hasta que el centro esté firme y el huevo cocido."
+      "Hornea en una fuente a 180 °C durante 25 a 30 minutos, hasta que el centro esté firme y el huevo completamente cuajado."
     ]
   },
   {
@@ -266,7 +266,7 @@ const FICHAS = [
       "cebolla"
     ],
     "pasos": [
-      "Asa el zapallo en cubos a 200 °C hasta que esté blando.",
+      "Asa el zapallo en cubos de aproximadamente 2 cm a 200 °C durante 25 a 30 minutos, hasta que esté tierno al pincharlo.",
       "Cuece el arroz en agua hasta que esté tierno.",
       "Sofríe la cebolla y añade el atún de conserva escurrido.",
       "Incorpora el arroz y el zapallo y calienta antes de servir."
@@ -284,7 +284,7 @@ const FICHAS = [
       "Cuece la pasta según el tiempo del envase.",
       "Saltea tomate picado hasta formar una salsa ligera.",
       "Agrega garbanzos previamente cocidos y espinaca lavada.",
-      "Mezcla con la pasta y calienta hasta integrar los sabores."
+      "Incorpora la pasta escurrida a la sartén con los garbanzos, la espinaca y el tomate; saltea 3 minutos hasta que esté bien caliente."
     ]
   },
   {
@@ -304,4 +304,12 @@ const FICHAS = [
   }
 ] as const;
 const CANTIDADES:Record<string,string> = {"arroz":"150 g","zanahoria":"180 g","papa":"350 g","cebolla":"100 g","lenteja":"180 g","tomate":"220 g","huevo":"3 unidades","espinaca":"160 g","queso":"80 g","zapallo":"350 g","atun":"140 g","garbanzo":"200 g","pasta":"180 g","pollo":"300 g"};
-export const RECETAS_LOTE_4: Receta[] = FICHAS.map((f,i)=>({id:`lote-4-${i+1}`,titulo:f.titulo,descripcion:"Preparación casera para dos personas con cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:"40 min",porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+/** Duraciones orientativas revisadas para procesos de cocción consecutivos (no certificación culinaria). */
+const TIEMPOS_REVISADOS: Record<string,string> = {
+  "Pastel de arroz con pollo": "55 min",
+  "Papas rellenas de espinaca y queso": "65 min",
+  "Budín salado de arroz y espinaca": "50 min",
+  "Papas al horno con pollo desmenuzado": "65 min",
+  "Zapallo al horno con lentejas especiadas": "55 min"
+};
+export const RECETAS_LOTE_4: Receta[] = FICHAS.map((f,i)=>({id:`lote-4-${i+1}`,titulo:f.titulo,descripcion:"Preparación casera para dos personas con cantidades orientativas.",tiempoPreparacion:"15 min",tiempoCoccion:TIEMPOS_REVISADOS[f.titulo] ?? "40 min",porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

@@ -10,13 +10,13 @@ const FICHAS=[
       "limon"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas y enfríalas rápidamente.",
+      "Utiliza lentejas ya cocidas y escurridas, frías y conservadas refrigeradas hasta preparar la ensalada.",
       "Lava la pera y córtala en cubos pequeños.",
       "Lava y seca las hojas de espinaca.",
       "Mezcla los ingredientes con jugo de limón."
     ],
     "prep": 12,
-    "coc": 25
+    "coc": 0
   },
   {
     "titulo": "Pasta con zapallo asado",
@@ -27,9 +27,9 @@ const FICHAS=[
       "queso"
     ],
     "pasos": [
-      "Corta el zapallo en cubos y hornéalo a 200 °C hasta ablandar.",
+      "Corta el zapallo en cubos y hornéalo a 200 °C durante 25 a 30 minutos junto con los dientes de ajo sin pelar, hasta que ambos estén tiernos.",
       "Cuece la pasta hasta que esté al dente.",
-      "Machaca el zapallo con ajo asado y agua de cocción.",
+      "Machaca el zapallo con el ajo asado pelado y un poco del agua de cocción.",
       "Mezcla la salsa con la pasta y termina con queso."
     ],
     "prep": 12,
@@ -70,7 +70,7 @@ const FICHAS=[
     "coc": 35
   },
   {
-    "titulo": "Crema de brócoli y papa con leche",
+    "titulo": "Pastel suave de brócoli y papas con leche",
     "ids": [
       "brocoli",
       "papa",
@@ -78,13 +78,13 @@ const FICHAS=[
       "leche"
     ],
     "pasos": [
-      "Lava el brócoli y corta la papa en cubos.",
-      "Sofríe cebolla picada hasta que esté transparente.",
-      "Añade las verduras y agua y cocina hasta ablandar.",
-      "Tritura con leche y calienta suavemente antes de servir."
+      "Precalienta el horno a 190 °C; pela las papas y córtalas en rodajas finas.",
+      "Hierve las papas durante 10 minutos y cuece el brócoli al vapor durante 5 minutos.",
+      "Sofríe la cebolla, machaca la mitad de las papas con la leche y mezcla con el brócoli y las rodajas restantes.",
+      "Extiende la mezcla en una fuente y hornea a 190 °C durante 15 a 20 minutos hasta que el centro esté bien caliente y la superficie ligeramente dorada."
     ],
     "prep": 12,
-    "coc": 25
+    "coc": 35
   },
   {
     "titulo": "Cuscús con berenjena asada",
@@ -95,7 +95,7 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Corta la berenjena en cubos y hornéala a 200 °C hasta dorar.",
+      "Corta la berenjena en cubos y hornéala a 200 °C durante 20 a 25 minutos, hasta que esté tierna y dorada.",
       "Hidrata el cuscús siguiendo las instrucciones del envase.",
       "Lava y corta el tomate en cubos.",
       "Mezcla con la berenjena y perejil picado."
@@ -384,10 +384,10 @@ const FICHAS=[
       "queso"
     ],
     "pasos": [
-      "Corta las berenjenas a lo largo y hornéalas hasta ablandar.",
+      "Corta las berenjenas a lo largo y hornéalas a 200 °C durante 25 a 30 minutos, hasta que la pulpa esté tierna.",
       "Cuece la quinoa previamente enjuagada.",
       "Retira parte de la pulpa y mézclala con quinoa y tomate.",
-      "Rellena las berenjenas, cubre con queso y gratina."
+      "Rellena las berenjenas, cubre con queso y gratina a 200 °C durante 6 a 8 minutos, hasta que el queso se funda y dore."
     ],
     "prep": 18,
     "coc": 40
@@ -428,4 +428,4 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"lenteja":"180 g","pera":"1 unidad","espinaca":"160 g","limon":"1 unidad","pasta":"180 g","zapallo":"300 g","ajo":"2 dientes","queso":"80 g","arroz":"150 g","pollo":"300 g","arveja":"180 g","betarraga":"2 unidades","huevo":"2 unidades","cebolla":"100 g","brocoli":"250 g","papa":"350 g","leche":"180 ml","cuscus":"150 g","berenjena":"1 unidad","tomate":"220 g","perejil":"1 cucharada","poroto":"200 g","palta":"1 unidad","coliflor":"300 g","zanahoria":"180 g","quinoa":"150 g","nuez":"50 g","lechuga":"100 g","salmon":"300 g","avena":"100 g","repollo":"250 g","yogur":"150 g","atun":"140 g","tortilla":"4 unidades","choclo":"200 g","champinon":"200 g","jengibre":"10 g","pescado":"300 g","albahaca":"8 hojas","garbanzo":"200 g","pan":"4 rebanadas","pepino":"1 unidad"};
-export const RECETAS_LOTE_15:Receta[]=FICHAS.map((f,i)=>({id:`lote-15-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_15:Receta[]=FICHAS.map((f,i)=>({id:`lote-15-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas; cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));

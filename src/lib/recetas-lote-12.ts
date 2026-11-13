@@ -112,8 +112,8 @@ const FICHAS=[
       "perejil"
     ],
     "pasos": [
-      "Cuece las lentejas hasta que estén tiernas y escúrrelas.",
-      "Corta el zapallo en cubos y hornéalo hasta dorar.",
+      "Utiliza lentejas ya cocidas y escurridas y caliéntalas suavemente antes de mezclar.",
+      "Corta el zapallo en cubos de 2 cm y hornéalo a 200 °C durante 25 a 30 minutos, hasta que esté tierno y dorado.",
       "Sofríe cebolla cortada en pluma.",
       "Mezcla todo con perejil picado y sirve tibio."
     ],
@@ -121,7 +121,7 @@ const FICHAS=[
     "coc": 35
   },
   {
-    "titulo": "Huevos al horno con espinaca",
+    "titulo": "Revuelto de espinaca, tomate y queso",
     "ids": [
       "huevo",
       "espinaca",
@@ -129,13 +129,13 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Lava la espinaca y saltéala hasta reducir su volumen.",
-      "Reparte espinaca y tomate picado en dos fuentes pequeñas.",
-      "Agrega un huevo por fuente y cubre con queso.",
-      "Hornea a 180 °C hasta que los huevos estén completamente cuajados."
+      "Lava la espinaca y el tomate; corta el tomate en cubos pequeños.",
+      "Saltea la espinaca y el tomate con un poco de aceite durante 4 minutos hasta reducir el líquido.",
+      "Bate los huevos y viértelos en la sartén a fuego medio-bajo, removiendo continuamente.",
+      "Añade el queso y continúa removiendo hasta que los huevos estén completamente cuajados; sirve caliente."
     ],
     "prep": 10,
-    "coc": 18
+    "coc": 10
   },
   {
     "titulo": "Papas rústicas con salsa de yogur",
@@ -147,7 +147,7 @@ const FICHAS=[
     ],
     "pasos": [
       "Lava las papas y córtalas en gajos con cáscara.",
-      "Hornéalas a 210 °C hasta que estén tiernas y doradas.",
+      "Hornéalas a 210 °C durante 30 a 35 minutos, volteando a mitad de cocción, hasta que estén tiernas y doradas.",
       "Mezcla yogur natural con ajo picado y jugo de limón.",
       "Sirve las papas calientes con la salsa fría."
     ],
@@ -183,10 +183,10 @@ const FICHAS=[
       "Cuece el zapallo y aplástalo hasta obtener un puré espeso.",
       "Mezcla con avena, huevo y queso rallado.",
       "Forma tortitas pequeñas sobre una bandeja aceitada.",
-      "Hornea a 200 °C hasta que estén firmes y el huevo completamente cocido."
+      "Hornea a 200 °C durante 18 a 22 minutos, hasta que estén firmes y el huevo completamente cocido."
     ],
     "prep": 15,
-    "coc": 25
+    "coc": 40
   },
   {
     "titulo": "Tostadas con hummus y tomate",
@@ -197,7 +197,7 @@ const FICHAS=[
       "tomate"
     ],
     "pasos": [
-      "Cuece los garbanzos hasta que estén muy blandos y escúrrelos.",
+      "Utiliza garbanzos ya cocidos y escurridos; enjuágalos y caliéntalos suavemente para facilitar el triturado.",
       "Tritura los garbanzos con tahini y agua hasta formar una crema.",
       "Tuesta las rebanadas de pan por ambos lados.",
       "Unta con hummus y cubre con tomate fresco picado."
@@ -343,4 +343,4 @@ const FICHAS=[
   }
 ] as const;
 const CANTIDADES:Record<string,string>={"quinoa":"150 g","palta":"1 unidad","choclo":"200 g","tomate":"200 g","arroz":"150 g","atun":"140 g","pepino":"1 unidad","pasta":"180 g","aceituna":"60 g","queso":"80 g","zapallo":"300 g","leche":"150 ml","coco":"150 ml","cebolla":"100 g","pescado":"300 g","jengibre":"10 g","limon":"1 unidad","zanahoria":"180 g","pollo":"300 g","mostaza":"2 cucharadas","papa":"350 g","lenteja":"180 g","perejil":"1 cucharada","huevo":"2 unidades","espinaca":"160 g","yogur":"150 g","ajo":"2 dientes","champinon":"200 g","arveja":"180 g","avena":"100 g","pan":"4 rebanadas","garbanzo":"200 g","tahini":"40 g","coliflor":"300 g","curcuma":"1 cucharadita","acelga":"250 g","tortilla":"4 unidades","repollo":"200 g","brocoli":"250 g","betarraga":"2 unidades","naranja":"2 unidades","lechuga":"100 g"};
-export const RECETAS_LOTE_12:Receta[]=FICHAS.map((f,i)=>({id:`lote-12-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>`${CANTIDADES[id]} de ${id}`),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
+export const RECETAS_LOTE_12:Receta[]=FICHAS.map((f,i)=>({id:`lote-12-${i+1}`,titulo:f.titulo,descripcion:"Preparación para dos personas con cantidades orientativas.",tiempoPreparacion:`${f.prep} min`,tiempoCoccion:`${f.coc} min`,porciones:"2 personas",dificultad:"Fácil",ingredientes:f.ids.map(id=>{const pasos=f.pasos.join(" ");if(id==="garbanzo"&&/garbanzos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de garbanzos cocidos y escurridos`;if(id==="lenteja"&&/lentejas (?:previamente |ya )?cocidas/i.test(pasos))return `${CANTIDADES[id]} de lentejas cocidas y escurridas`;if(id==="poroto"&&/porotos (?:previamente |ya )?cocidos/i.test(pasos))return `${CANTIDADES[id]} de porotos cocidos y escurridos`;return `${CANTIDADES[id]} de ${id}`}),pasos:[...f.pasos],costoAproximado:"Medio",preferencia:"Catálogo editorial sin IA",ingredientesCoincidentes:[],ingredientesFaltantes:[],porcentajeCoincidencia:0}));
