@@ -232,7 +232,8 @@ const CANTIDADES: Record<string,string> = {"arroz":"150 g","zanahoria":"180 g","
 const TIEMPOS_REVISADOS: Record<string,string> = {
   "Pastel de papas con lentejas": "65 min",
   "Zapallo relleno de garbanzos": "50 min",
-  "Arroz caldoso con lentejas y tomate": "50 min"
+  "Arroz caldoso con lentejas y tomate": "50 min",
+  "Tomaticán de huevo": "15 min"
 };
 export const RECETAS_LOTE_3: Receta[] = DATOS.map((f,i)=>({
  id:`lote-3-${i+1}`,titulo:f.titulo,
