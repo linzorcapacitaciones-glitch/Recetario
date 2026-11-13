@@ -43,7 +43,7 @@ const DATOS = [
       "Lava y pica los tomates y la cebolla.",
       "Sofríe la cebolla hasta que esté transparente.",
       "Agrega el tomate y cocina hasta formar una salsa espesa.",
-      "Incorpora los huevos batidos y revuelve hasta que estén completamente cuajados."
+      "Haz un espacio para cada huevo, casca los huevos enteros sobre la salsa, tapa la sartén y cocina a fuego bajo hasta que las claras y las yemas estén firmes."
     ]
   },
   {
