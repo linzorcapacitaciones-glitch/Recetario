@@ -43,6 +43,7 @@ test("Tomaticán de huevo usa huevos enteros cuajados en salsa, no revueltos",()
  assert.ok(receta.pasos.some(p=>/salsa espesa/i.test(p)));
  assert.ok(receta.pasos.some(p=>/casca los huevos enteros/i.test(p)&&/tapa la sartén/i.test(p)&&/claras y las yemas estén firmes/i.test(p)));
  assert.ok(receta.pasos.every(p=>!/huevos batidos|revuelve.*cuajados/i.test(p)));
+ assert.equal(receta.tiempoCoccion,"15 min");
 });
 
 test("Lotes antiguos incluyen tiempos diferenciados y no un valor fijo",()=>{
