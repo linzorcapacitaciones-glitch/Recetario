@@ -15,12 +15,17 @@ export function consolidarComprasCuantificadas(
   }
   let modificados = 0;
   for (const p of entradas.values()) {
-    const index = items.findIndex(i => i.productoId === p.id && i.unidad === p.unidad);
+    const coincidencias = items.filter(i => i.productoId === p.id && i.unidad === p.unidad);
+    // Repetir el mismo plan sigue siendo idempotente aunque su compra ya esté marcada.
+    if (coincidencias.some(i => i.fuentes?.includes(fuente))) continue;
+
+    // No reabrir una compra ya realizada: las necesidades nuevas pasan a una fila
+    // pendiente separada y las compras pendientes futuras se consolidan allí.
+    const index = items.findIndex(i => i.productoId === p.id && i.unidad === p.unidad && !i.comprado);
     if (index >= 0) {
       const previo = items[index]!;
-      if (previo.fuentes?.includes(fuente)) continue;
       const cantidad = Math.round(((previo.cantidad ?? 0) + p.cantidad) * 10) / 10;
-      items[index] = { ...previo, cantidad, nombre: rotulo(cantidad, p.unidad, p.nombre), comprado: false,
+      items[index] = { ...previo, cantidad, nombre: rotulo(cantidad, p.unidad, p.nombre),
         origen: previo.origen === origen ? origen : "Varios planes", fuentes: [...(previo.fuentes ?? []), fuente] };
     } else {
       items.push({ id: ahora + "-plan-" + items.length + "-" + p.id, nombre: rotulo(p.cantidad, p.unidad, p.nombre),
